@@ -1,4 +1,4 @@
-# Ripple
+# Palmos
 
 [ ![Codeship Status for drewandre/ripple](https://app.codeship.com/projects/170c8390-bb87-0135-37fd-46dcf572bfca/status?branch=master)](https://app.codeship.com/projects/259373)
 
