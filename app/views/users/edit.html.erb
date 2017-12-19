@@ -1,0 +1,38 @@
+
+<p id="alert"><%= alert if alert%></p>
+<div class="row">
+  <div class="small-12 columns">
+    <h1 class="text-center top-padded">
+      <%= @user.handle %>
+    </h1>
+    <%= form_for @user do |f| %>
+      <div class="form-inputs">
+        <fieldset>
+          <%= f.label :email %>
+          <%= f.email_field :email %>
+        </fieldset>
+        <div class="row">
+          <div class="small-12 medium-6 columns">
+            <fieldset>
+              <%= f.label :first_name %>
+              <%= f.text_field :first_name, label: "First Name" %>
+            </fieldset>
+          </div>
+          <div class="small-12 medium-6 columns">
+            <fieldset>
+              <%= f.label :last_name %>
+              <%= f.text_field :last_name, label: "Last Name" %>
+            </fieldset>
+          </div>
+        </div>
+        <fieldset>
+          <%= f.label :current_password %>
+          <%= f.password_field :password %>
+        </fieldset>
+      </div>
+      <div class="form-actions">
+        <%= f.submit "Update", class: "button" %>
+      </div>
+    <% end %>
+  </div>
+</div>

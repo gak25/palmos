@@ -1,0 +1,7 @@
+<p> Hi <%= @user.first_name %>, </p>
+
+<p>
+  Welcome to Ripple! Click on
+  <%= link_to "this link", edit_account_confirmation_url(@token, email: @user.email) %>
+  to confirm your email address and activate your account.
+</p>
