@@ -11,10 +11,10 @@
 * run `foreman start`, and visit `localhost:5000` to view the application
 
 ## To debug:
-* to run react tests, `yarn test` and visit localhost:9397 in your browser
+* to run react tests, `yarn test` (optionally visit localhost:9397 in your browser)
 * run `rspec` to view the status of all unit tests
 * run `rails c` to enter the rails console (`exit` to exit)
 
-## To run webpack (not needed if running `foreman start`:
+## To run webpack independently from Puma server (not needed if running `foreman start`:
 * to run webpack-dev-server independent of Puma sever, run `yarn start`
 * to compile webpack output, run `yarn build`
