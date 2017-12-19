@@ -51,7 +51,7 @@ feature "user updates attributes" do
     end
 
     scenario "not their user" do
-      second_user = FactoryGirl.create :user, confirmed_at: Time.current
+      second_user = FactoryBot.create :user, confirmed_at: Time.current
       visit edit_user_path(second_user)
 
       expect(page).to have_content("You are not authorized for this record.")

@@ -5,7 +5,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require "rspec/rails"
 require "capybara/rspec"
 require "capybara/email/rspec"
-require "factory_girl"
+require "factory_bot"
 require "shoulda-matchers"
 require "valid_attribute"
 
@@ -22,7 +22,7 @@ end
 
 RSpec.configure do |config|
   config.include AuthenticationHelpers
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.include PasswordHelpers
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = true

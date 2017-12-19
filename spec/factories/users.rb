@@ -1,6 +1,6 @@
-require "factory_girl"
+require "factory_bot"
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
     confirmed_at Time.current
     sequence(:email) { |n| "user#{n}@example.com" }
