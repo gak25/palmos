@@ -1,26 +1,53 @@
 {
-  "name": "ripple",
-  "private": true,
-  "dependencies": {
-    "@rails/webpacker": "^3.0.2",
-    "babel-preset-react": "^6.24.1",
-    "coffeescript": "1.12.7",
-    "prop-types": "^15.6.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
-  },
-  "devDependencies": {
-    "enzyme": "^3.2.0",
-    "jasmine-core": "^2.8.0",
-    "jasmine-enzyme": "^4.0.1",
-    "karma": "^1.7.1",
-    "karma-cli": "^1.0.1",
-    "karma-jasmine": "^1.1.1",
-    "karma-phantomjs-launcher": "^1.0.4",
-    "karma-webpack": "^2.0.6",
-    "phantomjs-prebuilt": "^2.1.16",
-    "react-addons-test-utils": "^15.6.2",
-    "react-test-renderer": "^16.2.0",
-    "webpack-dev-server": "^2.9.5"
-  }
+	"name": "palmos_web",
+	"private": true,
+	"dependencies": {
+		"@rails/webpacker": "^3.0.2",
+		"babel-preset-react": "^6.24.1",
+		"coffeescript": "1.12.7",
+		"prop-types": "^15.6.0",
+		"react": "^16.2.0",
+		"react-dom": "^16.2.0"
+	},
+	"devDependencies": {
+		"clean-webpack-plugin": "^0.1.17",
+		"enzyme": "^3.2.0",
+		"enzyme-adapter-react-16": "^1.1.1",
+		"jasmine-core": "^2.8.0",
+		"jasmine-enzyme": "^4.0.1",
+		"karma": "^1.7.1",
+		"karma-cli": "^1.0.1",
+		"karma-jasmine": "^1.1.1",
+		"karma-phantomjs-launcher": "^1.0.4",
+		"karma-webpack": "^2.0.6",
+		"phantomjs-prebuilt": "^2.1.16",
+		"react-addons-test-utils": "^15.6.2",
+		"react-test-renderer": "^16.2.0",
+		"webpack-dev-server": "^2.9.5",
+		"webpack-merge": "^4.1.1"
+	},
+	"description": "Firmware and software for MK 1 Development. Summer 2017",
+	"version": "1.0.0",
+	"main": "karma.conf.js",
+	"directories": {
+		"lib": "lib"
+	},
+	"scripts": {
+		"test": "node_modules/.bin/karma start ./karma.conf.js",
+		"start": "webpack-dev-server --open --config webpack.dev.js",
+		"build": "webpack --config webpack.prod.js"
+	},
+	"engines": {
+		"node": ">=4.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@gitlab.com/palmos/palmos_web.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://gitlab.com/palmos/palmos_web/issues"
+	},
+	"homepage": "https://gitlab.com/palmos/palmos_web#README"
 }
