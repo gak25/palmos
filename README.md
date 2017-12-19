@@ -4,7 +4,8 @@
 
 ## To run locally:
 
-* `git clone https://gitlab.com/palmos/palmos_web.git`
+* create a directory (`mkdir palmos`) and navigate into that directory (`cd palmos`)
+* run `git clone https://gitlab.com/palmos/palmos_web.git`
 * run `bundle install` to install gem dependencies
 * run `yarn install` to install package dependencies
 * run `rake db:setup` to configure PostgreSQL database
