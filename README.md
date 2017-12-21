@@ -20,6 +20,9 @@
 * to run the linter once, run `$ yarn lint`
 * to run the watch task, run `$ yarn lint:watch`
 
+## To modify environment variables (i.e. company passwords, emails, etc)
+* from the project's home directory, run `# open /config/application.yml`
+
 ## To run webpack independently from Puma server (not needed if running `foreman start`:
 * to run webpack-dev-server independent of Puma sever, run `yarn start`
 * to compile webpack output, run `yarn build`
