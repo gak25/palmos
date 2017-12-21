@@ -21,10 +21,12 @@
 * to run the watch task, run `$ yarn lint:watch`
 
 ## To declare development and test environment variables (i.e. company passwords, emails, etc)
-* from the project's home directory, run `$ touch config/application.yml $$ open config/application.yml`
-* add `/config/application.yml` to `.gitignore`
+* from the project's home directory, run `$ open config/secrets.yml`
+*secrets can be added here, but only for development and test environments - not production!*
+* confirm that `/config/application.yml` is present in `.gitignore`
 
 ## To declare encrypted production environment variables (i.e. company passwords, emails, etc)
+*these secrets will be encrypted and are safe for production builds*
 * run `bin/rails secrets:edit` - if secret key is required, <a href="mailto:drewjamesandre@gmail.com">contact Drew</a>  
 
 ## To run webpack independently from Puma server (not needed if running `foreman start`:
