@@ -22,7 +22,8 @@
 
 ## To declare development and test environment variables (i.e. company passwords, emails, etc)
 * from the project's home directory, run `$ open config/secrets.yml`
-*secrets can be added here, but only for development and test environments - not production!*
+* *secrets can be added here, but only for development and test environments - not production!*
+* *add any secrets in the example format found at the top of the file*
 * confirm that `/config/application.yml` is present in `.gitignore`
 
 ## To declare encrypted production environment variables (i.e. company passwords, emails, etc)
