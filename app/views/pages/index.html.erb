@@ -1,23 +1,2 @@
 <p id="alert"><%= alert if alert%></p>
-<div class="row">
-  <div class="small-12 columns">
-    <h1 class="text-center top-padded">Palmos</h1>
-    <div class="callout">
-      <p>
-        Palmos
-      </p>
-      <% if user_signed_in? %>
-        <p>
-          Welcome back, #{current_user.first_name}.
-        </p>
-      <% else %>
-        <p>
-          If you're new to
-          <strong>Palmos,</strong>
-          you can
-          <%= link_to "sign up here.", sign_up_path %>
-        </p>
-      <% end %>
-    </div>
-  </div>
-</div>
+<h2>Hello from root#pages</h2>

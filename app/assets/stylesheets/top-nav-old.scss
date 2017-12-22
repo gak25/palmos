@@ -1,0 +1,73 @@
+@import 'colors';
+@import 'mixins';
+
+top-nav {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 60px;
+	background: $palmos-blue;
+
+	#palmos-logo {
+		padding: 8px 15px;
+	}
+
+	// h1#nav-company-name {
+	// 	position: absolute;
+	// 	top: 0;
+	// 	left: 60px;
+	// 	font-weight: 100;
+	// 	color: $palmos-off-white;
+	// }
+
+	.account {
+		position: relative;
+		float: right;
+		height: 100%;
+		width: 130px;
+		border-left: 1px solid $palmos-dark-blue;
+
+		#user-dropdown-avatar {
+			position: absolute;
+			top: 7.5px;
+			right: 60px;
+			color: $palmos-grey;
+			border: 1px solid $palmos-grey;
+			border-radius: 200px;
+			padding: 5px 10px;
+		}
+		#user-dropdown-arrow {
+			position: absolute;
+			top: 23px;
+			right: 30px;
+			color: $palmos-grey;
+		}
+	}
+	.account:hover {
+		background: lighten($palmos-turquoise, 10%);
+	}
+
+	.account-dropdown {
+		position: absolute;
+		top: 60px;
+		right: 0;
+		width: 131px;
+		height: 200px;
+		border-left: 1px solid $palmos-grey;
+		background: $palmos-blue;
+		border-bottom-left-radius: 5px;
+
+		#account-dropdown-text {
+			position: relative;
+			left: 0;
+			width: 131px;
+			list-style: none;
+			// padding: 0;
+			// margin: 0;
+			// height: 50px;
+			text-align: center;
+			background: red;
+		}
+	}
+}

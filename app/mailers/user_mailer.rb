@@ -1,7 +1,6 @@
 class UserMailer < ApplicationMailer
 
   def account_confirmation(user_id, token)
-    binding.pry
     @user = User.find(user_id)
     @token = token
     mail to: @user.email, subject: "Account Confirmation"

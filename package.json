@@ -6,6 +6,7 @@
 		"babel-preset-react": "^6.24.1",
 		"coffeescript": "1.12.7",
 		"css-loader": "^0.28.7",
+		"jquery-ujs": "^1.2.2",
 		"node-sass": "^4.7.2",
 		"prop-types": "^15.6.0",
 		"react": "^16.2.0",
@@ -43,8 +44,7 @@
 		"lib": "lib"
 	},
 	"scripts": {
-		"test":
-			"node_modules/.bin/karma start ./karma.conf.js & open http://localhost:9876/",
+		"test": "node_modules/.bin/karma start ./karma.conf.js & open http://localhost:9876/",
 		"start": "webpack-dev-server --config webpack.dev.js",
 		"build": "webpack --config webpack.prod.js",
 		"lint": "eslint src/**",

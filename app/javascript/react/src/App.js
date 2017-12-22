@@ -1,7 +1,7 @@
 import React from 'react';
 
 const App = props => {
-	return <h1>Hello Palmos!</h1>;
+	return <h2>Hello Palmos, from React!</h2>;
 };
 
 export default App;

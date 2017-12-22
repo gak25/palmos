@@ -1,6 +1,5 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -70,10 +69,10 @@ Rails.application.configure do
     config.action_mailer.smtp_settings = {
       :address        => "smtp.gmail.com",
       :port           => 587,
-      :domain         => ENV["EMAIL_DOMAIN"],
+      :domain         => Rails.application.secrets.secret_gmail_domain,
       :authentication => :plain,
-      :user_name      => ENV["GMAIL_USERNAME"],
-      :password       => ENV["GMAIL_PASSWORD"],
+      :user_name      => Rails.application.secrets.secret_gmail_username,
+      :password       => Rails.application.secrets.secret_gmail_password,
       :enable_starttls_auto => true
     }
     config.action_mailer.perform_caching = false

@@ -2,24 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// @import 'styles/*';
 @import 'colors';
 @import 'mixins';
+@import 'font-awesome';
+
+@import 'top-nav';
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
-h1,
-h2,
-h3,
-h4,
-h5 {
-	font-family: 'Montserrat', Fallback, sans-serif;
-}
 
-html {
-	height: 100%;
-}
 body {
 	background: $palmos-grey;
-	height: 100%;
-	width: 100%;
+	font-family: 'Montserrat', Fallback, sans-serif;
+
+	main {
+		position: absolute;
+		top: 60px;
+		left: 0;
+		right: 0;
+	}
 }
