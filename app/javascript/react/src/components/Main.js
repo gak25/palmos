@@ -1,14 +1,19 @@
 import React from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import {
+	Route,
+	Switch,
+	NavLink,
+	BrowserRouter as Router
+} from 'react-router-dom';
 import Dashboard from './Dashboard';
-import FormContainer from '../containers/FormContainer';
+import FormContainer from './FormContainer';
 
 const Main = props => {
 	return (
 		<main>
 			<Switch>
-				<Route exact path="/" component={Dashboard} />
-				<Route exact path="/sign-in" component={FormContainer} />
+				<Route path="/sign-in/" component={FormContainer} />
+				<Route path="/" component={Dashboard} />
 			</Switch>
 		</main>
 	);

@@ -1,10 +1,10 @@
-const merge = require("webpack-merge");
-const common = require("./webpack.common.js");
+const merge = require('webpack-merge');
+const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
-	devtool: "inline-source-map",
+	devtool: 'inline-source-map',
 	devServer: {
-		contentBase: "./app/javascripts/dist",
+		contentBase: './app/javascripts/dist',
 		hot: true
 	},
 	module: {
@@ -12,7 +12,7 @@ module.exports = merge(common, {
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				loader: "babel-loader"
+				loader: 'babel-loader'
 			}
 		]
 	}

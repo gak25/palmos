@@ -1,12 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {
+	Route,
+	Switch,
+	NavLink,
+	BrowserRouter as Router
+} from 'react-router-dom';
 
 const Dashboard = props => {
 	return (
 		<div>
 			<h2>Dashboard</h2>
 			<li>
-				<Link to="/sign-in">Sign In</Link>
+				<NavLink to="/sign-in/">Sign In</NavLink>
 			</li>
 		</div>
 	);
