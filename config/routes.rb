@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   #   end
   # end
 
-  get '*path', to: 'pages#index'
+  get '*path', to: 'dashboard#index'
 
   resources :account_confirmations, only: [:edit]
   resources :password_resets, only: [:create, :edit, :new, :update]

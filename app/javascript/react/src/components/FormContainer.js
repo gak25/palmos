@@ -11,7 +11,7 @@ const FormContainer = props => {
 		<div>
 			<h2>Sign in form</h2>
 			<li>
-				<NavLink to="/">Home</NavLink>
+				<NavLink to="/home/">Home</NavLink>
 			</li>
 		</div>
 	);

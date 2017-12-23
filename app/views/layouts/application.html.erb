@@ -8,32 +8,13 @@
     </title>
     <%= stylesheet_link_tag "application", media: "all" %>
     <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tag %>
   </head>
   <body>
-    <top-nav>
-      <%= image_tag("palmos-logo.png", width: "35", id: "palmos-logo") %>
-      <nav id='main-nav'>
-        <div id='menu'>
-          <i class="fa fa-user fa-2x" id="user-dropdown-avatar" aria-hidden="true"></i>
-          <i class="fa fa-caret-down" id="user-dropdown-arrow" aria-hidden="true"></i>
-        </div>
-        <ul>
-          <!-- <a href="/"><p class='account-current-user'>contact me</p></a> -->
-
-        </ul>
-      </nav>
-    </top-nav>
-
-    <main>
-      <% flash.each do |name, msg| %>
-        <div class="#{name} callout">
-          <%= content_tag :span, msg %>
-        </div>
-      <% end %>
-      <%= javascript_pack_tag 'index.js' %>
-      <%= yield %>
-      <div id='app'></div>
-    </main>
+    <% flash.each do |name, msg| %>
+      <div class="#{name} callout">
+        <%= content_tag :span, msg %>
+      </div>
+    <% end %>
+    <%= yield %>
   </body>
 </html>

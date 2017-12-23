@@ -13,7 +13,7 @@ const Main = props => {
 		<main>
 			<Switch>
 				<Route path="/sign-in/" component={FormContainer} />
-				<Route path="/" component={Dashboard} />
+				<Route path="/home/" component={Dashboard} />
 			</Switch>
 		</main>
 	);
