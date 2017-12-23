@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import App from '../react/src/components/App';
 
 document.addEventListener('DOMContentLoaded', () => {
 	ReactDOM.render(
-		<BrowserRouter>
+		<Router basename="/">
 			<App />
-		</BrowserRouter>,
+		</Router>,
 		document.getElementById('app')
 	);
 });

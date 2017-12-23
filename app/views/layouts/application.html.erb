@@ -20,14 +20,7 @@
         </div>
         <ul>
           <!-- <a href="/"><p class='account-current-user'>contact me</p></a> -->
-          <% if user_signed_in? %>
-            <!-- <li class='account-current-user'>Signed in as:</li> -->
-            <li class='account-current-user'><%= link_to current_user.handle, edit_user_path(current_user) %></li>
-            <li id="account-dropdown-text"><%= link_to("Sign Out", sign_out_path, 'data-method' => :delete) %></li>
-          <% else %>
-            <li id="account-dropdown-text"><%= link_to "Sign In", sign_in_path %></li>
-            <li id="account-dropdown-text"><%= link_to "Sign Up", sign_out_path %></li>
-          <% end %>
+
         </ul>
       </nav>
     </top-nav>
@@ -40,7 +33,6 @@
       <% end %>
       <%= javascript_pack_tag 'index.js' %>
       <%= yield %>
-      <div id='app'></div>
     </main>
   </body>
 </html>

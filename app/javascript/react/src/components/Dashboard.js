@@ -5,7 +5,9 @@ const Dashboard = props => {
 	return (
 		<div>
 			<h2>Dashboard</h2>
-			<Link to="/sign-in">Register</Link>
+			<li>
+				<Link to="/sign-in">Sign In</Link>
+			</li>
 		</div>
 	);
 };
