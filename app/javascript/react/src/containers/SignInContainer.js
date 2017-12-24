@@ -12,7 +12,6 @@ class SignInContainer extends Component {
 		};
 		this.handleEmailOrUsername = this.handleEmailOrUsername.bind(this);
 		this.handlePassword = this.handlePassword.bind(this);
-		this.handleClearForm = this.handleClearForm.bind(this);
 		this.handleFormSubmit = this.handleFormSubmit.bind(this);
 		this.validateEmailOrUsername = this.validateEmailOrUsername.bind(this);
 		this.validatePassword = this.validatePassword.bind(this);
@@ -46,7 +45,7 @@ class SignInContainer extends Component {
 	validateEmailOrUsername(emailOrUsername) {
 		if (emailOrUsername === '') {
 			let newError = {
-				emailOrUsername: 'Email/Username field may not be blank.'
+				emailOrUsername: 'Email/Username field may not be blank'
 			};
 			this.setState({ errors: Object.assign(this.state.errors, newError) });
 			return false;
@@ -60,7 +59,7 @@ class SignInContainer extends Component {
 
 	validatePassword(password) {
 		if (password === '') {
-			let newError = { password: 'Password field may not be blank.' };
+			let newError = { password: 'Password field may not be blank' };
 			this.setState({ errors: Object.assign(this.state.errors, newError) });
 			return false;
 		} else {
@@ -71,34 +70,23 @@ class SignInContainer extends Component {
 		}
 	}
 
-	handleClearForm(event) {
-		event.preventDefault();
-		this.setState({
-			errors: {},
-			emailOrUsername: '',
-			password: ''
-		});
-	}
-
 	render() {
 		let errorDiv;
 		let errorItems;
 		if (Object.keys(this.state.errors).length > 0) {
 			errorItems = Object.values(this.state.errors).map(error => {
-				return <li key={error}>{error}</li>;
+				return <div key={error}>{error}</div>;
 			});
-			errorDiv = <div className="callout alert">{errorItems}</div>;
+			errorDiv = <div className="register-form-error">{errorItems}</div>;
 		}
 		return (
-			<form className="callout" onSubmit={this.handleFormSubmit}>
-				<h2>Sign In</h2>
+			<form className="register-forms" onSubmit={this.handleFormSubmit}>
 				{errorDiv}
 				<TextInput
 					emailOrUsername={this.state.emailOrUsername}
 					placeholder="Email or Username"
 					name="emailOrUsername"
-					inputType="text"
-					id="credentials"
+					autoFocus="on"
 					value={this.state.email}
 					handlerFunction={this.handleEmailOrUsername}
 				/>
@@ -107,15 +95,12 @@ class SignInContainer extends Component {
 					placeholder="Password"
 					name="password"
 					inputType="password"
-					id="credentials"
 					value={this.state.password}
 					handlerFunction={this.handlePassword}
 				/>
 				<div className="button-group">
-					<button className="button" onClick={this.handleClearForm}>
-						Clear
-					</button>
-					<input className="button" type="submit" value="Submit" />
+					<Link to="/sign-up">Sign Up</Link>
+					<button className="form-submit-button" type="submit" />
 				</div>
 			</form>
 		);

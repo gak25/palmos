@@ -1,43 +1,57 @@
 @import 'colors';
 @import 'mixins';
 
-fieldset {
+.register-forms {
+	@include center();
+	display: inline-grid;
+	text-align: center;
+}
+
+input::-webkit-input-placeholder {
+	color: $palmos-dark-blue;
+}
+input::-moz-placeholder {
+	color: $palmos-dark-blue;
+}
+input:-ms-input-placeholder {
+	color: $palmos-dark-blue;
+}
+input:-moz-placeholder {
+	color: $palmos-dark-blue;
+}
+
+.credentials[type='text'],
+.credentials[type='password'] {
+	margin: 8px 0;
+	padding: 10px;
+	font-weight: 300;
+	border-radius: 7px;
+	font-size: 1.5em;
+	color: $palmos-dark-blue;
+	background-color: $palmos-grey;
+	border: 1px solid $palmos-dark-blue;
+}
+
+input:not([type='checkbox']) {
 	border: none;
+	outline: none;
 }
 
-#session_login[type='text'],
-textarea {
-	font-weight: 200;
-	text-align: center;
-	border-radius: 10px;
-	height: 50px;
-	font-size: 1.5em;
-	background-color: $palmos-blue;
-	color: white;
-	border: 1px solid $palmos-dark-blue;
+.form-submit-button {
+	visibility: hidden;
 }
 
-#session_password[type='password'],
-textarea {
-	text-align: center;
-	font-weight: 200;
-	border-radius: 10px;
-	height: 50px;
-	font-size: 1.5em;
-	background-color: $palmos-blue;
-	color: #fff;
-	border: 1px solid $palmos-dark-blue;
-}
+// #lock-icon {
+// 	border: 1px solid $palmos-blue;
+// 	border-radius: 200px;
+// 	margin-bottom: 5px;
+// 	padding: 15px 25px;
+// 	color: $palmos-dark-blue;
+// }
 
-#lock-icon {
-	border: 1px solid $palmos-blue;
-	border-radius: 200px;
-	margin-bottom: 5px;
-	padding: 15px 25px;
-	color: $palmos-dark-blue;
-}
-
-.sign-in-error {
-	margin-bottom: 22px;
-	color: $palmos-dark-blue;
+.register-form-error {
+	margin: 8px 0;
+	padding: 10px;
+	border-radius: 7px;
+	background-color: orange;
 }

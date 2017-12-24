@@ -32,6 +32,22 @@
 	-ms-transform: translateY(-50%) translateX(-50%);
 	transform: translateY(-50%) translateX(-50%);
 }
+
+// @mixin placeholder-color() {
+// 	::-webkit-input-placeholder {
+// 		color: $palmos-dark-blue;
+// 	}
+// 	::-moz-placeholder {
+// 		color: $palmos-dark-blue;
+// 	}
+// 	:-ms-input-placeholder {
+// 		color: $palmos-dark-blue;
+// 	}
+// 	:-moz-placeholder {
+// 		color: $palmos-dark-blue;
+// 	}
+// }
+
 @mixin create_background_transition() {
 	background-color: none;
 	-webkit-transition: background-color 200ms ease-out 0s;

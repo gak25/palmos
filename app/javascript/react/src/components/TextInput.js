@@ -5,11 +5,19 @@ const TextInput = props => {
 		<input
 			name={props.name}
 			placeholder={props.placeholder}
+			autoFocus={props.autoFocus}
+			autoComplete="off"
 			onChange={props.handlerFunction}
+			className={props.className}
 			type={props.inputType}
-			value={props.content}
+			value={props.value}
 		/>
 	);
+};
+
+TextInput.defaultProps = {
+	inputType: 'text',
+	className: 'credentials'
 };
 
 export default TextInput;

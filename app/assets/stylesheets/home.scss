@@ -7,8 +7,12 @@
 @import 'font-awesome';
 
 @import 'nav-top';
+@import 'login';
 
-// @import url('https://fonts.googleapis.com/css?family=Montserrat');
+* {
+	margin: 0;
+	padding: 0;
+}
 
 body {
 	background: $palmos-grey;

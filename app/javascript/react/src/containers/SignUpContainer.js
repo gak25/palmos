@@ -78,7 +78,7 @@ class SignUpContainer extends Component {
 
 	validateFirstName(firstName) {
 		if (firstName === '') {
-			let newError = { firstName: 'First name field may not be blank.' };
+			let newError = { firstName: 'First name field may not be blank' };
 			this.setState({ errors: Object.assign(this.state.errors, newError) });
 			return false;
 		} else {
@@ -91,7 +91,7 @@ class SignUpContainer extends Component {
 
 	validateLastName(lastName) {
 		if (lastName === '') {
-			let newError = { lastName: 'Last name field may not be blank.' };
+			let newError = { lastName: 'Last name field may not be blank' };
 			this.setState({ errors: Object.assign(this.state.errors, newError) });
 			return false;
 		} else {
@@ -104,7 +104,7 @@ class SignUpContainer extends Component {
 
 	validateEmail(email) {
 		if (email === '') {
-			let newError = { email: 'Email field may not be blank.' };
+			let newError = { email: 'Email field may not be blank' };
 			this.setState({ errors: Object.assign(this.state.errors, newError) });
 			return false;
 		} else {
@@ -117,7 +117,7 @@ class SignUpContainer extends Component {
 
 	validatePassword(password) {
 		if (password === '') {
-			let newError = { password: 'Password field may not be blank.' };
+			let newError = { password: 'Password field may not be blank' };
 			this.setState({ errors: Object.assign(this.state.errors, newError) });
 			return false;
 		} else {
@@ -131,7 +131,7 @@ class SignUpContainer extends Component {
 	validatePasswordConfirmation(passwordConfirmation) {
 		if (passwordConfirmation === '') {
 			let newError = {
-				passwordConfirmation: 'Password confirmation field may not be blank.'
+				passwordConfirmation: 'Password confirmation field may not be blank'
 			};
 			this.setState({ errors: Object.assign(this.state.errors, newError) });
 			return false;
@@ -160,19 +160,17 @@ class SignUpContainer extends Component {
 		let errorItems;
 		if (Object.keys(this.state.errors).length > 0) {
 			errorItems = Object.values(this.state.errors).map(error => {
-				return <li key={error}>{error}</li>;
+				return <div key={error}>{error}</div>;
 			});
-			errorDiv = <div className="callout alert">{errorItems}</div>;
+			errorDiv = <div className="register-form-error">{errorItems}</div>;
 		}
 		return (
-			<form className="callout" onSubmit={this.handleFormSubmit}>
-				<h2>Sign Up</h2>
+			<form className="register-forms" onSubmit={this.handleFormSubmit}>
 				{errorDiv}
 				<TextInput
 					firstName={this.state.firstName}
 					placeholder="First Name"
-					name="first name"
-					inputType="text"
+					name="firstName"
 					id="name"
 					value={this.state.firstName}
 					handlerFunction={this.handleFirstName}
@@ -180,8 +178,7 @@ class SignUpContainer extends Component {
 				<TextInput
 					lastName={this.state.lastName}
 					placeholder="Last Name"
-					name="last name"
-					inputType="text"
+					name="lastName"
 					id="name"
 					value={this.state.lastName}
 					handlerFunction={this.handleLastName}
@@ -190,8 +187,6 @@ class SignUpContainer extends Component {
 					email={this.state.email}
 					placeholder="Email"
 					name="email"
-					inputType="text"
-					id="credentials"
 					value={this.state.email}
 					handlerFunction={this.handleEmail}
 				/>
@@ -200,7 +195,6 @@ class SignUpContainer extends Component {
 					placeholder="Password"
 					name="password"
 					inputType="password"
-					id="credentials"
 					value={this.state.password}
 					handlerFunction={this.handlePassword}
 				/>
@@ -209,7 +203,6 @@ class SignUpContainer extends Component {
 					placeholder="Password Confirmation"
 					name="passwordConfirmation"
 					inputType="password"
-					id="credentials"
 					value={this.state.passwordConfirmation}
 					handlerFunction={this.handlePasswordConfirmation}
 				/>
@@ -217,7 +210,8 @@ class SignUpContainer extends Component {
 					<button className="button" onClick={this.handleClearForm}>
 						Clear
 					</button>
-					<input className="button" type="submit" value="Submit" />
+					<Link to="/sign-in">Sign In</Link>
+					<button className="form-submit-button" type="submit" />
 				</div>
 			</form>
 		);
