@@ -1,12 +1,9 @@
 class PagesController < ApplicationController
-  # def index
-  #   render :'pages/index'
-  # end
+  def index
+    if current_user
+      render :'pages/index'
+    else
+      redirect_to '/sign-in'
+    end
+  end
 end
-
-
-# if current_user
-#   render :'pages/index'
-# else
-#   redirect_to '/users/sign_in'
-# end

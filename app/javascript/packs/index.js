@@ -1,19 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {
-	Route,
-	Switch,
-	NavLink,
-	BrowserRouter as Router
-} from 'react-router-dom';
-
-import Main from '../react/src/components/Main';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import FormContainer from '../react/src/containers/FormContainer';
+import App from '../react/src/containers/App';
 
 document.addEventListener('DOMContentLoaded', () => {
-	ReactDOM.render(
-		<Router>
-			<Main />
-		</Router>,
-		document.getElementById('app')
-	);
+	let reactElement = document.getElementById('react-app');
+	if (reactElement) {
+		ReactDOM.render(
+			<Router>
+				<Switch>
+					<Route exact path="/sign-in" component={FormContainer} />
+					<Route exact path="/" component={App} />
+				</Switch>
+			</Router>,
+			reactElement
+		);
+	}
 });

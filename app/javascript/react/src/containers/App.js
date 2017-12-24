@@ -1,12 +1,14 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Main from './Main';
-// import FormContainer from '../containers/FormContainer';
+import Dashboard from '../containers/Dashboard';
+import NavTop from '../containers/NavTop';
 
 const App = props => {
 	return (
 		<div>
-			<Main />
+			<h1>Hello from App!</h1>
+			<NavTop />
+			<Dashboard />
 		</div>
 	);
 };

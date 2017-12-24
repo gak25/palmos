@@ -13,7 +13,7 @@
 
 .account-current-user {
 	text-align: center;
-	width: 210px;
+	width: 100px;
 	background-color: $palmos-turquoise;
 	border-radius: 5px;
 	cursor: pointer;
@@ -35,13 +35,15 @@ a p {
 	@include no-user-select();
 	position: absolute;
 	top: 0;
+	left: 0;
 	right: 0;
 	cursor: pointer;
 	display: inline-grid;
-	width: 100px;
+	// width: 100px;
 	padding: 0px 15px;
 	background: $palmos-blue;
-	border-bottom-left-radius: 5px;
+	opacity: 0.1;
+	// border-bottom-left-radius: 5px;
 
 	ul {
 		@include no-user-select();
