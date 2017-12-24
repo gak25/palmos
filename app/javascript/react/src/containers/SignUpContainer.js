@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import TextInput from '../components/TextInput';
 
-class FormContainer extends Component {
+class SignUpContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -166,45 +166,50 @@ class FormContainer extends Component {
 		}
 		return (
 			<form className="callout" onSubmit={this.handleFormSubmit}>
-				<h2>FormContainer</h2>
+				<h2>Sign Up</h2>
 				{errorDiv}
 				<TextInput
 					firstName={this.state.firstName}
-					label="First Name"
+					placeholder="First Name"
 					name="first name"
 					inputType="text"
+					id="name"
 					value={this.state.firstName}
 					handlerFunction={this.handleFirstName}
 				/>
 				<TextInput
 					lastName={this.state.lastName}
-					label="Last Name"
+					placeholder="Last Name"
 					name="last name"
 					inputType="text"
+					id="name"
 					value={this.state.lastName}
 					handlerFunction={this.handleLastName}
 				/>
 				<TextInput
 					email={this.state.email}
-					label="Email"
+					placeholder="Email"
 					name="email"
 					inputType="text"
+					id="credentials"
 					value={this.state.email}
 					handlerFunction={this.handleEmail}
 				/>
 				<TextInput
 					password={this.state.password}
-					label="Password"
+					placeholder="Password"
 					name="password"
 					inputType="password"
+					id="credentials"
 					value={this.state.password}
 					handlerFunction={this.handlePassword}
 				/>
 				<TextInput
 					passwordConfirmation={this.state.passwordConfirmation}
-					label="Password Confirmation"
+					placeholder="Password Confirmation"
 					name="passwordConfirmation"
 					inputType="password"
+					id="credentials"
 					value={this.state.passwordConfirmation}
 					handlerFunction={this.handlePasswordConfirmation}
 				/>
@@ -219,4 +224,4 @@ class FormContainer extends Component {
 	}
 }
 
-export default FormContainer;
+export default SignUpContainer;

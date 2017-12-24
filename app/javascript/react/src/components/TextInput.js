@@ -2,15 +2,13 @@ import React from 'react';
 
 const TextInput = props => {
 	return (
-		<label>
-			{props.label}
-			<input
-				name={props.name}
-				onChange={props.handlerFunction}
-				type={props.inputType}
-				value={props.content}
-			/>
-		</label>
+		<input
+			name={props.name}
+			placeholder={props.placeholder}
+			onChange={props.handlerFunction}
+			type={props.inputType}
+			value={props.content}
+		/>
 	);
 };
 
