@@ -6,10 +6,12 @@
 		"babel-preset-react": "^6.24.1",
 		"css-loader": "^0.28.7",
 		"jquery-ujs": "^1.2.2",
+		"markerclustererplus": "^2.1.4",
 		"node-sass": "^4.7.2",
 		"prop-types": "^15.6.0",
 		"react": "^16.2.0",
 		"react-dom": "^16.2.0",
+		"react-google-maps": "^9.4.3",
 		"react-router-dom": "^4.2.2",
 		"sass-loader": "^6.0.6",
 		"style-loader": "^0.19.1"
@@ -45,8 +47,7 @@
 		"lib": "lib"
 	},
 	"scripts": {
-		"test":
-			"node_modules/.bin/karma start ./karma.conf.js & open http://localhost:9876/",
+		"test": "node_modules/.bin/karma start ./karma.conf.js & open http://localhost:9876/",
 		"start": "webpack-dev-server --config webpack.dev.js",
 		"build": "webpack --config webpack.prod.js",
 		"lint": "eslint src/**",

@@ -1,0 +1,85 @@
+@import 'colors';
+@import 'mixins';
+
+$top-nav-height: 60px;
+$map-header-height: 50px;
+$map-filter-width: 200px;
+
+// MEDIUM
+@media all and (min-width: 0px) {
+	.map-container,
+	.map-subcontainer,
+	.dashboard {
+		flex-direction: column;
+	}
+	.info {
+		width: 100%;
+	}
+}
+
+// LARGE
+@media all and (min-width: 800px) {
+	.info {
+		width: $map-filter-width;
+	}
+	.dashboard {
+		flex-direction: row;
+	}
+	.map-subcontainer {
+		flex-direction: row;
+	}
+}
+
+#top-nav {
+	color: white;
+	height: $top-nav-height;
+	background: $palmos-blue;
+}
+
+.dashboard {
+	display: flex;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	top: $top-nav-height;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.map-container {
+	background-color: purple;
+	display: flex;
+	flex: 1;
+	order: 2;
+}
+
+.map-subcontainer {
+	display: flex;
+	// flex-direction: column;
+	flex: 1;
+	order: 2;
+	background-color: green;
+}
+
+.map {
+	background-color: blue;
+	order: 1;
+	flex: 1;
+}
+
+.map-header {
+	order: 1;
+	background-color: purple;
+	height: $map-header-height;
+}
+
+.left-filter {
+	order: 1;
+	background: red;
+}
+
+.right-status {
+	order: 2;
+	background-color: yellow;
+}
