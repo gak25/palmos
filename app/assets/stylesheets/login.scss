@@ -5,6 +5,8 @@
 	@include center();
 	display: inline-grid;
 	text-align: center;
+	width: 98%;
+	max-width: 400px;
 }
 
 // input::-webkit-input-placeholder {
@@ -27,7 +29,7 @@
 	font-weight: 300;
 	border-radius: 7px;
 	font-size: 1.5em;
-	color: $palmos-dark-blue;
+	// color: $palmos-dark-blue;
 	background-color: #fff;
 	border: 1px solid #000;
 }
@@ -38,7 +40,7 @@ input:not([type='checkbox']) {
 }
 
 .form-submit-button {
-	visibility: hidden;
+	// visibility: hidden;
 }
 
 // #lock-icon {

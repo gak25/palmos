@@ -6,7 +6,7 @@ const TextInput = props => {
 			name={props.name}
 			placeholder={props.placeholder}
 			autoFocus={props.autoFocus}
-			autoComplete={props.autoFocus}
+			autoComplete={props.autoComplete}
 			onChange={props.handlerFunction}
 			className={props.className}
 			type={props.inputType}
@@ -18,7 +18,6 @@ const TextInput = props => {
 TextInput.defaultProps = {
 	inputType: 'text',
 	className: 'credentials',
-	autoFocus: 'off',
 	autoComplete: 'off'
 };
 

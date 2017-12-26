@@ -20,11 +20,11 @@ class SignInContainer extends Component {
 	handleFormSubmit(event) {
 		event.preventDefault();
 		if (
-			this.validateEmailOrUsername(this.state.email) &&
-			this.validatePassword(this.state.email)
+			this.validateEmailOrUsername(this.state.emailOrUsername) &&
+			this.validatePassword(this.state.password)
 		) {
 			let formPayLoad = {
-				email: this.state.email,
+				emailOrUsername: this.state.emailOrUsername,
 				password: this.state.password
 			};
 			this.props.signIn(formPayLoad);
@@ -34,7 +34,7 @@ class SignInContainer extends Component {
 
 	handleEmailOrUsername(event) {
 		this.validateEmailOrUsername(event.target.value);
-		this.setState({ email: event.target.value });
+		this.setState({ emailOrUsername: event.target.value });
 	}
 
 	handlePassword(event) {
@@ -86,6 +86,7 @@ class SignInContainer extends Component {
 					emailOrUsername={this.state.emailOrUsername}
 					placeholder="Email or Username"
 					name="emailOrUsername"
+					autoComplete="off"
 					autoFocus="on"
 					value={this.state.email}
 					handlerFunction={this.handleEmailOrUsername}

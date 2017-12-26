@@ -187,7 +187,8 @@ class SignUpContainer extends Component {
 					placeholder="First Name"
 					name="firstName"
 					id="name"
-					autofocus="on"
+					autoComplete="off"
+					autoFocus="on"
 					value={this.state.firstName}
 					handlerFunction={this.handleFirstName}
 				/>
@@ -196,6 +197,7 @@ class SignUpContainer extends Component {
 					placeholder="Last Name"
 					name="lastName"
 					id="name"
+					autoComplete="off"
 					value={this.state.lastName}
 					handlerFunction={this.handleLastName}
 				/>
@@ -203,6 +205,7 @@ class SignUpContainer extends Component {
 					email={this.state.email}
 					placeholder="Email"
 					name="email"
+					autoComplete="off"
 					value={this.state.email}
 					handlerFunction={this.handleEmail}
 				/>
