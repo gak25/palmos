@@ -7,18 +7,18 @@
 	text-align: center;
 }
 
-input::-webkit-input-placeholder {
-	color: $palmos-dark-blue;
-}
-input::-moz-placeholder {
-	color: $palmos-dark-blue;
-}
-input:-ms-input-placeholder {
-	color: $palmos-dark-blue;
-}
-input:-moz-placeholder {
-	color: $palmos-dark-blue;
-}
+// input::-webkit-input-placeholder {
+// 	color: $palmos-dark-blue;
+// }
+// input::-moz-placeholder {
+// 	color: $palmos-dark-blue;
+// }
+// input:-ms-input-placeholder {
+// 	color: $palmos-dark-blue;
+// }
+// input:-moz-placeholder {
+// 	color: $palmos-dark-blue;
+// }
 
 .credentials[type='text'],
 .credentials[type='password'] {
@@ -28,8 +28,8 @@ input:-moz-placeholder {
 	border-radius: 7px;
 	font-size: 1.5em;
 	color: $palmos-dark-blue;
-	background-color: $palmos-grey;
-	border: 1px solid $palmos-dark-blue;
+	background-color: #fff;
+	border: 1px solid #000;
 }
 
 input:not([type='checkbox']) {

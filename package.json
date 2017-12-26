@@ -4,7 +4,6 @@
 	"dependencies": {
 		"@rails/webpacker": "^3.0.2",
 		"babel-preset-react": "^6.24.1",
-		"coffeescript": "1.12.7",
 		"css-loader": "^0.28.7",
 		"jquery-ujs": "^1.2.2",
 		"node-sass": "^4.7.2",
@@ -35,6 +34,7 @@
 		"phantomjs-prebuilt": "^2.1.16",
 		"react-addons-test-utils": "^15.6.2",
 		"react-test-renderer": "^16.2.0",
+		"uglifyjs-webpack-plugin": "^1.1.4",
 		"webpack-dev-server": "^2.9.5",
 		"webpack-merge": "^4.1.1"
 	},

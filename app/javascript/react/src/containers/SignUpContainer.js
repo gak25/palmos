@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import TextInput from '../components/TextInput';
 
+var emailRegexp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+var stringWhiteSpaceTrim = /^\s+|\s+$/g;
+
 class SignUpContainer extends Component {
 	constructor(props) {
 		super(props);
@@ -9,15 +12,18 @@ class SignUpContainer extends Component {
 			errors: {},
 			firstName: '',
 			lastName: '',
+			email: '',
 			password: '',
-			passwordConfirmation: '',
-			email: ''
+			passwordConfirmation: ''
 		};
 
 		this.handleFirstName = this.handleFirstName.bind(this);
 		this.handleLastName = this.handleLastName.bind(this);
 		this.handleEmail = this.handleEmail.bind(this);
-		this.handlePassword = this.handlePasswordConfirmation.bind(this);
+		this.handlePassword = this.handlePassword.bind(this);
+		this.handlePasswordConfirmation = this.handlePasswordConfirmation.bind(
+			this
+		);
 		this.handleClearForm = this.handleClearForm.bind(this);
 		this.handleFormSubmit = this.handleFormSubmit.bind(this);
 
@@ -36,8 +42,8 @@ class SignUpContainer extends Component {
 			this.validateFirstName(this.state.firstName) &&
 			this.validateLastName(this.state.lastName) &&
 			this.validateEmail(this.state.email) &&
-			this.validatePassword(this.state.email) &&
-			this.validatePasswordConfirmation(this.state.email)
+			this.validatePassword(this.state.password) &&
+			this.validatePasswordConfirmation(this.state.passwordConfirmation)
 		) {
 			let formPayLoad = {
 				firstName: this.state.firstName,
@@ -52,18 +58,23 @@ class SignUpContainer extends Component {
 	}
 
 	handleFirstName(event) {
-		this.validateFirstName(event.target.value);
-		this.setState({ firstName: event.target.value });
+		var input = event.target.value.replace(stringWhiteSpaceTrim, '');
+		input = input.charAt(0).toUpperCase() + input.slice(1);
+		this.validateFirstName(input);
+		this.setState({ firstName: input });
 	}
 
 	handleLastName(event) {
-		this.validateLastName(event.target.value);
-		this.setState({ lastName: event.target.value });
+		var input = event.target.value.replace(stringWhiteSpaceTrim, '');
+		input = input.charAt(0).toUpperCase() + input.slice(1);
+		this.validateLastName(input);
+		this.setState({ lastName: input });
 	}
 
 	handleEmail(event) {
-		this.validateEmail(event.target.value);
-		this.setState({ email: event.target.value });
+		var input = event.target.value;
+		input = input.toLowerCase();
+		this.setState({ email: input });
 	}
 
 	handlePassword(event) {
@@ -122,7 +133,7 @@ class SignUpContainer extends Component {
 			return false;
 		} else {
 			let errorState = this.state.errors;
-			delete errorState.email;
+			delete errorState.password;
 			this.setState({ errors: errorState });
 			return true;
 		}
@@ -135,9 +146,13 @@ class SignUpContainer extends Component {
 			};
 			this.setState({ errors: Object.assign(this.state.errors, newError) });
 			return false;
+		} else if (passwordConfirmation != this.state.password) {
+			let newError = { passwordConfirmation: 'Passwords do not match' };
+			this.setState({ errors: Object.assign(this.state.errors, newError) });
+			return false;
 		} else {
 			let errorState = this.state.errors;
-			delete errorState.email;
+			delete errorState.passwordConfirmation;
 			this.setState({ errors: errorState });
 			return true;
 		}
@@ -172,6 +187,7 @@ class SignUpContainer extends Component {
 					placeholder="First Name"
 					name="firstName"
 					id="name"
+					autofocus="on"
 					value={this.state.firstName}
 					handlerFunction={this.handleFirstName}
 				/>
