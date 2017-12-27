@@ -1,0 +1,17 @@
+@import 'colors';
+@import 'mixins';
+
+.header-overview {
+	padding: 0 20px;
+	display: table;
+	height: 100%;
+
+	#nav-tab {
+		padding: 0 20px;
+		font-size: 12px;
+		font-weight: 400;
+		display: table-cell;
+		vertical-align: middle;
+		color: $palmos-off-white;
+	}
+}

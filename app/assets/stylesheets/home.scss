@@ -3,7 +3,7 @@
 @import 'mixins';
 @import 'font-awesome';
 
-@import 'nav-top';
+@import 'top-nav';
 @import 'login';
 @import 'dashboard';
 
@@ -14,5 +14,6 @@
 
 body {
 	font-family: 'Montserrat', Fallback, sans-serif;
-	// background: $palmos-grey;
+	background: $palmos-blue;
+	// overflow: hidden;
 }

@@ -1,0 +1,52 @@
+@import 'colors';
+@import 'mixins';
+
+#filter-title {
+	font-weight: 300;
+	margin: 25px 17px;
+	font-size: 13px;
+	display: inline-block;
+	color: $palmos-off-white;
+}
+
+#filter-status {
+	@extend #filter-title;
+	margin: 15px;
+}
+
+#current-sensor-count {
+	display: inline-block;
+	color: $palmos-turquoise;
+}
+
+#total-sensor-count {
+	display: inline-block;
+	color: darken($palmos-off-white, 25%);
+}
+
+#filter-reset {
+	@extend #filter-title;
+	margin: 0;
+	font-weight: 12px;
+	width: fit-content;
+	padding: 2px 5px;
+	border-radius: 4px;
+	background: $palmos-turquoise;
+}
+
+#map-filter {
+	background-color: $palmos-darker-blue;
+	color: $palmos-off-white;
+	width: 79%;
+	padding: 5%;
+	margin: 0 5% 10% 5%;
+	border-radius: 5px;
+}
+
+#filter-section-divider {
+	padding: 0px;
+	width: 100%;
+	border: 0;
+	height: 2px;
+	background-color: $palmos-darker-blue;
+}

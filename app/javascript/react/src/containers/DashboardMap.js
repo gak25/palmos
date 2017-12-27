@@ -23,7 +23,7 @@ class DashboardMap extends React.PureComponent {
 	}
 	render() {
 		return (
-			<div>
+			<div className="map">
 				<SensorMap markers={this.state.markers} />
 			</div>
 		);
