@@ -1,0 +1,59 @@
+@import 'colors';
+@import 'mixins';
+
+.register-forms {
+	@include center();
+	display: inline-grid;
+	text-align: center;
+	width: 98%;
+	max-width: 400px;
+}
+
+// input::-webkit-input-placeholder {
+// 	color: $palmos-dark-blue;
+// }
+// input::-moz-placeholder {
+// 	color: $palmos-dark-blue;
+// }
+// input:-ms-input-placeholder {
+// 	color: $palmos-dark-blue;
+// }
+// input:-moz-placeholder {
+// 	color: $palmos-dark-blue;
+// }
+
+.credentials[type='text'],
+.credentials[type='password'] {
+	margin: 8px 0;
+	padding: 10px;
+	font-weight: 300;
+	border-radius: 7px;
+	font-size: 1.5em;
+	// color: $palmos-dark-blue;
+	background-color: #fff;
+	border: 1px solid #000;
+}
+
+input:not([type='checkbox']) {
+	border: none;
+	outline: none;
+}
+
+.form-submit-button {
+	// visibility: hidden;
+}
+
+// #lock-icon {
+// 	border: 1px solid $palmos-blue;
+// 	border-radius: 200px;
+// 	margin-bottom: 5px;
+// 	padding: 15px 25px;
+// 	color: $palmos-dark-blue;
+// }
+
+.register-form-error {
+	margin: 8px 0;
+	padding: 10px;
+	border-radius: 7px;
+	background-color: orange;
+}

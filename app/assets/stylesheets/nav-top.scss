@@ -1,0 +1,133 @@
+@import 'mixins';
+@import 'colors';
+
+#no-hover {
+	cursor: default;
+}
+
+#menu {
+	@include no-user-select();
+	pointer-events: all;
+	height: 60px;
+}
+
+.account-current-user {
+	text-align: center;
+	width: 100px;
+	background-color: $palmos-turquoise;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.account-current-user > a {
+	background-color: none;
+}
+
+.account-current-user:hover {
+	background-color: lighten($palmos-turquoise, 5%);
+}
+
+a p {
+	color: $palmos-blue;
+}
+
+#main-nav {
+	@include no-user-select();
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	cursor: pointer;
+	display: inline-grid;
+	// width: 100px;
+	padding: 0px 15px;
+	background: $palmos-blue;
+	opacity: 0.1;
+	// border-bottom-left-radius: 5px;
+
+	ul {
+		@include no-user-select();
+		cursor: pointer;
+		z-index: 50;
+		list-style: none;
+		position: relative;
+		float: left;
+		margin: 0;
+		padding: 0;
+		padding-bottom: 15px;
+
+		a {
+			display: block;
+			color: $palmos-off-white;
+			text-decoration: none;
+			font-weight: 700;
+			font-size: 15px;
+			line-height: 32px;
+			padding: 0 15px;
+			margin: 0;
+		}
+
+		li {
+			@include create_background_transition();
+			overflow: hidden;
+			border-radius: 5px;
+			margin: 0;
+			padding: 0;
+			width: 100%;
+		}
+
+		li:hover {
+			@include apply_background_transition();
+		}
+
+		ul {
+			display: none;
+			padding: 0;
+			margin: 0;
+			width: 100%;
+			border-radius: 5px;
+			background-color: rgba(0, 0, 0, 0.15);
+
+			li {
+				position: relative;
+				left: 0;
+				right: 0;
+				float: left;
+				padding: 0;
+				margin: 0;
+				width: 100%;
+
+				a {
+					padding-left: 30px;
+				}
+
+				li {
+					display: block;
+					padding: 0;
+					margin: 0;
+					width: 100%;
+				}
+			}
+		}
+	}
+}
+
+#main-nav ul li:hover > ul {
+	display: inline-grid;
+}
+
+#user-dropdown-avatar {
+	position: absolute;
+	top: 7.5px;
+	right: 60px;
+	color: $palmos-grey;
+	border: 1px solid $palmos-grey;
+	border-radius: 200px;
+	padding: 5px 10px;
+}
+#user-dropdown-arrow {
+	position: absolute;
+	top: 23px;
+	right: 30px;
+	color: $palmos-grey;
+}

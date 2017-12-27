@@ -1,2 +1,3 @@
 web: bundle exec rails s
-webpacker: ./bin/webpack-dev-server
+webpacker: yarn start
+eslint: yarn lint:watch

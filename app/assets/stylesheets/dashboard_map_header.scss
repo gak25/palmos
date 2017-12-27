@@ -1,0 +1,12 @@
+@import 'colors';
+@import 'mixins';
+
+#header-last-update {
+	display: table-cell;
+	vertical-align: middle;
+
+	// height: 100%;
+	// float: right;
+	color: $palmos-grey;
+	font-weight: 300;
+}

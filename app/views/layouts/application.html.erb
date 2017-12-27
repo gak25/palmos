@@ -6,50 +6,16 @@
     <title>
       <%= content_for?(:title) ? yield(:title) : "Palmos" %>
     </title>
-    <%= stylesheet_link_tag "application", media: "all", data: { "turbolinks-track": "reload" } %>
-    <%= javascript_include_tag "application", data: { "turbolinks-track": "reload" } %>
+    <%= stylesheet_link_tag "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
   </head>
   <body>
-    <div class="top-bar">
-      <div class="top-bar-left">
-        <ul class="menu">
-          <% if user_signed_in? %>
-            <li class="menu-text">Signed in as:</li>
-            <li>
-              <%= link_to current_user.handle, edit_user_path(current_user) %>
-            </li>
-          <% else %>
-            <li class="menu-text">
-              Not signed in.
-            </li>
-          <% end %>
-        </ul>
-      </div>
-      <div class="top-bar-right">
-        <ul class="menu">
-          <% if user_signed_in? %>
-            <li class="sign-out">
-              <%= link_to "Sign Out", sign_out_path, method: :delete %>
-            </li>
-          <% elsif controller_name != "sessions" %>
-            <li class="sign-in">
-              <%= link_to "Sign In", sign_in_path %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-
     <% flash.each do |name, msg| %>
       <div class="#{name} callout">
         <%= content_tag :span, msg %>
       </div>
     <% end %>
-
     <%= javascript_pack_tag 'index.js' %>
-    <div id='app'>
-      <%= yield %>
-    </div>
-
+    <%= yield %>
   </body>
 </html>
