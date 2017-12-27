@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171219030851) do
+ActiveRecord::Schema.define(version: 20171227153927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "sensors", force: :cascade do |t|
+    t.bigint "user_id"
+    t.float "latitude", default: -32.202924, null: false
+    t.float "longitude", default: -64.404945, null: false
+    t.float "rotation_x", default: 45.0, null: false
+    t.float "rotation_y", default: 90.0, null: false
+    t.float "rotation_z", default: 180.0, null: false
+    t.float "soil_moisture_density", default: 50.0, null: false
+    t.string "status", default: "healthy", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sensors_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.boolean "admin", default: false
