@@ -4,7 +4,7 @@
 $top-nav-height: 60px;
 $map-header-height: 50px;
 $map-filter-width: 250px;
-$map-status-width: 220px;
+$map-status-width: 250px;
 
 // SMALL
 @media all and (min-width: 0px) {
@@ -102,6 +102,7 @@ $map-status-width: 220px;
 		padding: 0 20px;
 		display: table;
 		height: 100%;
+		width: 100%;
 	}
 
 	h4 {

@@ -15,7 +15,7 @@ const DashboardFilter = props => {
 				onChange={props.handleMapFilter}
 				placeholder="Filter"
 			/>
-			<hr id="filter-section-divider" />
+			<hr id="section-divider" />
 		</div>
 	);
 };
