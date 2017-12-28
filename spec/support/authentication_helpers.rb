@@ -21,12 +21,12 @@ module AuthenticationHelpers
 
   def register_user
     visit sign_up_path
-    fill_in :user_handle, with: "foob"
-    fill_in :user_email, with: "foob@example.com"
-    fill_in :user_first_name, with: "Foo"
-    fill_in :user_last_name, with: "Bar"
-    fill_in :user_password, with: "password"
-    fill_in :user_password_confirmation, with: "password"
+    fill_in :handle, with: "foob"
+    fill_in :email, with: "foob@example.com"
+    fill_in :first_name, with: "Foo"
+    fill_in :last_name, with: "Bar"
+    fill_in :password, with: "password"
+    fill_in :password_confirmation, with: "password"
     click_button "Register"
   end
 

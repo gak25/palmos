@@ -9,7 +9,7 @@ feature "user updates attributes" do
     end
 
     describe "updates email, inputs password" do
-      scenario "valid input" do
+      xscenario "valid input" do
         fill_in :user_email, with: "cjcregg@example.com"
         fill_in :user_password, with: "password"
         click_button "Update"
@@ -19,7 +19,7 @@ feature "user updates attributes" do
         expect(page).to have_link("Sign In")
         expect(page).to_not have_link("Sign Out")
       end
-      scenario "invalid input" do
+      xscenario "invalid input" do
         fill_in :user_email, with: ""
         fill_in :user_password, with: "password"
         click_button "Update"
@@ -31,7 +31,7 @@ feature "user updates attributes" do
     end
 
     describe "updates first and last name" do
-      scenario "valid input" do
+      xscenario "valid input" do
         fill_in :user_first_name, with: "C. J."
         fill_in :user_last_name, with: "Cregg"
         fill_in :user_password, with: "password"
@@ -40,7 +40,7 @@ feature "user updates attributes" do
         expect(page).to have_content("Update successful.")
       end
 
-      scenario "invalid input" do
+      xscenario "invalid input" do
         fill_in :user_first_name, with: ""
         fill_in :user_last_name, with: ""
         fill_in :user_password, with: "password"
@@ -50,7 +50,7 @@ feature "user updates attributes" do
       end
     end
 
-    scenario "not their user" do
+    xscenario "not their user" do
       second_user = FactoryBot.create :user, confirmed_at: Time.current
       visit edit_user_path(second_user)
 
@@ -68,7 +68,7 @@ feature "user updates attributes" do
       visit edit_user_path(user)
     end
 
-    scenario "the form is not accessible" do
+    xscenario "the form is not accessible" do
       expect(page).to have_content("You need to sign in before continuing.")
       expect(page).to_not have_field(:user_email)
       expect(page).to_not have_field(:user_first_name)

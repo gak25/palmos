@@ -49,7 +49,7 @@
 		"lib": "lib"
 	},
 	"scripts": {
-		"test": "node_modules/.bin/karma start ./karma.conf.js & open http://localhost:9876/",
+		"test": "node_modules/.bin/karma start ./karma.conf.js",
 		"start": "webpack-dev-server --config webpack.dev.js",
 		"build": "webpack --config webpack.prod.js",
 		"lint": "eslint src/**",

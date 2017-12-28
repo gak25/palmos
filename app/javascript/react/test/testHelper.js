@@ -1,20 +1,20 @@
 import 'babel-polyfill';
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import jasmineEnzyme from 'jasmine-enzyme';
-
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+
 Enzyme.configure({ adapter: new Adapter() });
 
 beforeEach(() => {
-  jasmineEnzyme();
-})
+	jasmineEnzyme();
+});
 
 // function to require all modules for a given context
 let requireAll = requireContext => {
-  requireContext.keys().forEach(requireContext);
+	requireContext.keys().forEach(requireContext);
 };
 
 // require all js files except testHelper.js in the test folder
