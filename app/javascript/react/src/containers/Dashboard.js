@@ -9,12 +9,20 @@ import DashboardMapHeader from '../components/DashboardMapHeader';
 class Dashboard extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {
+			currentUser: {}
+		};
 		this.handleMapFilter = this.handleMapFilter.bind(this);
 	}
 
 	handleMapFilter(input) {
 		console.log(input.target.value);
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.currentUser != this.props.currentUser) {
+			this.setState({ currentUser: nextProps.currentUser });
+		}
 	}
 
 	render() {

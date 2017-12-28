@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  
   def destroy
     sign_out
     flash[:notice] = "Signed out."

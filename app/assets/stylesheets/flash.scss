@@ -1,0 +1,10 @@
+@import 'colors';
+@import 'mixins';
+
+.flash {
+	@include center();
+	z-index: 999;
+	background: $palmos-turquoise;
+	padding: 5px 10px;
+	border-radius: 5px;
+}

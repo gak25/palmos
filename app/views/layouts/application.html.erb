@@ -8,10 +8,11 @@
     </title>
     <%= stylesheet_link_tag "application", media: "all" %>
     <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
   </head>
   <body>
     <% flash.each do |name, msg| %>
-      <div class="#{name} callout">
+      <div class="flash">
         <%= content_tag :span, msg %>
       </div>
     <% end %>

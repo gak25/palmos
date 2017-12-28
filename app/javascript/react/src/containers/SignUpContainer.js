@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import TextInput from '../components/TextInput';
 
-var emailRegexp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+var EMAIL_REGEXP = /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/;
+var HANDLE_REGEXP = /\A[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*\z/;
+
 var stringWhiteSpaceTrim = /^\s+|\s+$/g;
 
 class SignUpContainer extends Component {
@@ -12,13 +14,16 @@ class SignUpContainer extends Component {
 			errors: {},
 			firstName: '',
 			lastName: '',
+			handle: '',
 			email: '',
 			password: '',
-			passwordConfirmation: ''
+			passwordConfirmation: '',
+			fireRedirect: false
 		};
 
 		this.handleFirstName = this.handleFirstName.bind(this);
 		this.handleLastName = this.handleLastName.bind(this);
+		this.handleHandle = this.handleHandle.bind(this);
 		this.handleEmail = this.handleEmail.bind(this);
 		this.handlePassword = this.handlePassword.bind(this);
 		this.handlePasswordConfirmation = this.handlePasswordConfirmation.bind(
@@ -26,9 +31,11 @@ class SignUpContainer extends Component {
 		);
 		this.handleClearForm = this.handleClearForm.bind(this);
 		this.handleFormSubmit = this.handleFormSubmit.bind(this);
+		this.createUser = this.createUser.bind(this);
 
 		this.validateFirstName = this.validateFirstName.bind(this);
 		this.validateLastName = this.validateLastName.bind(this);
+		this.validateHandle = this.validateHandle.bind(this);
 		this.validateEmail = this.validateEmail.bind(this);
 		this.validatePassword = this.validatePassword.bind(this);
 		this.validatePasswordConfirmation = this.validatePasswordConfirmation.bind(
@@ -36,24 +43,39 @@ class SignUpContainer extends Component {
 		);
 	}
 
+	createUser(formPayload) {
+		fetch('/api/v1/users/create', {
+			credentials: 'same-origin',
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(formPayload)
+		}).then(response => {
+			debugger;
+			if (response.ok) {
+				this.setState({ fireRedirect: true });
+			}
+		});
+	}
+
 	handleFormSubmit(event) {
 		event.preventDefault();
 		if (
 			this.validateFirstName(this.state.firstName) &&
 			this.validateLastName(this.state.lastName) &&
+			this.validateHandle(this.state.handle) &&
 			this.validateEmail(this.state.email) &&
 			this.validatePassword(this.state.password) &&
 			this.validatePasswordConfirmation(this.state.passwordConfirmation)
 		) {
-			let formPayLoad = {
-				firstName: this.state.firstName,
-				lastName: this.state.lastName,
+			let formPayload = {
+				first_name: this.state.firstName,
+				last_name: this.state.lastName,
+				handle: this.state.handle,
 				email: this.state.email,
-				password: this.state.password,
-				passwordConfirmation: this.state.passwordConfirmation
+				password: this.state.password
 			};
-			this.props.addSubmissions(formPayLoad);
-			this.handleClearForm(event);
+			debugger;
+			this.createUser(formPayload);
 		}
 	}
 
@@ -69,6 +91,12 @@ class SignUpContainer extends Component {
 		input = input.charAt(0).toUpperCase() + input.slice(1);
 		this.validateLastName(input);
 		this.setState({ lastName: input });
+	}
+
+	handleHandle(event) {
+		var input = event.target.value.replace(stringWhiteSpaceTrim, '');
+		this.validateHandle(input);
+		this.setState({ handle: input });
 	}
 
 	handleEmail(event) {
@@ -108,6 +136,19 @@ class SignUpContainer extends Component {
 		} else {
 			let errorState = this.state.errors;
 			delete errorState.lastName;
+			this.setState({ errors: errorState });
+			return true;
+		}
+	}
+
+	validateHandle(handle) {
+		if (handle === '') {
+			let newError = { handle: 'Handle may not be blank' };
+			this.setState({ errors: Object.assign(this.state.errors, newError) });
+			return false;
+		} else {
+			let errorState = this.state.errors;
+			delete errorState.handle;
 			this.setState({ errors: errorState });
 			return true;
 		}
@@ -164,6 +205,7 @@ class SignUpContainer extends Component {
 			errors: {},
 			firstName: '',
 			lastName: '',
+			handle: '',
 			email: '',
 			password: '',
 			passwordConfirmation: ''
@@ -171,6 +213,8 @@ class SignUpContainer extends Component {
 	}
 
 	render() {
+		const { from } = this.props.location.state || '/';
+		const { fireRedirect } = this.state;
 		let errorDiv;
 		let errorItems;
 		if (Object.keys(this.state.errors).length > 0) {
@@ -180,59 +224,74 @@ class SignUpContainer extends Component {
 			errorDiv = <div className="register-form-error">{errorItems}</div>;
 		}
 		return (
-			<form className="register-forms" onSubmit={this.handleFormSubmit}>
-				{errorDiv}
-				<TextInput
-					firstName={this.state.firstName}
-					placeholder="First Name"
-					name="firstName"
-					id="name"
-					autoComplete="off"
-					autoFocus="on"
-					value={this.state.firstName}
-					handlerFunction={this.handleFirstName}
-				/>
-				<TextInput
-					lastName={this.state.lastName}
-					placeholder="Last Name"
-					name="lastName"
-					id="name"
-					autoComplete="off"
-					value={this.state.lastName}
-					handlerFunction={this.handleLastName}
-				/>
-				<TextInput
-					email={this.state.email}
-					placeholder="Email"
-					name="email"
-					autoComplete="off"
-					value={this.state.email}
-					handlerFunction={this.handleEmail}
-				/>
-				<TextInput
-					password={this.state.password}
-					placeholder="Password"
-					name="password"
-					inputType="password"
-					value={this.state.password}
-					handlerFunction={this.handlePassword}
-				/>
-				<TextInput
-					passwordConfirmation={this.state.passwordConfirmation}
-					placeholder="Password Confirmation"
-					name="passwordConfirmation"
-					inputType="password"
-					value={this.state.passwordConfirmation}
-					handlerFunction={this.handlePasswordConfirmation}
-				/>
-				<div className="button-group">
-					<button className="button" onClick={this.handleClearForm}>
-						Clear
-					</button>
-					<Link to="/sign-in">Sign In</Link>
-					<button className="form-submit-button" type="submit" />
-				</div>
-			</form>
+			<div>
+				<form className="register-forms" onSubmit={this.handleFormSubmit}>
+					{errorDiv}
+					<TextInput
+						firstName={this.state.firstName}
+						placeholder="First Name"
+						name="firstName"
+						id="name"
+						autoComplete="off"
+						autoFocus="on"
+						value={this.state.firstName}
+						handlerFunction={this.handleFirstName}
+					/>
+					<TextInput
+						lastName={this.state.lastName}
+						placeholder="Last Name"
+						name="lastName"
+						id="name"
+						autoComplete="off"
+						value={this.state.lastName}
+						handlerFunction={this.handleLastName}
+					/>
+					<TextInput
+						firstName={this.state.handle}
+						placeholder="handle"
+						name="handle"
+						autoComplete="off"
+						value={this.state.handle}
+						handlerFunction={this.handleHandle}
+					/>
+					<TextInput
+						email={this.state.email}
+						placeholder="Email"
+						name="email"
+						autoComplete="off"
+						value={this.state.email}
+						handlerFunction={this.handleEmail}
+					/>
+					<TextInput
+						password={this.state.password}
+						placeholder="Password"
+						name="password"
+						inputType="password"
+						value={this.state.password}
+						handlerFunction={this.handlePassword}
+					/>
+					<TextInput
+						passwordConfirmation={this.state.passwordConfirmation}
+						placeholder="Password Confirmation"
+						name="passwordConfirmation"
+						inputType="password"
+						value={this.state.passwordConfirmation}
+						handlerFunction={this.handlePasswordConfirmation}
+					/>
+					<div className="button-group">
+						<div id="register-button" onClick={this.handleClearForm}>
+							Clear
+						</div>
+						<Link to="/sign-in" id="register-button">
+							Sign In
+						</Link>
+						<button className="form-submit-button" type="submit">
+							Continue
+						</button>
+					</div>
+				</form>
+				{fireRedirect && <Redirect to={from || '/'} />}
+			</div>
 		);
 	}
 }
