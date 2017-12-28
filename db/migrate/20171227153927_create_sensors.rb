@@ -1,14 +1,19 @@
 class CreateSensors < ActiveRecord::Migration[5.1]
   def change
     create_table :sensors do |t|
-      t.belongs_to :user
-      t.float :latitude, null: false, default: -32.202924000
-      t.float :longitude, null: false, default: -64.404945000
-      t.float :rotation_x, null: false, default: 45.00
-      t.float :rotation_y, null: false, default: 90.00
-      t.float :rotation_z, null: false, default: 180.00
-      t.float :soil_moisture_density, null: false, default: 50.00
-      t.string :status, null: false, default: "healthy"
+      t.belongs_to :region
+      t.string :sensor_nickname
+      t.string :sensor_status, null: false, default: "healthy"
+      t.float :sensor_risk_level, null: false, default: 61.00
+
+      t.float :sensor_latitude, null: false, default: 42.381511
+      t.float :sensor_longitude, null: false, default: -71.105099
+      t.float :sensor_acceleration_x_mGal, null: false, default: 1.89
+      t.float :sensor_acceleration_y_mGal, null: false, default: 3.45
+      t.float :sensor_acceleration_z_mGal, null: false, default: 1.44
+      t.float :sensor_water_pressure_kPa, null: false, default: 145.00
+      t.float :sensor_altitude_meters, null: false, default: 0.00
+
       t.timestamps null: false
     end
   end

@@ -9,7 +9,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  has_many :sensors
+  has_many :regions
+  has_many :sensors, through: :regions
 
   validates_format_of :email, with: EMAIL_REGEXP
   validates_format_of :handle, with: HANDLE_REGEXP

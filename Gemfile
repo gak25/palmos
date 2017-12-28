@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'bcrypt', '~> 3.1.7'
 gem 'faker'
 gem 'font-awesome-rails', '~> 4.5'
+gem 'geocoder'
 gem 'jbuilder', '~> 2.5'
 gem "jquery-rails"
 gem 'pg', '~> 0.18'
