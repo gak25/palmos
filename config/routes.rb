@@ -3,15 +3,20 @@ Rails.application.routes.draw do
 
   get "sign-in", to: "sessions#new", as: :sign_in
   post "sign-in", to: "sessions#create"
-  delete "sign-out", to: "sessions#destroy"
   get "sign-out", to: "sessions#destroy"
   get "sign-up", to: "users#new", as: :sign_up
 
-  # namespace :api do
-  #   namespace :v1 do
-  #     get "me", to: "users#show"
-  #   end
-  # end
+  namespace :api do
+    namespace :v1 do
+      resources :users, param: :handle, only: [:index, :show]
+      # resources :sessions, param: :handle, only: [:index, :show, :sensors]
+      get "users/:handle", to: "users#show"
+      get "users/:handle/sensors", to: "users#sensors"
+      post "users/create", to: "users#create"
+      post "sessions/create", to: "sessions_api#create"
+      get "users/sensors", to: "users#sensors"
+    end
+  end
 
   get '*path', to: 'pages#index'
 

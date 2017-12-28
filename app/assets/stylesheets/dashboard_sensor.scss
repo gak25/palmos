@@ -2,6 +2,7 @@
 @import 'mixins';
 
 #current-sensor {
+	@include no-user-select();
 	margin: 20px;
 	color: $palmos-grey;
 }

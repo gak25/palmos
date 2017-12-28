@@ -41,6 +41,8 @@ $map-status-width: 250px;
 }
 
 #nav-palmos {
+	@include no-user-select();
+	background-image: url('./images/palmos_text.png');
 	z-index: 19;
 	position: relative;
 	float: left;
@@ -92,6 +94,7 @@ $map-status-width: 250px;
 
 .map-header {
 	width: 100%;
+	position: relative;
 	order: 1;
 	z-index: 12;
 	box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.3);

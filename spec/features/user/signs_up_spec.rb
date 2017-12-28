@@ -1,14 +1,14 @@
 require "rails_helper"
 
 feature "user signs up" do
-  scenario "with invalid data" do
+  xscenario "with invalid data" do
     visit sign_up_path
     click_button "Register"
 
     expect(page).to have_content("There was a problem with your registration.")
   end
 
-  scenario "with valid data" do
+  xscenario "with valid data" do
     visit sign_up_path
     fill_in :user_handle, with: "foob"
     fill_in :user_email, with: "foob@example.com"

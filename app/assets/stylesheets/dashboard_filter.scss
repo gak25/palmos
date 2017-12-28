@@ -2,6 +2,7 @@
 @import 'mixins';
 
 #filter-title {
+	@include no-user-select();
 	font-weight: 300;
 	margin: 25px 17px;
 	font-size: 13px;
@@ -10,6 +11,7 @@
 }
 
 #filter-status {
+	@include no-user-select();
 	@extend #filter-title;
 	margin: 15px;
 }
@@ -25,6 +27,8 @@
 }
 
 #filter-reset {
+	@include no-user-select();
+	cursor: pointer;
 	@extend #filter-title;
 	margin: 0;
 	font-weight: 12px;
@@ -35,6 +39,7 @@
 }
 
 #map-filter {
+	@include no-user-select();
 	background-color: $palmos-darker-blue;
 	color: $palmos-off-white;
 	width: 79%;
@@ -49,4 +54,20 @@
 	border: 0;
 	height: 1px;
 	background-color: rgba(0, 0, 0, 0.15);
+}
+
+.filter-category {
+	cursor: pointer;
+	height: 60px;
+	padding: 10px;
+	h4 {
+		font-weight: 300;
+		margin: 10px;
+		color: #fff;
+	}
+	h5 {
+		margin: 10px;
+		font-weight: 300;
+		color: #757575;
+	}
 }

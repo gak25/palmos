@@ -1,77 +1,41 @@
-class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update]
-  before_action :prevent_duplicate_sign_in, only: [:create, :new]
+class Api::V1::UsersController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
+  def index
+    render json: { index: User.all, current_user: current_user }
+  end
+
+  def show
+    @user = User.find_by(handle: user_handle[:handle])
+    render json: @user
+  end
 
   def create
     @user = User.new(user_params)
     if @user.save
-      @user.update(
-        first_name: @user.first_name.capitalize,
-        last_name: @user.last_name.capitalize
-      )
       # @user.send_confirmation_email
       sign_in(@user)
-      # flash[:notice] = "Registration successful."
-      redirect_to setup_path
+      # flash.now[:notice] = "Registration successful."
+      render plain: "200"
     else
       flash.now[:alert] = "There was a problem with your registration."
-      render :new
+      render plain: "403"
     end
   end
 
-  def edit
-    @user = User.find_by(handle: params[:id])
-    authorize_user(@user)
+  def sensors
+    @sensor_list = User.find_by(handle: user_handle[:handle]).sensors
+    render json: @sensor_list
   end
 
-  def new
-    @user = User.new
-  end
+  private
 
-  def update
-    @user = User.find_by(handle: params[:id])
-    authorize_user(@user)
-    if @user.authenticate(params[:user][:password])
-      @user.assign_attributes(update_params)
-      if @user.changed.include?("email") && @user.valid?
-        @user.confirmed_at = nil
-        @user.send(:generate_confirmation_digest)
-        @reconfirm = true
-        sign_out
-      end
-      if @user.save
-        if @reconfirm
-          @user.send_confirmation_email
-          flash[:notice] = "Update successful. Please confirm your email to re-activate your account."
-        else
-          flash[:notice] = "Update successful."
-        end
-        redirect_to root_path
-      else
-        flash.now[:alert] = "There was a problem with your update."
-        render :edit
-      end
-    else
-      flash.now[:alert] = "There was a problem with your update."
-      render :edit
-    end
-  end
-
-  protected
-
-  def authorize_user(user)
-    unless user == current_user
-      flash[:alert] = "You are not authorized for this record."
-      redirect_to root_path
-    end
-  end
-
-  def update_params
-    params.require(:user).permit(:email, :first_name, :last_name)
+  def user_handle
+    params.permit(:handle)
   end
 
   def user_params
-    params.require(:user).permit(:handle, :email, :first_name, :last_name, :password, :password_confirmation)
+    params.permit(:first_name, :last_name, :handle, :email, :password)
   end
 
 end

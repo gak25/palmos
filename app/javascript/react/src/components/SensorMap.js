@@ -33,7 +33,7 @@ const SensorMap = compose(
 )(props => (
 	<GoogleMap
 		defaultZoom={12}
-		defaultCenter={{ lat: 42.502532, lng: -71.327406 }}
+		defaultCenter={{ lat: 42.381511, lng: -71.105099 }}
 		options={{
 			disableDefaultUI: true,
 			styles: [
@@ -288,7 +288,7 @@ const SensorMap = compose(
 		>
 			{props.markers.map(marker => (
 				<Marker
-					key={marker.photo_id}
+					key={marker.id}
 					position={{ lat: marker.latitude, lng: marker.longitude }}
 				/>
 			))}

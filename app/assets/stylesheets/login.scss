@@ -9,6 +9,18 @@
 	max-width: 400px;
 }
 
+#register-button {
+	display: inline-block;
+	background-color: $palmos-turquoise;
+	color: $palmos-dark-blue;
+	padding: 3px 5px;
+	border-radius: 5px;
+	text-decoration: none;
+	width: fit-content;
+	cursor: pointer;
+	margin: 10px;
+}
+
 // input::-webkit-input-placeholder {
 // 	color: $palmos-dark-blue;
 // }
@@ -29,8 +41,8 @@
 	font-weight: 300;
 	border-radius: 7px;
 	font-size: 1.5em;
-	// color: $palmos-dark-blue;
-	background-color: #fff;
+	color: $palmos-off-white;
+	background-color: $palmos-dark-blue;
 	border: 1px solid #000;
 }
 

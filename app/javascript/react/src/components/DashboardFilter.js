@@ -16,6 +16,11 @@ const DashboardFilter = props => {
 				placeholder="Filter"
 			/>
 			<hr id="section-divider" />
+			<div className="filter-category">
+				<h5>REGIONS</h5>
+				<h4>All Regions</h4>
+			</div>
+			<hr id="section-divider" />
 		</div>
 	);
 };

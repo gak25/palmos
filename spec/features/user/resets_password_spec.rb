@@ -3,7 +3,7 @@ require "rails_helper"
 feature "user resets their password" do
   let(:user) { create(:user) }
 
-  scenario "successfully sent email upon request" do
+  xscenario "successfully sent email upon request" do
     ActionMailer::Base.deliveries = []
 
     request_new_password(user)
@@ -12,7 +12,7 @@ feature "user resets their password" do
     expect(ActionMailer::Base.deliveries.size).to eq(1)
   end
 
-  scenario "password can be reset within 2 hours" do
+  xscenario "password can be reset within 2 hours" do
     user.generate_reset_digest
 
     change_password(user, user.password_reset_token)
@@ -20,7 +20,7 @@ feature "user resets their password" do
     expect(page).to have_content("Your password has been successfully reset.")
   end
 
-  scenario "password cannot be reset after 2 hours" do
+  xscenario "password cannot be reset after 2 hours" do
     user.generate_reset_digest
     user.update(password_reset_sent_at: Time.current - 121.minutes)
     change_password(user, user.password_reset_token)
@@ -29,7 +29,7 @@ feature "user resets their password" do
     expect(page).to_not have_field(:user_password)
   end
 
-  scenario "user not found based on email" do
+  xscenario "user not found based on email" do
     ActionMailer::Base.deliveries = []
     visit new_password_reset_path
     fill_in "Email", with: "outlandish_and_unlikely@example.com"

@@ -2,16 +2,66 @@
 @import 'mixins';
 
 .header-overview {
+	@include no-user-select();
 	padding: 0 20px;
 	display: table;
 	height: 100%;
+	cursor: default;
 
-	#nav-tab {
+	.nav-tab {
+		cursor: pointer;
 		padding: 0 20px;
 		font-size: 12px;
 		font-weight: 400;
 		display: table-cell;
+		text-align: center;
 		vertical-align: middle;
 		color: $palmos-off-white;
 	}
+
+	.nav-tab > .fa {
+		margin: 4px 10px;
+	}
+}
+
+#account-dropdown-tab {
+	cursor: pointer;
+	pointer-events: all;
+	height: 100%;
+	width: 100px;
+	display: table;
+	position: absolute;
+	right: 0;
+	text-align: center;
+}
+
+#account-dropdown-tab > * {
+	pointer-events: all;
+	margin: 0;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.account-dropdown {
+	pointer-events: all;
+	position: absolute;
+	top: 99%;
+	right: 0;
+	width: 250px;
+	background: $palmos-blue;
+	box-shadow: -3px 3px 4px rgba(0, 0, 0, 0.1);
+	border-bottom-left-radius: 5px;
+	overflow: hidden;
+}
+
+.account-dropdown > a {
+	display: inline-grid;
+	color: $palmos-off-white;
+	text-align: center;
+	padding: 10px;
+	width: 100%;
+}
+
+.account-dropdown > a:hover {
+	background: $palmos-dark-blue;
 }

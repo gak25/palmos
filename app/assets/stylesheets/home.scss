@@ -8,8 +8,12 @@
 	padding: 0;
 }
 
+a {
+	text-decoration: none;
+}
+
 body {
 	font-family: 'Montserrat', Fallback, sans-serif;
 	background: $palmos-blue;
-	// overflow: hidden;
+	// background: url('./images/palmos_text.png');
 }

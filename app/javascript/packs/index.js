@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import SignInContainer from '../react/src/containers/SignInContainer';
 import SignUpContainer from '../react/src/containers/SignUpContainer';
-import App from '../react/src/components/App';
+import App from '../react/src/containers/App';
 
 document.addEventListener('DOMContentLoaded', () => {
 	let reactElement = document.getElementById('react-app');
