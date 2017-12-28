@@ -26,7 +26,6 @@ class SignInContainer extends Component {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(formPayload)
 		}).then(response => {
-			debugger;
 			if (response.ok) {
 				this.setState({ fireRedirect: true });
 			}

@@ -8,12 +8,13 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :users, param: :handle, only: [:index, :show, :sensors]
+      resources :users, param: :handle, only: [:index, :show]
       # resources :sessions, param: :handle, only: [:index, :show, :sensors]
       get "users/:handle", to: "users#show"
+      get "users/:handle/sensors", to: "users#sensors"
       post "users/create", to: "users#create"
       post "sessions/create", to: "sessions_api#create"
-      get "users/:handle/sensors", to: "users#sensors"
+      get "users/sensors", to: "users#sensors"
     end
   end
 

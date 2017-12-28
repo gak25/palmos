@@ -55,3 +55,19 @@
 	height: 1px;
 	background-color: rgba(0, 0, 0, 0.15);
 }
+
+.filter-category {
+	cursor: pointer;
+	height: 60px;
+	padding: 10px;
+	h4 {
+		font-weight: 300;
+		margin: 10px;
+		color: #fff;
+	}
+	h5 {
+		margin: 10px;
+		font-weight: 300;
+		color: #757575;
+	}
+}

@@ -32,7 +32,7 @@ class Dashboard extends Component {
 				<div className="map-container">
 					<DashboardMapHeader />
 					<div className="map-subcontainer">
-						<DashboardMap />
+						<DashboardMap currentUser={this.state.currentUser} />
 						<DashboardStatus />
 					</div>
 				</div>

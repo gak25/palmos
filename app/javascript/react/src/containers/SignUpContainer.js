@@ -50,7 +50,6 @@ class SignUpContainer extends Component {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(formPayload)
 		}).then(response => {
-			debugger;
 			if (response.ok) {
 				this.setState({ fireRedirect: true });
 			}
@@ -74,7 +73,6 @@ class SignUpContainer extends Component {
 				email: this.state.email,
 				password: this.state.password
 			};
-			debugger;
 			this.createUser(formPayload);
 		}
 	}

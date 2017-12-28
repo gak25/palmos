@@ -43,6 +43,32 @@ NUM_USERS.times do
   end
 end
 
+palmos = User.create(
+  email: "palmos@palmos.com",
+  first_name: "palmps",
+  last_name: "palmos",
+  confirmed_at: DateTime.now,
+  handle: "palmos",
+  password: "palmos"
+)
+20.times do
+  latitude = 42.381511
+  longitude = -71.105099
+
+  rand_latitude = rand((latitude - rand(0.000000000...0.200000000))..(latitude + rand(0.000000000...0.200000000)))
+  rand_longitude = rand((longitude - rand(0.000000000...0.200000000))..(longitude + rand(0.000000000...0.200000000)))
+  Sensor.create(
+    user_id: palmos.id,
+    latitude: rand_latitude,
+    longitude: rand_longitude,
+    rotation_x: rand(-180.00..180.00),
+    rotation_y: rand(-180.00..180.00),
+    rotation_z: rand(-180.00..180.00),
+    soil_moisture_density: rand(0.00..100.00),
+    status: STATUSES[rand(0...STATUSES.length)]
+  )
+end
+
 p "-------------------"
 p "Created #{User.count} total users"
 p "Created #{Sensor.count} total sensors"

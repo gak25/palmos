@@ -1,26 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import SensorMap from '../components/SensorMap';
 
-class DashboardMap extends React.PureComponent {
-	componentWillMount() {
-		this.setState({ markers: [] });
+class DashboardMap extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			currentUser: {},
+			markers: []
+		};
+		this.fetchUserSensors = this.fetchUserSensors.bind(this);
 	}
-
-	componentDidMount() {
-		const url = [
-			// Length issue
-			`https://gist.githubusercontent.com`,
-			`/farrrr/dfda7dd7fccfec5474d3`,
-			`/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json`
-		].join('');
-
-		fetch(url)
-			.then(res => res.json())
+	fetchUserSensors(currentUser) {
+		console.log('about to fetch sensors');
+		fetch(`/api/v1/users/${currentUser.handle}/sensors`)
+			.then(response => response.json())
 			.then(data => {
-				this.setState({ markers: data.photos });
+				console.log('data' + data);
+				this.setState({ markers: data });
 			});
 	}
+
+	componentWillReceiveProps(nextProps) {
+		console.log('receiving new props');
+		if (nextProps.currentUser != this.props.currentUser) {
+			console.log('receiving new user');
+			this.fetchUserSensors(nextProps.currentUser);
+			this.setState({ currentUser: nextProps.currentUser });
+		}
+	}
+
 	render() {
 		return (
 			<div className="map">
