@@ -71,8 +71,8 @@ NUM_USERS.times do
   )
 
   user_sensor_count = rand(5..50)
-  rand_latitude_range = rand((latitude - rand(0.000000000...0.200000000))..(latitude + rand(0.000000000...0.200000000)))
-  rand_longitude_range = rand((longitude - rand(0.000000000...0.200000000))..(longitude + rand(0.000000000...0.200000000)))
+  rand_latitude_range = rand((latitude - rand(0.000000000...0.100000000))..(latitude + rand(0.000000000...0.100000000)))
+  rand_longitude_range = rand((longitude - rand(0.000000000...0.100000000))..(longitude + rand(0.000000000...0.100000000)))
   user_sensor_count.times do
     Sensor.create(
       region: region,

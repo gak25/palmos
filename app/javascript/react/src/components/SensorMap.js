@@ -1,6 +1,4 @@
 import React from 'react';
-// import { MAPSTYLES } from '../../../../assets/stylesheets/mapstyles.js';
-// import MAPSTYLES from './mapstyles.js';
 
 const { compose, withProps, withHandlers } = require('recompose');
 const {
@@ -24,8 +22,8 @@ const SensorMap = compose(
 	withHandlers({
 		onMarkerClustererClick: () => markerClusterer => {
 			const clickedMarkers = markerClusterer.getMarkers();
-			console.log(`Current clicked markers length: ${clickedMarkers.length}`);
-			console.log(clickedMarkers);
+			// console.log(`Current clicked markers length: ${clickedMarkers.length}`);
+			// console.log(clickedMarkers);
 		}
 	}),
 	withScriptjs,
@@ -289,7 +287,10 @@ const SensorMap = compose(
 			{props.markers.map(marker => (
 				<Marker
 					key={marker.id}
-					position={{ lat: marker.latitude, lng: marker.longitude }}
+					position={{
+						lat: marker.sensor_latitude,
+						lng: marker.sensor_longitude
+					}}
 				/>
 			))}
 		</MarkerClusterer>
