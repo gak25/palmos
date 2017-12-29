@@ -292,7 +292,7 @@ const MyMapComponent = compose(
 			onClick={props.onMarkerClustererClick}
 			averageCenter
 			enableRetinaIcons
-			zoomOnClick={false}
+			zoomOnClick
 			gridSize={20}
 		>
 			{props.markers.map(marker => (
