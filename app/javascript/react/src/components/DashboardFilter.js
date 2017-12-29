@@ -2,6 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const DashboardFilter = props => {
+	var currentRegion;
+	if (props.currentRegion.region) {
+		if (props.currentRegion.region.region_nickname) {
+			currentRegion = props.currentRegion.region.region_nickname;
+		} else {
+			currentRegion =
+				props.currentRegion.region.region_city +
+				', ' +
+				props.currentRegion.region.region_state_code;
+		}
+	} else {
+		currentRegion = 'All Regions';
+	}
 	let regionNames = props.regions.map(region => {
 		var key = region.region.id;
 		if (region.region.region_nickname) {
@@ -48,7 +61,7 @@ const DashboardFilter = props => {
 			<div className="filter-category">
 				<div id="filter-category-top" onClick={props.handleRegionDropdown}>
 					<h5>REGIONS</h5>
-					<h4>All Regions</h4>
+					<h4>{currentRegion}</h4>
 				</div>
 				{dropdown}
 			</div>

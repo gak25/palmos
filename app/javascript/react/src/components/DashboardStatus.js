@@ -1,23 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import DashboardRegionStatus from './DashboardRegionStatus';
+import DashboardSensorStatus from './DashboardSensorStatus';
 
 const DashboardStatus = props => {
-	return (
-		<div className="right-status">
-			<div id="current-sensor">
-				{props.currentRegion ? (
-					props.currentRegion.region_nickname ? (
-						<h5>{props.currentRegion.region_nickname}</h5>
-					) : (
-						<h5>{props.currentRegion.region_city}</h5>
-					)
-				) : (
-					<h5>All Regions</h5>
-				)}
-			</div>
-			<hr id="section-divider" />
-		</div>
-	);
+	var status = null;
+	if (Object.keys(props.selectedSensor).length === 1) {
+		status = <DashboardSensorStatus sensor={props.selectedSensor} />;
+	} else if (props.selectedRegion) {
+		status = <DashboardRegionStatus region={props.selectedRegion} />;
+	}
+
+	return <div className="right-status">{status}</div>;
 };
 
 export default DashboardStatus;

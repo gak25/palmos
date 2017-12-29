@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20171228144640) do
     t.string "region_city", null: false
     t.string "region_zipcode", null: false
     t.string "region_timezone", null: false
+    t.boolean "active", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_regions_on_user_id"
