@@ -21,15 +21,15 @@ const MyMapComponent = compose(
 		mapElement: <div style={{ height: `100%` }} />
 	}),
 	withHandlers({
-		onMarkerClustererClick: () => markerClusterer => {
-			// const clickedMarkers = markerClusterer.getMarkers();
-			// props.onMarkerClick();
-			// console.log('clicked a big guy');
-		},
+		onMarkerClustererClick: () => markerClusterer => {},
 		onMarkerClick: props => marker => {
 			props.onMarkerClick(marker);
 		},
-		setBoundsToAllSensors: props => {}
+		setBoundsToAllSensors: props => mapRef => {
+			if (Object.keys(props.bounds).length > 0) {
+				mapRef.fitBounds(props.bounds);
+			}
+		}
 	}),
 	withScriptjs,
 	withGoogleMap
@@ -287,7 +287,7 @@ const MyMapComponent = compose(
 			]
 		}}
 	>
-		{props.bounds && this.map.fitBounds(props.bounds)}
+		{props.bounds && props.setBoundsToAllSensors(this.map)}
 		<MarkerClusterer
 			onClick={props.onMarkerClustererClick}
 			averageCenter
@@ -342,6 +342,7 @@ export default class DashboardMap extends React.PureComponent {
 		// 		lng: sensors[i].sensor_longitude
 		// 	});
 		// }
+
 		return (
 			<MyMapComponent
 				onMarkerClick={this.props.onMarkerClick}

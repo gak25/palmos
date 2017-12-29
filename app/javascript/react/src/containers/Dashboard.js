@@ -104,32 +104,52 @@ class Dashboard extends Component {
 	}
 
 	render() {
-		var map = null;
+		var position;
+		var bounds;
+		var sensors;
 		if (this.state.selectedRegion.region) {
-			map = (
-				<DashboardMap
-					onMarkerClick={this.handleMarkerClick}
-					position={{
-						lat: this.state.selectedRegion.region.region_latitude,
-						lng: this.state.selectedRegion.region.region_longitude
-					}}
-					sensors={this.state.selectedRegion.sensors}
-					bounds={null}
-				/>
-			);
+			position = {
+				lat: this.state.selectedRegion.region.region_latitude,
+				lng: this.state.selectedRegion.region.region_longitude
+			};
+			bounds = this.state.bounds;
 		} else {
-			map = (
-				<DashboardMap
-					onMarkerClick={this.handleMarkerClick}
-					position={{
-						lat: 42.0,
-						lng: -71.0
-					}}
-					sensors={this.state.selectedSensor}
-					bounds={this.state.bounds}
-				/>
-			);
+			position = { lat: 42.0, lng: -71.0 };
+			bounds = this.state.bounds;
 		}
+
+		if (Object.keys(this.state.selectedRegion).length === 0) {
+			sensors = this.state.selectedSensor;
+		} else {
+			sensors = this.state.selectedRegion.sensors;
+		}
+
+		// var map = null;
+		// if (this.state.selectedRegion.region) {
+		// 	map = (
+		// 		<DashboardMap
+		// 			onMarkerClick={this.handleMarkerClick}
+		// 			position={{
+		// 				lat: this.state.selectedRegion.region.region_latitude,
+		// 				lng: this.state.selectedRegion.region.region_longitude
+		// 			}}
+		// 			sensors={this.state.selectedRegion.sensors}
+		// 			bounds={null}
+		// 		/>
+		// 	);
+		// } else {
+		// 	map = (
+		// 		<DashboardMap
+		// 			onMarkerClick={this.handleMarkerClick}
+		// 			position={{
+		// 				lat: 42.0,
+		// 				lng: -71.0
+		// 			}}
+		// 			sensors={this.state.selectedSensor}
+		// 			bounds={this.state.bounds}
+		// 		/>
+		// 	);
+		// }
 
 		return (
 			<div className="dashboard">
@@ -146,7 +166,14 @@ class Dashboard extends Component {
 						currentRegion={this.state.selectedRegion.region}
 					/>
 					<div className="map-subcontainer">
-						<div className="map">{map}</div>
+						<div className="map">
+							<DashboardMap
+								onMarkerClick={this.handleMarkerClick}
+								position={position}
+								sensors={sensors}
+								bounds={bounds}
+							/>
+						</div>
 						<DashboardStatus
 							selectedSensor={this.state.selectedSensor}
 							selectedRegion={this.state.selectedRegion.region}
