@@ -87,31 +87,31 @@ class Dashboard extends Component {
 					<DashboardMapHeader
 						currentRegion={this.state.selectedRegion.region}
 					/>
-					{/* <div className="map-subcontainer"> */}
-					{/* <DashboardMap
+					<div className="map-subcontainer">
+						{/* <DashboardMap
 							regionCenter={{ lat: 42.381511, lng: -71.105099 }}
 							regionMarkers={regionMarkers}
 						/> */}
-
-					<MyMapComponent
-						onMarkerClick={this.handleMarkerClick}
-						position={{ lat: 42.381511, lng: -71.105099 }}
-					/>
-
-					{/* <MyMapComponent
+						<div className="map">
+							<MyMapComponent
+								onMarkerClick={this.handleMarkerClick}
+								position={{ lat: 42.381511, lng: -71.105099 }}
+							/>
+						</div>
+						{/* <MyMapComponent
 							onMarkerClick={this.handleMarkerClick}
 							position={{ lat: -34.397, lng: 150.644 }}
 						/> */}
 
-					{/* <DashboardMap
+						{/* <DashboardMap
 							isMarkerShown
 							googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
 							loadingElement=<div style={{ height: `100%` }} />
 							containerElement=<div style={{ height: `400px` }} />
 							mapElement=<div style={{ height: `100%` }} />
 						/> */}
-					<DashboardStatus currentRegion={this.state.selectedRegion.region} />
-					{/* </div> */}
+						<DashboardStatus currentRegion={this.state.selectedRegion.region} />
+					</div>
 				</div>
 			</div>
 		);
