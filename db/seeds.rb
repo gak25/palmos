@@ -101,7 +101,6 @@ palmos = User.create(
 REGIONS.length.times do |i|
   latitude = REGIONS[i][:region_latitude]
   longitude = REGIONS[i][:region_longitude]
-
   region = Region.create(
     user_id: palmos.id,
     region_latitude: latitude,
@@ -117,7 +116,6 @@ REGIONS.length.times do |i|
     region_status: REGIONS[i][:region_status],
     region_nickname: REGIONS[i][:region_nickname]
   )
-
   rand(10..20).times do
     rand_latitude_range = rand((latitude - rand(0.000000000...0.200000000))..(latitude + rand(0.000000000...0.200000000)))
     rand_longitude_range = rand((longitude - rand(0.000000000...0.200000000))..(longitude + rand(0.000000000...0.200000000)))

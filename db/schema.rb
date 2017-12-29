@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 20171228144640) do
     t.bigint "user_id"
     t.string "region_nickname"
     t.string "region_status", default: "healthy", null: false
-    t.integer "region_risk_level", default: 50, null: false
-    t.string "region_latitude", default: "42.381511", null: false
-    t.string "region_longitude", default: "-71.105099", null: false
+    t.float "region_risk_level", default: 50.0, null: false
+    t.float "region_latitude", default: 42.381511, null: false
+    t.float "region_longitude", default: -71.105099, null: false
     t.string "region_country_code", null: false
     t.string "region_country_name", null: false
     t.string "region_state_code", null: false
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20171228144640) do
     t.bigint "region_id"
     t.string "sensor_nickname"
     t.string "sensor_status", default: "healthy", null: false
-    t.integer "sensor_risk_level", default: 61, null: false
+    t.float "sensor_risk_level", default: 61.0, null: false
     t.float "sensor_latitude", default: 42.381511, null: false
     t.float "sensor_longitude", default: -71.105099, null: false
     t.float "sensor_acceleration_x_mGal", default: 1.89, null: false

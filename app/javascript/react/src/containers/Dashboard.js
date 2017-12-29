@@ -5,7 +5,7 @@ import DashboardMap from '../components/DashboardMap';
 import DashboardFilter from '../components/DashboardFilter';
 import DashboardStatus from '../components/DashboardStatus';
 import DashboardMapHeader from '../components/DashboardMapHeader';
-import MyMapComponent from '../components/MyMapComponent';
+// import MyMapComponent from '../components/MyMapComponent';
 
 class Dashboard extends Component {
 	constructor(props) {
@@ -29,6 +29,7 @@ class Dashboard extends Component {
 				this.setState({
 					userRegions: data
 				});
+				return data;
 			});
 	}
 
@@ -54,8 +55,8 @@ class Dashboard extends Component {
 		}
 	}
 
-	handleMarkerClick(event) {
-		console.log('clicked');
+	handleMarkerClick(marker) {
+		console.log('marker_parent: ' + marker);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -66,13 +67,19 @@ class Dashboard extends Component {
 	}
 
 	render() {
-		var regionMarkers = [];
+		var sensors = [];
+		var position = { lat: 42.381511, lng: -71.105099 };
 		if (Object.keys(this.state.selectedRegion).length === 0) {
+			position = { lat: 42.381511, lng: -71.105099 };
 			for (var i = 0; i < this.state.userRegions.length; i++) {
-				regionMarkers = regionMarkers.concat(this.state.userRegions[i].sensors);
+				sensors = sensors.concat(this.state.userRegions[i].sensors);
 			}
 		} else {
-			var regionMarkers = this.state.selectedRegion.sensors;
+			position = {
+				lat: this.state.selectedRegion.region.region_latitude,
+				lng: this.state.selectedRegion.region.region_longitude
+			};
+			sensors = this.state.selectedRegion.sensors;
 		}
 		return (
 			<div className="dashboard">
@@ -88,28 +95,13 @@ class Dashboard extends Component {
 						currentRegion={this.state.selectedRegion.region}
 					/>
 					<div className="map-subcontainer">
-						{/* <DashboardMap
-							regionCenter={{ lat: 42.381511, lng: -71.105099 }}
-							regionMarkers={regionMarkers}
-						/> */}
 						<div className="map">
-							<MyMapComponent
-								onMarkerClick={this.handleMarkerClick}
-								position={{ lat: 42.381511, lng: -71.105099 }}
+							<DashboardMap
+								// onMarkerClick={this.handleMarkerClick}
+								position={position}
+								sensors={sensors}
 							/>
 						</div>
-						{/* <MyMapComponent
-							onMarkerClick={this.handleMarkerClick}
-							position={{ lat: -34.397, lng: 150.644 }}
-						/> */}
-
-						{/* <DashboardMap
-							isMarkerShown
-							googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-							loadingElement=<div style={{ height: `100%` }} />
-							containerElement=<div style={{ height: `400px` }} />
-							mapElement=<div style={{ height: `100%` }} />
-						/> */}
 						<DashboardStatus currentRegion={this.state.selectedRegion.region} />
 					</div>
 				</div>
