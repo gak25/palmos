@@ -1,8 +1,67 @@
 @import 'colors';
 @import 'mixins';
 
-#current-sensor {
+#current-detail {
 	@include no-user-select();
 	margin: 20px;
 	color: $palmos-grey;
+
+	#detail-lat-lng {
+		margin: 10px 0 5px 0;
+		font-weight: 300;
+		font-size: 16px;
+	}
+	#detail-altitude {
+		font-weight: 16px;
+		font-weight: 300;
+	}
+
+	#detail-data {
+		font-weight: 16px;
+		font-weight: 400;
+		float: right;
+	}
+
+	#detail-nickname {
+		margin: 10 0 15px 0;
+	}
+}
+
+#detail-status {
+	display: inline-block;
+	width: 100%;
+	padding: 10px 0;
+
+	h3 {
+		float: left;
+		font-weight: 300;
+		width: fit-content;
+		display: inline-block;
+		color: $palmos-turquoise;
+	}
+
+	h4 {
+		@extend h3;
+		color: $palmos-grey;
+	}
+
+	#analyze {
+		cursor: pointer;
+		display: inline-block;
+		padding: 3px 8px;
+		font-size: 14px;
+		float: right;
+		border-radius: 5px;
+		color: $palmos-off-white;
+		background: $palmos-turquoise;
+	}
+
+	#data {
+		float: right;
+		font-size: 16px;
+		color: $palmos-grey;
+		background: none;
+		font-weight: 500;
+		width: fit-content;
+	}
 }

@@ -16,6 +16,8 @@ class CreateRegions < ActiveRecord::Migration[5.1]
       t.string :region_zipcode, null: false
       t.string :region_timezone, null: false
 
+      t.boolean :active, null: false, default: false
+
       t.timestamps null: false
     end
   end

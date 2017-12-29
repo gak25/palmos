@@ -10,14 +10,14 @@ Sensor.destroy_all
 
 NUM_USERS = rand(5..10)
 NUM_SENSORS = rand(30..60)
-SENSOR_STATUSES = ["sensor healthy", "sensor warning", "sensor off", "sensor disconnected"]
-REGION_STATUSES = ["region healthy", "region warning", "region off", "region disconnected"]
+SENSOR_STATUSES = ["healthy", "warning", "off", "disconnected"]
+REGION_STATUSES = ["healthy", "warning", "off", "disconnected"]
 
 REGIONS = [
-  {region_latitude: 42.381511, region_longitude: -71.105099, region_country_code: "US", region_country_name: "United States", region_state_code: "MA", region_state_name: "Massachusetts", region_city: "Somerville", region_zipcode: "02143", region_timezone: "ET", region_status: REGION_STATUSES[rand(0...REGION_STATUSES.length)], region_nickname: "Aeronaut", region_risk_level: rand(50..100)},
-  {region_latitude: 40.807916, region_longitude: -73.962386, region_country_code: "US", region_country_name: "United States", region_state_code: "NY", region_state_name: "New York", region_city: "New York", region_zipcode: "10027", region_timezone: "ET", region_status: REGION_STATUSES[rand(0...REGION_STATUSES.length)], region_nickname: "Columbia University", region_risk_level: rand(50..100)},
-  {region_latitude: 41.312167, region_longitude: -72.119405, region_country_code: "US", region_country_name: "United States", region_state_code: "CT", region_state_name: "Connecticut", region_city: "Waterford", region_zipcode: "06385", region_timezone: "ET", region_status: REGION_STATUSES[rand(0...REGION_STATUSES.length)], region_nickname: "Waterford State Park", region_risk_level: rand(50..100)},
-  {region_latitude: 41.389582, region_longitude: -70.611842, region_country_code: "US", region_country_name: "United States", region_state_code: "MA", region_state_name: "Massachusetts", region_city: "Vineyard Haven", region_zipcode: "02568", region_timezone: "ET", region_status: REGION_STATUSES[rand(0...REGION_STATUSES.length)], region_nickname: "Martha's Vineyard Airport", region_risk_level: rand(50..100)}
+  {active: false, region_latitude: 42.381511, region_longitude: -71.105099, region_country_code: "US", region_country_name: "United States", region_state_code: "MA", region_state_name: "Massachusetts", region_city: "Somerville", region_zipcode: "02143", region_timezone: "ET", region_status: REGION_STATUSES[rand(0...REGION_STATUSES.length)], region_nickname: "Aeronaut", region_risk_level: rand(50..100)},
+  {active: false, region_latitude: 40.807916, region_longitude: -73.962386, region_country_code: "US", region_country_name: "United States", region_state_code: "NY", region_state_name: "New York", region_city: "New York", region_zipcode: "10027", region_timezone: "ET", region_status: REGION_STATUSES[rand(0...REGION_STATUSES.length)], region_nickname: "Columbia University", region_risk_level: rand(50..100)},
+  {active: true, region_latitude: 41.312167, region_longitude: -72.119405, region_country_code: "US", region_country_name: "United States", region_state_code: "CT", region_state_name: "Connecticut", region_city: "Waterford", region_zipcode: "06385", region_timezone: "ET", region_status: REGION_STATUSES[rand(0...REGION_STATUSES.length)], region_nickname: "Waterford State Park", region_risk_level: rand(50..100)},
+  {active: false, region_latitude: 41.389582, region_longitude: -70.611842, region_country_code: "US", region_country_name: "United States", region_state_code: "MA", region_state_name: "Massachusetts", region_city: "Vineyard Haven", region_zipcode: "02568", region_timezone: "ET", region_status: REGION_STATUSES[rand(0...REGION_STATUSES.length)], region_nickname: "Martha's Vineyard Airport", region_risk_level: rand(50..100)}
 ]
 
 
@@ -101,7 +101,6 @@ palmos = User.create(
 REGIONS.length.times do |i|
   latitude = REGIONS[i][:region_latitude]
   longitude = REGIONS[i][:region_longitude]
-
   region = Region.create(
     user_id: palmos.id,
     region_latitude: latitude,
@@ -115,9 +114,9 @@ REGIONS.length.times do |i|
     region_timezone: REGIONS[i][:region_timezone],
     region_risk_level: REGIONS[i][:region_risk_level],
     region_status: REGIONS[i][:region_status],
-    region_nickname: REGIONS[i][:region_nickname]
+    region_nickname: REGIONS[i][:region_nickname],
+    active: REGIONS[i][:active]
   )
-
   rand(10..20).times do
     rand_latitude_range = rand((latitude - rand(0.000000000...0.200000000))..(latitude + rand(0.000000000...0.200000000)))
     rand_longitude_range = rand((longitude - rand(0.000000000...0.200000000))..(longitude + rand(0.000000000...0.200000000)))

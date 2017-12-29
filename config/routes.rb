@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       # resources :sessions, param: :handle, only: [:index, :show, :sensors]
       get "users/:handle", to: "users#show"
       get "users/:handle/sensors", to: "users#sensors"
+      get "users/:handle/regions", to: "users#regions"
+      post "users/:handle/regions/:region_id", to: "users#region_update"
       post "users/create", to: "users#create"
       post "sessions/create", to: "sessions_api#create"
       get "users/sensors", to: "users#sensors"

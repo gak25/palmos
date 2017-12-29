@@ -31,7 +31,9 @@ class NavTop extends Component {
 
 		return (
 			<div>
-				<div id="nav-palmos" />
+				<div id="nav-palmos">
+					<h1>PALMOS</h1>
+				</div>
 				<div id="top-nav">
 					<div className="header-overview">
 						<div className="nav-tab">

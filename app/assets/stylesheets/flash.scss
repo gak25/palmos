@@ -3,6 +3,7 @@
 
 .flash {
 	@include center();
+	top: 25%;
 	z-index: 999;
 	background: $palmos-turquoise;
 	padding: 5px 10px;
