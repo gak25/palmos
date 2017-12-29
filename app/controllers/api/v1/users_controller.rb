@@ -28,6 +28,22 @@ class Api::V1::UsersController < ApplicationController
     render json: @sensor_list
   end
 
+  def regions
+    @user_data = []
+    regions_list = User.find_by(handle: user_handle[:handle]).regions
+    regions_list.each do |region|
+      data = {}
+      data[:region] = region
+      data[:sensors] = region.sensors
+      @user_data.push(data)
+    end
+    # sensor_list = User.find_by(handle: user_handle[:handle]).sensors
+    # @user_data.push(sensor_list)
+
+    render json: @user_data
+  end
+
+
   private
 
   def user_handle
