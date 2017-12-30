@@ -117,39 +117,11 @@ class Dashboard extends Component {
 			position = { lat: 42.0, lng: -71.0 };
 			bounds = this.state.bounds;
 		}
-
-		if (Object.keys(this.state.selectedRegion).length === 0) {
+		if (this.state.selectedRegion.sensors === undefined) {
 			sensors = this.state.selectedSensor;
 		} else {
 			sensors = this.state.selectedRegion.sensors;
 		}
-
-		// var map = null;
-		// if (this.state.selectedRegion.region) {
-		// 	map = (
-		// 		<DashboardMap
-		// 			onMarkerClick={this.handleMarkerClick}
-		// 			position={{
-		// 				lat: this.state.selectedRegion.region.region_latitude,
-		// 				lng: this.state.selectedRegion.region.region_longitude
-		// 			}}
-		// 			sensors={this.state.selectedRegion.sensors}
-		// 			bounds={null}
-		// 		/>
-		// 	);
-		// } else {
-		// 	map = (
-		// 		<DashboardMap
-		// 			onMarkerClick={this.handleMarkerClick}
-		// 			position={{
-		// 				lat: 42.0,
-		// 				lng: -71.0
-		// 			}}
-		// 			sensors={this.state.selectedSensor}
-		// 			bounds={this.state.bounds}
-		// 		/>
-		// 	);
-		// }
 
 		return (
 			<div className="dashboard">
@@ -170,7 +142,7 @@ class Dashboard extends Component {
 							<DashboardMap
 								onMarkerClick={this.handleMarkerClick}
 								position={position}
-								sensors={sensors}
+								markers={sensors}
 								bounds={bounds}
 							/>
 						</div>

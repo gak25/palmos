@@ -295,25 +295,27 @@ const MyMapComponent = compose(
 			zoomOnClick
 			gridSize={20}
 		>
-			{props.markers.map(marker => (
-				<Marker
-					onClick={props.onMarkerClick.bind(this, marker)}
-					icon={{
-						path: google.maps.SymbolPath.CIRCLE,
-						scale: 8,
-						fillColor: '#67d5c6',
-						fillOpacity: 1,
-						strokeColor: '#203657',
-						strokeWeight: 3,
-						strokeOpacity: 1
-					}}
-					key={marker.id}
-					position={{
-						lat: marker.sensor_latitude,
-						lng: marker.sensor_longitude
-					}}
-				/>
-			))}
+			{props.markers.map(marker => {
+				return (
+					<Marker
+						onClick={props.onMarkerClick.bind(this, marker)}
+						icon={{
+							path: google.maps.SymbolPath.CIRCLE,
+							scale: 8,
+							fillColor: '#67d5c6',
+							fillOpacity: 1,
+							strokeColor: '#203657',
+							strokeWeight: 3,
+							strokeOpacity: 1
+						}}
+						key={marker.id}
+						position={{
+							lat: marker.sensor_latitude,
+							lng: marker.sensor_longitude
+						}}
+					/>
+				);
+			})}
 		</MarkerClusterer>
 	</GoogleMap>
 ));
@@ -347,7 +349,7 @@ export default class DashboardMap extends React.PureComponent {
 			<MyMapComponent
 				onMarkerClick={this.props.onMarkerClick}
 				position={this.props.position}
-				markers={this.props.sensors}
+				markers={this.props.markers}
 				bounds={this.props.bounds}
 			/>
 		);
