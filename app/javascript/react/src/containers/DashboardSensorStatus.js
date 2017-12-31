@@ -45,7 +45,7 @@ class DashboardSensorStatus extends Component {
 		return (
 			<div>
 				<div id="current-detail">
-					<div id="current-detail-name">
+					<div idg="current-detail-name">
 						<div>Sensor ID: {this.state.sensor.id}</div>
 						<NicknameForm
 							changeNickname={this.handleNicknameInput}
