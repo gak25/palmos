@@ -2,7 +2,7 @@ class CreateRegions < ActiveRecord::Migration[5.1]
   def change
     create_table :regions do |t|
       t.belongs_to :user
-      t.string :region_nickname
+      t.string :region_nickname, default: "region name"
       t.string :region_status, null: false, default: "healthy"
       t.float :region_risk_level, null: false, default: 50.00
 

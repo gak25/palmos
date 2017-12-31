@@ -1,16 +1,15 @@
-class SensorsController < ApplicationController
+class Api::V1::SensorsController < ApplicationController
   protect_from_forgery with: :null_session
 
-  # def show
-  #   user = User.find_by(handle: api_settings_params)
-  #   product_id = Product.find_by(user: user)
-  #   @product_api_settings = ApiSetting.find_by(product_id: product_id)
-  #   render json: @product_api_settings
-  # end
+  def sensor_update
+    @sensor = Sensor.find_by(id: sensor_params[:sensor_id])
+    @sensor.update(sensor_nickname: sensor_params[:nickname])
+    render json: @sensor
+  end
 
   private
 
-  # def sensor_params
-  #   params.permit(:handle)
-  # end
+  def sensor_params
+    params.permit(:sensor_id, :nickname)
+  end
 end

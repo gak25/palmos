@@ -2,7 +2,7 @@ class CreateSensors < ActiveRecord::Migration[5.1]
   def change
     create_table :sensors do |t|
       t.belongs_to :region
-      t.string :sensor_nickname
+      t.string :sensor_nickname, null: false
       t.string :sensor_status, null: false, default: "healthy"
       t.float :sensor_risk_level, null: false, default: 61.00
 

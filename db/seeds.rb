@@ -71,11 +71,12 @@ NUM_USERS.times do
   )
 
   user_sensor_count = rand(5..50)
-  rand_latitude_range = rand((latitude - rand(0.000000000...0.100000000))..(latitude + rand(0.000000000...0.100000000)))
-  rand_longitude_range = rand((longitude - rand(0.000000000...0.100000000))..(longitude + rand(0.000000000...0.100000000)))
-  user_sensor_count.times do
+  rand_latitude_range = rand((latitude - rand(0.000000000...0.050000000))..(latitude + rand(0.000000000...0.050000000)))
+  rand_longitude_range = rand((longitude - rand(0.000000000...0.050000000))..(longitude + rand(0.000000000...0.050000000)))
+  user_sensor_count.times do |i|
     Sensor.create(
       region: region,
+      sensor_nickname: region.region_city + "_" + i.to_s,
       sensor_latitude: rand_latitude_range,
       sensor_longitude: rand_longitude_range,
       sensor_acceleration_x_mGal: rand(-5.00...5.00),
@@ -117,11 +118,12 @@ REGIONS.length.times do |i|
     region_nickname: REGIONS[i][:region_nickname],
     active: REGIONS[i][:active]
   )
-  rand(10..20).times do
+  rand(10..20).times do |i|
     rand_latitude_range = rand((latitude - rand(0.000000000...0.200000000))..(latitude + rand(0.000000000...0.200000000)))
     rand_longitude_range = rand((longitude - rand(0.000000000...0.200000000))..(longitude + rand(0.000000000...0.200000000)))
     Sensor.create(
       region: region,
+      sensor_nickname: region.region_city + "_" + i.to_s,
       sensor_latitude: rand_latitude_range,
       sensor_longitude: rand_longitude_range,
       sensor_acceleration_x_mGal: rand(-5.00...5.00),

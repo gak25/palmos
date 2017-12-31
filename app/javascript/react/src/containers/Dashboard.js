@@ -23,6 +23,7 @@ class Dashboard extends Component {
 		this.handleRegionSelect = this.handleRegionSelect.bind(this);
 		this.handleMarkerClick = this.handleMarkerClick.bind(this);
 		this.setRegion = this.setRegion.bind(this);
+		this.handleFilterReset = this.handleFilterReset.bind(this);
 	}
 	fetchUserRegions(currentUser) {
 		fetch(`/api/v1/users/${currentUser.handle}/regions`)
@@ -55,7 +56,7 @@ class Dashboard extends Component {
 				credentials: 'same-origin',
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ active_region: region_id })
+				body: JSON.stringify({ active: !this.state.selectedRegion.active })
 			}
 		);
 		this.setRegion(region_id);
@@ -84,15 +85,22 @@ class Dashboard extends Component {
 			}
 			this.setState({
 				bounds: bounds,
-				selectedRegion: {},
-				selectedSensor: sensors
+				selectedRegion: {}
+				// selectedSensor: sensors
 			});
 		}
 	}
 
+	handleFilterReset(event) {
+		console.log('reset!');
+		this.setState({
+			selectedRegion: {}
+			// selectedSensor: []
+		});
+	}
+
 	handleMarkerClick(marker) {
-		var selectedSensor = [];
-		selectedSensor.push(marker);
+		var selectedSensor = [marker];
 		this.setState({ selectedSensor: selectedSensor });
 	}
 
@@ -122,15 +130,16 @@ class Dashboard extends Component {
 		} else {
 			sensors = this.state.selectedRegion.sensors;
 		}
-
 		return (
 			<div className="dashboard">
 				<DashboardFilter
 					regions={this.state.userRegions}
 					currentRegion={this.state.selectedRegion}
+					sensors={sensors}
 					handleMapFilter={this.handleMapFilter}
 					handleRegionSelect={this.handleRegionSelect}
 					handleRegionDropdown={this.handleRegionDropdown}
+					handleFilterReset={this.handleFilterReset}
 					regionSelectDropdown={this.state.regionSelectDropdown}
 				/>
 				<div className="map-container">
@@ -147,6 +156,7 @@ class Dashboard extends Component {
 							/>
 						</div>
 						<DashboardStatus
+							currentUser={this.state.currentUser}
 							selectedSensor={this.state.selectedSensor}
 							selectedRegion={this.state.selectedRegion.region}
 						/>

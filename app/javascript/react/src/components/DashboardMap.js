@@ -12,7 +12,7 @@ const {
 	MarkerClusterer
 } = require('react-google-maps/lib/components/addons/MarkerClusterer');
 
-const MyMapComponent = compose(
+const MapComponent = compose(
 	withProps({
 		googleMapURL:
 			'https://maps.googleapis.com/maps/api/js?key=AIzaSyDdBRM60gNDSvQZnVj57MSi1n9hKI6Piqo&v=3.exp&libraries=geometry,drawing,places',
@@ -346,7 +346,7 @@ export default class DashboardMap extends React.PureComponent {
 		// }
 
 		return (
-			<MyMapComponent
+			<MapComponent
 				onMarkerClick={this.props.onMarkerClick}
 				position={this.props.position}
 				markers={this.props.markers}

@@ -38,6 +38,10 @@
 	background: $palmos-turquoise;
 }
 
+#filter-reset:hover {
+	background: lighten($palmos-turquoise, 10%);
+}
+
 #map-filter {
 	@include no-user-select();
 	background-color: $palmos-darker-blue;
@@ -45,16 +49,15 @@
 	height: 40px;
 	width: 80%;
 	padding: 0 5%;
-	margin: 0 5%;
+	margin: 0 5% 15px 5%;
 	border-radius: 5px;
 }
 
-#section-divider {
+#filter-section-divider {
 	padding: 0px;
 	width: 100%;
 	border: 0;
 	height: 1px;
-	margin: 5px 0;
 	background-color: rgba(0, 0, 0, 0.15);
 }
 

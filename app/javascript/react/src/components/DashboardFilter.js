@@ -48,16 +48,18 @@ const DashboardFilter = props => {
 		<div className="left-filter">
 			<div id="filter-title">FILTERS</div>
 			<div id="filter-status">
-				<div id="current-sensor-count">100</div>
-				<div id="total-sensor-count">/1873</div>
+				<div id="current-sensor-count">{props.sensors.length}</div>
+				<div id="total-sensor-count">/total</div>
 			</div>
-			<div id="filter-reset">RESET</div>
+			<div onClick={props.handleFilterReset} id="filter-reset">
+				RESET
+			</div>
 			<input
 				id="map-filter"
 				onChange={props.handleMapFilter}
 				placeholder="Filter"
 			/>
-			<hr id="section-divider" />
+			<hr id="filter-section-divider" />
 			<div className="filter-category">
 				<div id="filter-category-top" onClick={props.handleRegionDropdown}>
 					<h5>REGIONS</h5>
@@ -65,7 +67,7 @@ const DashboardFilter = props => {
 				</div>
 				{dropdown}
 			</div>
-			<hr id="section-divider" />
+			<hr id="filter-section-divider" />
 		</div>
 	);
 };

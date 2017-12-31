@@ -6,8 +6,12 @@
 	margin: 20px;
 	color: $palmos-grey;
 
+	#current-detail-name {
+		margin-bottom: 10px;
+	}
+
 	#detail-lat-lng {
-		margin: 10px 0 5px 0;
+		margin-top: 20px;
 		font-weight: 300;
 		font-size: 16px;
 	}
@@ -22,8 +26,21 @@
 		float: right;
 	}
 
-	#detail-nickname {
-		margin: 10 0 15px 0;
+	.nickname-form-error {
+		margin: 8px 0;
+		padding: 8px;
+		border-radius: 5px;
+		font-size: 14px;
+		background-color: orange;
+	}
+
+	.sensor-nickname-input[type='text'] {
+		font-family: inherit;
+		font-size: 1em;
+		font-weight: 300;
+		background: none;
+		margin-top: 6px;
+		width: 80%;
 	}
 }
 
@@ -64,4 +81,13 @@
 		font-weight: 500;
 		width: fit-content;
 	}
+}
+
+#sensor-section-divider {
+	padding: 0px;
+	width: 100%;
+	border: 0;
+	height: 1px;
+	margin: 15px 0;
+	background-color: rgba(0, 0, 0, 0.15);
 }

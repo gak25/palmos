@@ -46,16 +46,6 @@ class Api::V1::UsersController < ApplicationController
     render json: @user_data
   end
 
-  def region_update
-    Region.update_all active: false
-    if(region_params[:region_id] != "-1")
-      @region = Region.find_by(id: region_params[:region_id])
-      @region.update(active: !@region.active)
-    end
-    render json: @region
-  end
-
-
   private
 
   def region_params

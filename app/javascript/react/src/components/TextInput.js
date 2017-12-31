@@ -17,7 +17,7 @@ const TextInput = props => {
 
 TextInput.defaultProps = {
 	inputType: 'text',
-	className: 'credentials',
+	className: 'sensor-nickname-input',
 	autoComplete: 'off'
 };
 
