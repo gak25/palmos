@@ -37,11 +37,11 @@ class DashboardSensorStatus extends Component {
 		this.setState({ sensor: this.props.sensor[0] });
 	}
 
-	// componentWillReceiveProps(nextProps) {
-	// 	if (nextProps.sensor != this.props.sensor) {
-	// 		this.setState({ sensor: nextProps.sensor[0] });
-	// 	}
-	// }
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.sensor != this.props.sensor) {
+			this.setState({ sensor: nextProps.sensor[0] });
+		}
+	}
 
 	render() {
 		return (
