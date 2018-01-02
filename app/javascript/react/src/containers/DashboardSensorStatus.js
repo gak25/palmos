@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import NicknameForm from '../containers/NicknameFormContainer';
+import NicknameForm from './NicknameFormContainer';
+import SensorGraph from './SensorGraph';
+import AccelerationGraph from './AccelerationGraph';
 
 class DashboardSensorStatus extends Component {
 	constructor(props) {
@@ -20,7 +22,7 @@ class DashboardSensorStatus extends Component {
 				credentials: 'same-origin',
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ sensor_nickname: nickname })
+				body: JSON.stringify({ nickname: nickname })
 			}
 		)
 			.then(response => response.json())
@@ -35,17 +37,17 @@ class DashboardSensorStatus extends Component {
 		this.setState({ sensor: this.props.sensor[0] });
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.sensor != this.props.sensor) {
-			this.setState({ sensor: nextProps.sensor[0] });
-		}
-	}
+	// componentWillReceiveProps(nextProps) {
+	// 	if (nextProps.sensor != this.props.sensor) {
+	// 		this.setState({ sensor: nextProps.sensor[0] });
+	// 	}
+	// }
 
 	render() {
 		return (
 			<div>
 				<div id="current-detail">
-					<div idg="current-detail-name">
+					<div id="current-detail-name">
 						<div>Sensor ID: {this.state.sensor.id}</div>
 						<NicknameForm
 							changeNickname={this.handleNicknameInput}
@@ -75,14 +77,19 @@ class DashboardSensorStatus extends Component {
 						</div>
 					</div>
 					<div id="detail-status">
+						<h4>Health</h4>
+						<div id="data">{this.state.sensor.sensor_status.toUpperCase()}</div>
+					</div>
+					<div id="detail-status">
 						<h4>Risk Level</h4>
 						<div id="data">
 							{truncateDecimals(this.state.sensor.sensor_risk_level, 0)}%
 						</div>
-					</div>
-					<div id="detail-status">
-						<h4>Health</h4>
-						<div id="data">{this.state.sensor.sensor_status.toUpperCase()}</div>
+						<SensorGraph
+							sensor_risk_level_history={
+								this.state.sensor.sensor_risk_level_history
+							}
+						/>
 					</div>
 					<div id="detail-status">
 						<h4>Acceleration x (g) </h4>
@@ -106,12 +113,22 @@ class DashboardSensorStatus extends Component {
 								2
 							)}
 						</div>
+						{/* <AccelerationGraph
+							acceleration_x={this.state.sensor.sensor_acceleration_x_mGal}
+							acceleration_y={this.state.sensor.sensor_acceleration_y_mGal}
+							acceleration_z={this.state.sensor.sensor_acceleration_z_mGal}
+						/> */}
 					</div>
 					<div id="detail-status">
 						<h4>Water Pressure (kPa) </h4>
 						<div id="data">
 							{truncateDecimals(this.state.sensor.sensor_water_pressure_kPa, 2)}
 						</div>
+						<SensorGraph
+							sensor_water_pressure_kPa_history={
+								this.state.sensor.sensor_water_pressure_kPa_history
+							}
+						/>
 					</div>
 				</div>
 			</div>

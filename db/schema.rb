@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20171228144640) do
 
   create_table "regions", force: :cascade do |t|
     t.bigint "user_id"
-    t.string "region_nickname"
+    t.string "region_nickname", default: "region name"
     t.string "region_status", default: "healthy", null: false
     t.float "region_risk_level", default: 50.0, null: false
     t.float "region_latitude", default: 42.381511, null: false
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20171228144640) do
 
   create_table "sensors", force: :cascade do |t|
     t.bigint "region_id"
-    t.string "sensor_nickname"
+    t.string "sensor_nickname", null: false
     t.string "sensor_status", default: "healthy", null: false
     t.float "sensor_risk_level", default: 61.0, null: false
     t.float "sensor_latitude", default: 42.381511, null: false
@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 20171228144640) do
     t.float "sensor_acceleration_z_mGal", default: 1.44, null: false
     t.float "sensor_water_pressure_kPa", default: 145.0, null: false
     t.float "sensor_altitude_meters", default: 0.0, null: false
+    t.float "sensor_water_pressure_kPa_history", default: [], null: false, array: true
+    t.float "sensor_risk_level_history", default: [], null: false, array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["region_id"], name: "index_sensors_on_region_id"
