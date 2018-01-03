@@ -75,18 +75,17 @@ NUM_USERS.times do
   rand_latitude_range = rand((latitude - rand(0.000000000...0.050000000))..(latitude + rand(0.000000000...0.050000000)))
   rand_longitude_range = rand((longitude - rand(0.000000000...0.050000000))..(longitude + rand(0.000000000...0.050000000)))
 
-  fake_risk_level_history = []
-  fake_water_pressure_history = []
-  random_water_pressure_data = Perlin::Noise.new 1, :interval => 360
-  0.step(36, 0.1).each do |x|
-    fake_water_pressure_history.push((random_water_pressure_data[x] * 100).floor)
-  end
-  random_risk_level_data = Perlin::Noise.new 1, :interval => 360
-  0.step(36, 0.1).each do |x|
-    fake_risk_level_history.push((random_risk_level_data[x] * 100).floor)
-  end
-
   user_sensor_count.times do |i|
+    fake_risk_level_history = []
+    fake_water_pressure_history = []
+    random_water_pressure_data = Perlin::Noise.new 1, :interval => 360
+    0.step(36, 0.1).each do |x|
+      fake_water_pressure_history.push((random_water_pressure_data[x] * 100).floor)
+    end
+    random_risk_level_data = Perlin::Noise.new 1, :interval => 360
+    0.step(36, 0.1).each do |x|
+      fake_risk_level_history.push((random_risk_level_data[x] * 100).floor)
+    end
     Sensor.create(
       region: region,
       sensor_nickname: region.region_city + "_" + i.to_s,
@@ -134,16 +133,16 @@ REGIONS.length.times do |i|
     active: REGIONS[i][:active]
   )
   rand(10..20).times do |i|
-    rand_latitude_range = rand((latitude - rand(0.000000000...0.200000000))..(latitude + rand(0.000000000...0.200000000)))
-    rand_longitude_range = rand((longitude - rand(0.000000000...0.200000000))..(longitude + rand(0.000000000...0.200000000)))
+    rand_latitude_range = rand((latitude - rand(0.000000000...0.050000000))..(latitude + rand(0.000000000...0.050000000)))
+    rand_longitude_range = rand((longitude - rand(0.000000000...0.050000000))..(longitude + rand(0.000000000...0.050000000)))
 
     fake_risk_level_history = []
     fake_water_pressure_history = []
-    random_water_pressure_data = Perlin::Noise.new 1, :interval => 360
+    random_water_pressure_data = Perlin::Noise.new 1, :interval => 360, :seed => rand(5000...20000)
     0.step(36, 0.1).each do |x|
       fake_water_pressure_history.push((random_water_pressure_data[x] * 100).floor)
     end
-    random_risk_level_data = Perlin::Noise.new 1, :interval => 360
+    random_risk_level_data = Perlin::Noise.new 1, :interval => 300, :seed => rand(5000...20000)
     0.step(36, 0.1).each do |x|
       fake_risk_level_history.push((random_risk_level_data[x] * 100).floor)
     end

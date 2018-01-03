@@ -82,6 +82,14 @@ class SensorGraph extends Component {
 		this.drawGraph(this.state.array);
 	}
 
+	componentWillReceiveProps() {
+		this.setState({
+			canvasId: Object.keys(this.props)[0],
+			array: Object.values(this.props)[0]
+		});
+		this.drawGraph(this.state.array);
+	}
+
 	render() {
 		return (
 			<div>
