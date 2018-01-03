@@ -118,6 +118,7 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
+    perlin_noise (0.1.2)
     pg (0.21.0)
     postgresql (1.0.0)
       pg
@@ -244,6 +245,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   listen (>= 3.0.5, < 3.2)
+  perlin_noise
   pg (~> 0.18)
   postgresql
   pry

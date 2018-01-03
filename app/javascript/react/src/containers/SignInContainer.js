@@ -117,10 +117,10 @@ class SignInContainer extends Component {
 						handlerFunction={this.handlePassword}
 					/>
 					<div className="button-group">
-						<Link to="/sign-up" id="register-button">
+						<Link to="/sign-up" id="button-outline">
 							Sign Up
 						</Link>
-						<button className="form-submit-button" type="submit">
+						<button id="button-cta" type="submit">
 							Continue
 						</button>
 					</div>

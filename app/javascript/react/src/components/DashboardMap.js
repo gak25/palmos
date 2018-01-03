@@ -27,6 +27,7 @@ const MapComponent = compose(
 		},
 		setBoundsToAllSensors: props => mapRef => {
 			if (Object.keys(props.bounds).length > 0) {
+				// mapRef.setCenter(props.bounds.getCenter());
 				mapRef.fitBounds(props.bounds);
 			}
 		}
@@ -287,10 +288,11 @@ const MapComponent = compose(
 			]
 		}}
 	>
-		{props.bounds && props.setBoundsToAllSensors(this.map)}
+		{/* {props.bounds && props.setBoundsToAllSensors(this.map)} */}
+		{props.setBoundsToAllSensors(this.map)}
 		<MarkerClusterer
-			onClick={props.onMarkerClustererClick}
-			averageCenter
+			// onClick={props.onMarkerClustererClick}
+			// averageCenter
 			enableRetinaIcons
 			zoomOnClick
 			gridSize={20}
@@ -321,30 +323,7 @@ const MapComponent = compose(
 ));
 
 export default class DashboardMap extends React.PureComponent {
-	// handleMarkerClick(marker) {
-	// 	console.log('marker_child: ' + marker);
-	// }
-
-	// componentDidMount() {
-	// this.map.fitBounds(this.props.bounds);
-	// }
-
-	// componentWillReceiveProps(nextProps.position) {
-	// 	if (nextProps.position != this.props.position) {
-	// 		this.fetchUserRegions(nextProps.position);
-	// 		this.setState({ position: nextProps.position });
-	// 	}
-	// }
-
 	render() {
-		// var bounds = new google.maps.LatLngBounds();
-		// for (i = 0; i < this.props.sensors.length; i++) {
-		// 	bounds.extend({
-		// 		lat: sensors[i].sensor_latitude,
-		// 		lng: sensors[i].sensor_longitude
-		// 	});
-		// }
-
 		return (
 			<MapComponent
 				onMarkerClick={this.props.onMarkerClick}

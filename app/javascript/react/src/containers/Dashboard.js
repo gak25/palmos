@@ -15,6 +15,8 @@ class Dashboard extends Component {
 			selectedRegion: {},
 			selectedSensor: [],
 			bounds: {},
+			position: {},
+			sensors: [],
 			regionSelectDropdown: false
 		};
 		this.handleMapFilter = this.handleMapFilter.bind(this);
@@ -29,12 +31,14 @@ class Dashboard extends Component {
 		fetch(`/api/v1/users/${currentUser.handle}/regions`)
 			.then(response => response.json())
 			.then(data => {
-				var activeRegion = data.pop();
-				this.setState({
-					selectedRegion: activeRegion.active_region,
-					userRegions: data
-				});
-				this.setRegion(activeRegion.active_region.id);
+				if (data.length > 1) {
+					var activeRegion = data.pop();
+					this.setState({
+						selectedRegion: activeRegion.active_region,
+						userRegions: data
+					});
+					this.setRegion(activeRegion.active_region.id);
+				}
 			});
 	}
 
@@ -63,20 +67,26 @@ class Dashboard extends Component {
 	}
 
 	setRegion(region_id) {
+		var bounds;
 		if (region_id != -1) {
 			let selectedRegion = this.state.userRegions.find(
 				region => region.region.id === region_id
 			);
+			var position = {
+				lat: selectedRegion.region.region_latitude,
+				lng: selectedRegion.region.region_longitude
+			};
 			this.setState({
 				selectedRegion: selectedRegion,
-				selectedSensor: []
+				sensors: selectedRegion.sensors,
+				position: position
 			});
 		} else {
 			var sensors = [];
 			for (var i = 0; i < this.state.userRegions.length; i++) {
 				sensors = sensors.concat(this.state.userRegions[i].sensors);
 			}
-			var bounds = new google.maps.LatLngBounds();
+			bounds = new google.maps.LatLngBounds();
 			for (i = 0; i < sensors.length; i++) {
 				bounds.extend({
 					lat: sensors[i].sensor_latitude,
@@ -85,8 +95,8 @@ class Dashboard extends Component {
 			}
 			this.setState({
 				bounds: bounds,
+				sensors: sensors,
 				selectedRegion: {}
-				// selectedSensor: sensors
 			});
 		}
 	}
@@ -95,7 +105,6 @@ class Dashboard extends Component {
 		console.log('reset!');
 		this.setState({
 			selectedRegion: {}
-			// selectedSensor: []
 		});
 	}
 
@@ -112,30 +121,19 @@ class Dashboard extends Component {
 	}
 
 	render() {
-		var position;
-		var bounds;
-		var sensors;
-		if (this.state.selectedRegion.region) {
-			position = {
-				lat: this.state.selectedRegion.region.region_latitude,
-				lng: this.state.selectedRegion.region.region_longitude
-			};
-			bounds = this.state.bounds;
-		} else {
-			position = { lat: 42.0, lng: -71.0 };
-			bounds = this.state.bounds;
-		}
-		if (this.state.selectedRegion.sensors === undefined) {
-			sensors = this.state.selectedSensor;
-		} else {
-			sensors = this.state.selectedRegion.sensors;
-		}
+		// var sensors;
+		// if (this.state.selectedRegion.sensors === undefined) {
+		// 	sensors = this.state.selectedSensor;
+		// } else {
+		// 	sensors = this.state.selectedRegion.sensors;
+		// }
+		// debugger;
 		return (
 			<div className="dashboard">
 				<DashboardFilter
 					regions={this.state.userRegions}
 					currentRegion={this.state.selectedRegion}
-					sensors={sensors}
+					sensors={this.state.sensors}
 					handleMapFilter={this.handleMapFilter}
 					handleRegionSelect={this.handleRegionSelect}
 					handleRegionDropdown={this.handleRegionDropdown}
@@ -150,9 +148,9 @@ class Dashboard extends Component {
 						<div className="map">
 							<DashboardMap
 								onMarkerClick={this.handleMarkerClick}
-								position={position}
-								markers={sensors}
-								bounds={bounds}
+								position={this.state.position}
+								bounds={this.state.bounds}
+								markers={this.state.sensors}
 							/>
 						</div>
 						<DashboardStatus

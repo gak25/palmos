@@ -1,4 +1,5 @@
 require 'date'
+require 'perlin_noise'
 
 p "Deleting #{User.count} users"
 p "Deleting #{Region.count} regions"
@@ -73,6 +74,18 @@ NUM_USERS.times do
   user_sensor_count = rand(5..50)
   rand_latitude_range = rand((latitude - rand(0.000000000...0.050000000))..(latitude + rand(0.000000000...0.050000000)))
   rand_longitude_range = rand((longitude - rand(0.000000000...0.050000000))..(longitude + rand(0.000000000...0.050000000)))
+
+  fake_risk_level_history = []
+  fake_water_pressure_history = []
+  random_water_pressure_data = Perlin::Noise.new 1, :interval => 360
+  0.step(36, 0.1).each do |x|
+    fake_water_pressure_history.push((random_water_pressure_data[x] * 100).floor)
+  end
+  random_risk_level_data = Perlin::Noise.new 1, :interval => 360
+  0.step(36, 0.1).each do |x|
+    fake_risk_level_history.push((random_risk_level_data[x] * 100).floor)
+  end
+
   user_sensor_count.times do |i|
     Sensor.create(
       region: region,
@@ -85,7 +98,9 @@ NUM_USERS.times do
       sensor_water_pressure_kPa: rand(0.00...200.00),
       sensor_altitude_meters: rand(0.00...500.00),
       sensor_status: SENSOR_STATUSES[rand(0...SENSOR_STATUSES.length)],
-      sensor_risk_level: rand(0.00...100.00)
+      sensor_risk_level: rand(0.00...100.00),
+      sensor_water_pressure_kPa_history: fake_water_pressure_history,
+      sensor_risk_level_history: fake_risk_level_history
     )
   end
 end
@@ -121,6 +136,18 @@ REGIONS.length.times do |i|
   rand(10..20).times do |i|
     rand_latitude_range = rand((latitude - rand(0.000000000...0.200000000))..(latitude + rand(0.000000000...0.200000000)))
     rand_longitude_range = rand((longitude - rand(0.000000000...0.200000000))..(longitude + rand(0.000000000...0.200000000)))
+
+    fake_risk_level_history = []
+    fake_water_pressure_history = []
+    random_water_pressure_data = Perlin::Noise.new 1, :interval => 360
+    0.step(36, 0.1).each do |x|
+      fake_water_pressure_history.push((random_water_pressure_data[x] * 100).floor)
+    end
+    random_risk_level_data = Perlin::Noise.new 1, :interval => 360
+    0.step(36, 0.1).each do |x|
+      fake_risk_level_history.push((random_risk_level_data[x] * 100).floor)
+    end
+
     Sensor.create(
       region: region,
       sensor_nickname: region.region_city + "_" + i.to_s,
@@ -130,6 +157,8 @@ REGIONS.length.times do |i|
       sensor_acceleration_y_mGal: rand(-5.00...5.00),
       sensor_acceleration_z_mGal: rand(-5.00...5.00),
       sensor_water_pressure_kPa: rand(0.00...200.00),
+      sensor_water_pressure_kPa_history: fake_water_pressure_history,
+      sensor_risk_level_history: fake_risk_level_history,
       sensor_altitude_meters: rand(0.00...500.00),
       sensor_status: SENSOR_STATUSES[rand(0...SENSOR_STATUSES.length)],
       sensor_risk_level: rand(0.00...100.00),
