@@ -31,12 +31,14 @@ class Dashboard extends Component {
 		fetch(`/api/v1/users/${currentUser.handle}/regions`)
 			.then(response => response.json())
 			.then(data => {
-				var activeRegion = data.pop();
-				this.setState({
-					selectedRegion: activeRegion.active_region,
-					userRegions: data
-				});
-				this.setRegion(activeRegion.active_region.id);
+				if (data.length > 1) {
+					var activeRegion = data.pop();
+					this.setState({
+						selectedRegion: activeRegion.active_region,
+						userRegions: data
+					});
+					this.setRegion(activeRegion.active_region.id);
+				}
 			});
 	}
 
@@ -125,6 +127,7 @@ class Dashboard extends Component {
 		// } else {
 		// 	sensors = this.state.selectedRegion.sensors;
 		// }
+		// debugger;
 		return (
 			<div className="dashboard">
 				<DashboardFilter

@@ -9,7 +9,10 @@
 	max-width: 400px;
 }
 
-#register-button {
+#button-cta {
+	border: none;
+	font-family: inherit;
+	font-size: inherit;
 	display: inline-block;
 	background-color: $palmos-turquoise;
 	color: $palmos-dark-blue;
@@ -19,6 +22,14 @@
 	width: fit-content;
 	cursor: pointer;
 	margin: 10px;
+}
+
+#button-outline {
+	@extend #button-cta;
+	background: none;
+	padding: 2px 4px;
+	border: 1px solid $palmos-off-white;
+	color: $palmos-off-white;
 }
 
 // input::-webkit-input-placeholder {

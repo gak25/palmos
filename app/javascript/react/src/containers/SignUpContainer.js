@@ -277,13 +277,13 @@ class SignUpContainer extends Component {
 						handlerFunction={this.handlePasswordConfirmation}
 					/>
 					<div className="button-group">
-						<div id="register-button" onClick={this.handleClearForm}>
+						{/* <div id="button-outline" onClick={this.handleClearForm}>
 							Clear
-						</div>
-						<Link to="/sign-in" id="register-button">
+						</div> */}
+						<Link to="/sign-in" id="button-outline">
 							Sign In
 						</Link>
-						<button className="form-submit-button" type="submit">
+						<button id="button-cta" type="submit">
 							Continue
 						</button>
 					</div>
