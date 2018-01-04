@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-  root "pages#index"
+  root "home#index"
 
   get "sign-in", to: "sessions#new", as: :sign_in
   post "sign-in", to: "sessions#create"
   get "sign-out", to: "sessions#destroy"
   get "sign-up", to: "users#new", as: :sign_up
+
+  post "contact", to: "home#contact"
 
   namespace :api do
     namespace :v1 do
@@ -20,7 +22,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get '*path', to: 'pages#index'
+  get '*path', to: 'home#index'
 
   resources :account_confirmations, only: [:edit]
   resources :password_resets, only: [:create, :edit, :new, :update]

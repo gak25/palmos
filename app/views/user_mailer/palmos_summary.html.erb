@@ -1,0 +1,13 @@
+<h3>Palmos inquiry</h3>
+
+<p>
+  <%= @name %> from <%= @location %> is asking about Palmos. Here are their comments:
+</p>
+
+<p>
+  <%= @comments %>
+</p>
+
+<p>
+  <%= @name %> can be reached at <a href='mailto:<%=@from_email%>'><%= @from_email %></a>, or at <a href="<%=@phone%>"><%=@phone%></a>.
+</p>

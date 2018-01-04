@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,700');
+@import 'colors';
+@import 'mixins';
+@import 'font-awesome';
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+body {
+	font-family: 'Montserrat', Fallback, sans-serif;
+	background: $palmos-blue;
+	// overflow: hidden;
+	// background: url('./images/palmos_text.png');
+}
