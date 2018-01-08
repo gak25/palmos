@@ -8,7 +8,7 @@
 		display: -webkit-box;
 		display: -moz-box;
 		display: -ms-flexbox;
-		display: -webkit-flex;
+		r: -webkit-flex;
 		display: flex;
 		justify-content: center;
 		flex-direction: column;
@@ -41,6 +41,19 @@
 	left: 10px;
 }
 
+#demo-cta {
+	font-size: 1.5em;
+	padding: 10px 15px;
+	border: 1px solid $palmos-turquoise;
+	border-radius: 10px;
+	color: $palmos-turquoise;
+}
+
+#demo-cta:hover {
+	border: 1px solid $palmos-dark-blue;
+	color: $palmos-dark-blue;
+}
+
 .header-container {
 	position: fixed;
 	top: 0;
@@ -61,18 +74,18 @@
 		* {
 			float: right;
 			position: relative;
-			top: 20%;
-			right: 10%;
+			top: 13%;
+			right: 5%;
 			font-weight: 500;
 			margin: 10px;
 			cursor: pointer;
 			color: $palmos-grey;
 		}
-		*:hover {
-			color: $palmos-turquoise;
-			margin: 10px;
-			cursor: pointer;
-		}
+		// *:hover {
+		// 	color: $palmos-turquoise;
+		// 	margin: 10px;
+		// 	cursor: pointer;
+		// }
 	}
 }
 
