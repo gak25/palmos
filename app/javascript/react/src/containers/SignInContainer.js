@@ -98,6 +98,12 @@ class SignInContainer extends Component {
 		return (
 			<div className="form-background">
 				<form className="register-forms" onSubmit={this.handleFormSubmit}>
+					<div id="sign-in-instructions">
+						<p>Just exploring? Sign in with:</p>
+						<p>
+							<strong>palmos / palmos</strong>
+						</p>
+					</div>
 					{errorDiv}
 					<TextInput
 						emailOrUsername={this.state.emailOrUsername}

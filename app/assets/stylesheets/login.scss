@@ -8,6 +8,11 @@
 	background: $palmos-off-white;
 }
 
+#sign-in-instructions {
+	color: $palmos-grey;
+	text-align: center;
+}
+
 .register-forms {
 	@include center();
 	display: inline-grid;
