@@ -222,7 +222,7 @@ class SignUpContainer extends Component {
 			errorDiv = <div className="register-form-error">{errorItems}</div>;
 		}
 		return (
-			<div>
+			<div className="form-background">
 				<form className="register-forms" onSubmit={this.handleFormSubmit}>
 					{errorDiv}
 					<TextInput

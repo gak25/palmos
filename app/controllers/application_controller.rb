@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
 
   def prevent_duplicate_sign_in
     if user_signed_in?
-      flash[:alert] = "You are already signed in."
+      flash[:alert] = "You are already signed in"
       redirect_to root_path
     end
   end
@@ -57,6 +57,7 @@ class ApplicationController < ActionController::Base
 
   def sign_in(user)
     session[:user_id] = user.id
+    flash.now[:success] = "Signed in as #{user.handle} from application api controller"
   end
 
   def sign_out

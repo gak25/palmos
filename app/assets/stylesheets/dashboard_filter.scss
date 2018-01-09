@@ -44,6 +44,9 @@
 
 #map-filter {
 	@include no-user-select();
+	@include placeholder {
+		color: $palmos-grey;
+	}
 	background-color: $palmos-darker-blue;
 	color: $palmos-off-white;
 	height: 40px;

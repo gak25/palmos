@@ -44,14 +44,15 @@
 #demo-cta {
 	font-size: 1.5em;
 	padding: 10px 15px;
-	border: 1px solid $palmos-turquoise;
+	border: 1px solid $palmos-dark-blue;
 	border-radius: 10px;
-	color: $palmos-turquoise;
+	color: $palmos-dark-blue;
 }
 
 #demo-cta:hover {
-	border: 1px solid $palmos-dark-blue;
-	color: $palmos-dark-blue;
+	// border: 1px solid $palmos-dark-blue;
+	color: $palmos-turquoise;
+	background: $palmos-blue;
 }
 
 .header-container {

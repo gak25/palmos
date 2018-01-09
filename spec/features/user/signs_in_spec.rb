@@ -26,7 +26,7 @@ feature "user signs in" do
 
       visit sign_in_path
 
-      expect(page).to have_content("You are already signed in.")
+      expect(page).to have_content("You are already signed in")
     end
   end
 

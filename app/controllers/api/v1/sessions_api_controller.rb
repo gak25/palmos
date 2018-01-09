@@ -10,9 +10,10 @@ class Api::V1::SessionsApiController < ApplicationController
     end
     if user && user.authenticate(params[:sessions_api][:password])
       # if user.confirmed?
-        flash[:success] = "Signed in as #{user.handle}."
         sign_in(user)
+        flash[:success] = "Signed in as #{user.handle} from regular sessions controller"
         params[:sessions_api][:remember_me] == "1" ? remember(user) : forget(user)
+        render :'home/index'
         # render plain: "200"
         # redirect_to root_path
       # else
@@ -20,7 +21,7 @@ class Api::V1::SessionsApiController < ApplicationController
       #   render :new
       # end
     else
-      flash.now[:alert] = "Invalid email/username & password combination."
+      flash.now[:alert] = "Invalid email/username & password combination"
       redirect_to sign_in_path
       # render plain: "403"
     end

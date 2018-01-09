@@ -121,13 +121,6 @@ class Dashboard extends Component {
 	}
 
 	render() {
-		// var sensors;
-		// if (this.state.selectedRegion.sensors === undefined) {
-		// 	sensors = this.state.selectedSensor;
-		// } else {
-		// 	sensors = this.state.selectedRegion.sensors;
-		// }
-		// debugger;
 		return (
 			<div className="dashboard">
 				<DashboardFilter

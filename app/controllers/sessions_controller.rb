@@ -10,23 +10,23 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
 
       # if user.confirmed?
-        flash[:success] = "Signed in as #{user.handle}."
+        flash.now[:success] = "Signed in as #{user.handle} from sessions api controller"
         sign_in(user)
         params[:session][:remember_me] == "1" ? remember(user) : forget(user)
-        redirect_to root_path
+        render :'home/index'
       # else
-      #   flash.now[:alert] = "You need to confirm your email address before continuing."
+      #   flash.now[:alert] = "You need to confirm your email address before continuing"
       #   render :new
       # end
     else
-      flash.now[:alert] = "Invalid email/username & password combination."
+      flash.now[:alert] = "Invalid email/username & password combination"
       render :new
     end
   end
 
   def destroy
     sign_out
-    flash[:notice] = "Signed out."
-    redirect_to root_url
+    flash[:notice] = "Signed out"
+    redirect_to root_path
   end
 end

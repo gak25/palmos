@@ -5,11 +5,11 @@
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	background: $palmos-off-white;
+	background: $palmos-background-color;
 }
 
 #sign-in-instructions {
-	color: $palmos-grey;
+	color: $palmos-dark-grey;
 	text-align: center;
 }
 
@@ -17,8 +17,10 @@
 	@include center();
 	display: inline-grid;
 	text-align: center;
-	width: 98%;
+	width: 90%;
 	max-width: 400px;
+	margin: 0;
+	padding: 0;
 }
 
 #button-cta {
@@ -26,8 +28,9 @@
 	font-family: inherit;
 	font-size: inherit;
 	display: inline-block;
-	background-color: $palmos-turquoise;
-	color: $palmos-dark-blue;
+	background-color: $palmos-background-color;
+	color: $palmos-turquoise;
+	border: 1px solid $palmos-turquoise;
 	padding: 3px 5px;
 	border-radius: 5px;
 	text-decoration: none;
@@ -40,33 +43,25 @@
 	@extend #button-cta;
 	background: none;
 	padding: 2px 4px;
-	border: 1px solid $palmos-dark-blue;
-	color: $palmos-dark-blue;
-}
-
-input::-webkit-input-placeholder {
-	color: $palmos-dark-blue;
-}
-input::-moz-placeholder {
-	color: $palmos-dark-blue;
-}
-input:-ms-input-placeholder {
-	color: $palmos-dark-blue;
-}
-input:-moz-placeholder {
-	color: $palmos-dark-blue;
+	border: 1px solid $palmos-dark-grey;
+	color: $palmos-dark-grey;
 }
 
 .credentials[type='text'],
 .credentials[type='password'] {
-	margin: 8px 0;
-	padding: 10px;
+	position: relative;
+	@include placeholder {
+		color: $palmos-dark-grey;
+	}
+	width: 80%;
+	margin: 2% auto;
+	padding: 2%;
 	font-weight: 300;
 	border-radius: 7px;
 	font-size: 1.5em;
-	color: $palmos-dark-blue;
-	background-color: $palmos-off-white;
-	border: 1px solid #000;
+	color: $palmos-dark-grey;
+	background-color: $palmos-background-color;
+	border: 1px solid $palmos-dark-grey;
 }
 
 input:not([type='checkbox']) {
@@ -78,17 +73,20 @@ input:not([type='checkbox']) {
 	// visibility: hidden;
 }
 
-// #lock-icon {
-// 	border: 1px solid $palmos-blue;
-// 	border-radius: 200px;
-// 	margin-bottom: 5px;
-// 	padding: 15px 25px;
-// 	color: $palmos-dark-blue;
-// }
+#lock-icon {
+	border: 1px solid $palmos-dark-grey;
+	width: fit-content;
+	margin: auto;
+	border-radius: 200px;
+	margin-bottom: 5px;
+	padding: 15px 25px;
+	color: $palmos-dark-grey;
+}
 
 .register-form-error {
-	margin: 8px 0;
-	padding: 10px;
+	width: 80%;
+	margin: 2% auto;
+	padding: 2%;
 	border-radius: 7px;
 	background-color: orange;
 }

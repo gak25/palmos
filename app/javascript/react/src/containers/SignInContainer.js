@@ -98,6 +98,7 @@ class SignInContainer extends Component {
 		return (
 			<div className="form-background">
 				<form className="register-forms" onSubmit={this.handleFormSubmit}>
+					<i className="fa fa-lock fa-4x" id="lock-icon" aria-hidden="true" />
 					<div id="sign-in-instructions">
 						<p>Just exploring? Sign in with:</p>
 						<p>

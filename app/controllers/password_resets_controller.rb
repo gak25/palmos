@@ -8,7 +8,7 @@ class PasswordResetsController < ApplicationController
         user.send_password_reset_email
       end
       flash[:notice] = "An email has been sent with instructions on how to reset your password."
-      redirect_to root_url
+      redirect_to root_path
     else
       flash[:alert] = "There was a problem resetting your password. Please try again."
       render :new
@@ -18,14 +18,14 @@ class PasswordResetsController < ApplicationController
   def edit
     @user = User.find_by(email: params[:email])
     unless (@user.present? && @user.confirmed? && @user.authenticated?(:password_reset, params[:id]))
-      redirect_to root_url
+      redirect_to root_path
     end
   end
 
   def update
     @user = User.find_by(email: params[:email])
     if !(@user.present? && @user.confirmed? && @user.authenticated?(:password_reset, params[:id]))
-      redirect_to root_url
+      redirect_to root_path
     elsif @user.password_reset_expired?
       flash[:alert] = "Password reset has expired."
       redirect_to new_password_reset_url
