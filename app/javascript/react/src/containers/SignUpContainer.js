@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { push } from 'react-router-redux';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import TextInput from '../components/TextInput';
 
 var EMAIL_REGEXP = /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/;

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { push } from 'react-router-redux';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import TextInput from '../components/TextInput';
 
 class SignInContainer extends Component {
@@ -130,6 +133,9 @@ class SignInContainer extends Component {
 						<button id="button-cta" type="submit">
 							Continue
 						</button>
+						<button onClick={() => this.props.changePage()}>
+							Go to SignUpContainer via redux
+						</button>
 					</div>
 				</form>
 				{fireRedirect && <Redirect to={from || '/'} />}
@@ -138,4 +144,14 @@ class SignInContainer extends Component {
 	}
 }
 
-export default SignInContainer;
+const mapDispatchToProps = dispatch =>
+	bindActionCreators(
+		{
+			changePage: () => push('/sign-up')
+		},
+		dispatch
+	);
+
+export default connect(null, mapDispatchToProps)(SignInContainer);
+
+// export default SignInContainer;

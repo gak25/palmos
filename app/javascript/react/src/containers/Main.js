@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Dashboard from './Dashboard';
 import NavTop from './NavTop';
 
-class App extends Component {
+class Main extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -31,7 +31,7 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		this.loadUserData();
+		// this.loadUserData();
 	}
 
 	render() {
@@ -44,4 +44,4 @@ class App extends Component {
 	}
 }
 
-export default App;
+export default Main;
