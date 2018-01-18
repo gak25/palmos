@@ -3,7 +3,7 @@
 [ ![Codeship Status for palmos/palmos_web](https://app.codeship.com/projects/a034b610-c695-0135-9eb9-1e50aff0702d/status?branch=master)](https://app.codeship.com/projects/261212)
 
 ## To run locally:
-
+_Note that you’ll need to have [Node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/) installed._
 * create a directory (`$ mkdir palmos`) and navigate into that directory (`$ cd palmos`)
 * run `$ git clone https://gitlab.com/palmos/palmos_web.git`
 * run `$ bundle install` to install gem dependencies
