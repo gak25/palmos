@@ -1,0 +1,9 @@
+const TOGGLE_DASHBOARD_STATUS_VISIBILITY = 'TOGGLE_DASHBOARD_STATUS_VISIBILITY';
+
+export { TOGGLE_DASHBOARD_STATUS_VISIBILITY };
+
+export function toggleDashboardStatusVisibility() {
+	return {
+		type: 'TOGGLE_DASHBOARD_STATUS_VISIBILITY'
+	};
+}

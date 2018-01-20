@@ -323,6 +323,22 @@ const MapComponent = compose(
 	</GoogleMap>
 ));
 
+import * as DashboardVisibilityActions from '../actions/componentVisibility';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+function mapStateToProps(state) {
+	return {
+		currentUser: state.currentUser.item,
+		componentVisibility: state.componentVisibility
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return { actions: bindActionCreators(DashboardVisibilityActions, dispatch) };
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 export default class DashboardMap extends React.PureComponent {
 	render() {
 		return (
@@ -335,11 +351,13 @@ export default class DashboardMap extends React.PureComponent {
 						bounds={this.props.bounds}
 					/>
 				</div>
-				<DashboardStatus
-					currentUser={this.props.currentUser}
-					selectedSensor={this.props.selectedSensor}
-					selectedRegion={this.props.selectedRegion}
-				/>
+				{this.props.componentVisibility.dashboardStatusVisibility ? (
+					<DashboardStatus
+						// currentUser={this.props.currentUser}
+						selectedSensor={this.props.selectedSensor}
+						selectedRegion={this.props.selectedRegion}
+					/>
+				) : null}
 			</div>
 		);
 	}

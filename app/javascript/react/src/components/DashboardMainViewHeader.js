@@ -1,40 +1,64 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import * as DashboardVisibilityActions from '../actions/componentVisibility';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-const DashboardMainViewHeader = props => {
-	return (
-		<div className="map-header">
-			<div className="map-header-overview">
-				<div className="map-nav-tab">
-					<h4>MAP OVERVIEW</h4>
-				</div>
-				<div className="map-nav-tab">
-					{props.currentRegion ? (
-						props.currentRegion.region_nickname ? (
-							<h4>{props.currentRegion.region_nickname}</h4>
+function mapStateToProps(state) {
+	return {
+		currentUser: state.currentUser.item,
+		componentVisibility: state.componentVisibility
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return { actions: bindActionCreators(DashboardVisibilityActions, dispatch) };
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
+class DashboardMainViewHeader extends Component {
+	render() {
+		return (
+			<div className="map-header">
+				<div className="map-header-overview">
+					<div className="map-nav-tab">
+						<h4>MAP OVERVIEW</h4>
+					</div>
+					<div className="map-nav-tab">
+						{this.props.currentRegion ? (
+							this.props.currentRegion.region_nickname ? (
+								<h4>{this.props.currentRegion.region_nickname}</h4>
+							) : (
+								<h4>{this.props.currentRegion.region_city}</h4>
+							)
 						) : (
-							<h4>{props.currentRegion.region_city}</h4>
-						)
-					) : (
-						<h5>All Regions</h5>
-					)}
+							<h5>All Regions</h5>
+						)}
+					</div>
+					<div className="map-nav-tab" id="map-nav-detail">
+						{this.props.currentRegion ? (
+							<div>
+								<h5>
+									{this.props.currentRegion.region_city},{' '}
+									{this.props.currentRegion.region_state_code}
+								</h5>
+							</div>
+						) : null}
+					</div>
+					{/* <div className="map-nav-tab" id="header-last-update"> */}
+					{/* <h5>(since Fri Apr 23, 2017 to Tue Apr 29)</h5> */}
+					{/* </div> */}
+					<i
+						//className="fa fa-eye-slash"
+						className="fa fa-eye"
+						style={{ margin: '5px', cursor: 'pointer', color: '$palmos-grey' }}
+						aria-hidden="true"
+						onClick={() => this.props.actions.toggleDashboardStatusVisibility()}
+					/>
 				</div>
-				<div className="map-nav-tab" id="map-nav-detail">
-					{props.currentRegion ? (
-						<div>
-							<h5>
-								{props.currentRegion.region_city},{' '}
-								{props.currentRegion.region_state_code}
-							</h5>
-						</div>
-					) : null}
-				</div>
-				{/* <div className="map-nav-tab" id="header-last-update"> */}
-				{/* <h5>(since Fri Apr 23, 2017 to Tue Apr 29)</h5> */}
-				{/* </div> */}
 			</div>
-		</div>
-	);
-};
+		);
+	}
+}
 
 export default DashboardMainViewHeader;

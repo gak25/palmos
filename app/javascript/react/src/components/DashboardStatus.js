@@ -1,35 +1,52 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import DashboardRegionStatus from '../containers/DashboardRegionStatus';
 import DashboardSensorStatus from '../containers/DashboardSensorStatus';
 
-const DashboardStatus = props => {
-	var status = null;
+import * as DashboardVisibilityActions from '../actions/componentVisibility';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-	if (Object.keys(props.selectedSensor).length === 1) {
-		status = (
-			<DashboardSensorStatus
-				currentUser={props.currentUser}
-				sensor={props.selectedSensor}
-				handleNicknameInput={props.handleNicknameInput}
-			/>
-		);
-	} else if (props.selectedRegion) {
-		status = (
-			<DashboardRegionStatus
-				currentUser={props.currentUser}
-				region={props.selectedRegion}
-				handleNicknameInput={props.handleNicknameInput}
-			/>
+function mapStateToProps(state) {
+	return {
+		currentUser: state.currentUser.item,
+		componentVisibility: state.componentVisibility
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return { actions: bindActionCreators(DashboardVisibilityActions, dispatch) };
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
+class DashboardStatus extends Component {
+	render() {
+		var status = null;
+		if (Object.keys(this.props.selectedSensor).length === 1) {
+			status = (
+				<DashboardSensorStatus
+					currentUser={this.props.currentUser}
+					sensor={this.props.selectedSensor}
+					handleNicknameInput={this.props.handleNicknameInput}
+				/>
+			);
+		} else if (this.props.selectedRegion) {
+			status = (
+				<DashboardRegionStatus
+					currentUser={this.props.currentUser}
+					region={this.props.selectedRegion}
+					handleNicknameInput={this.props.handleNicknameInput}
+				/>
+			);
+		}
+
+		return (
+			<div className="right-status">
+				{status}
+				<script src="/javascripts/Chart.bundle.min.js" />
+			</div>
 		);
 	}
-
-	return (
-		<div className="right-status">
-			{status}
-			<script src="/javascripts/Chart.bundle.min.js" />
-		</div>
-	);
-};
+}
 
 export default DashboardStatus;

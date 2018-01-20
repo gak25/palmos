@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// import store, { history } from '../react/src/store/createStore';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
@@ -16,6 +15,7 @@ import {
 } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
 import thunkMiddleware from 'redux-thunk';
+import logger from 'redux-logger';
 
 import Main from '../react/src/containers/Main';
 import SignUpForm from '../react/src/connectors/SignUp';
@@ -23,15 +23,17 @@ import SignInForm from '../react/src/connectors/SignIn';
 
 import currentUser from '../react/src/reducers/currentUser';
 import notices from '../react/src/reducers/notices';
+import componentVisibility from '../react/src/reducers/componentVisibility';
 
 const history = createBrowserHistory();
 
-const middlewares = [thunkMiddleware, routerMiddleware(history)];
+const middlewares = [logger, thunkMiddleware, routerMiddleware(history)];
 
 const store = createStore(
 	combineReducers({
 		currentUser,
 		notices,
+		componentVisibility,
 		form: formReducer,
 		router: routerReducer
 	}),
@@ -55,7 +57,5 @@ document.addEventListener('DOMContentLoaded', () => {
 			</Provider>,
 			target
 		);
-	} else {
-		console.log('no root');
 	}
 });
