@@ -24,6 +24,7 @@ import SignInForm from '../react/src/connectors/SignIn';
 import currentUser from '../react/src/reducers/currentUser';
 import notices from '../react/src/reducers/notices';
 import componentVisibility from '../react/src/reducers/componentVisibility';
+import dashboardView from '../react/src/reducers/dashboardView';
 
 const history = createBrowserHistory();
 
@@ -34,6 +35,7 @@ const store = createStore(
 		currentUser,
 		notices,
 		componentVisibility,
+		dashboardView,
 		form: formReducer,
 		router: routerReducer
 	}),

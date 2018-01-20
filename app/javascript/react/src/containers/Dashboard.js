@@ -1,10 +1,25 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { GoogleMap, Marker } from 'react-google-maps';
-import DashboardMap from '../components/DashboardMap';
 import DashboardFilter from '../components/DashboardFilter';
 import DashboardMainViewHeader from '../components/DashboardMainViewHeader';
+import DashboardMap from '../components/DashboardMap';
+import DashboardAnalytics from './DashboardAnalytics';
+import DashboardData from './DashboardData';
+import DashboardAlerts from './DashboardAlerts';
 
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+function mapStateToProps(state) {
+	return {
+		currentUser: state.currentUser.item,
+		componentVisibility: state.componentVisibility,
+		dashboardView: state.dashboardView
+	};
+}
+
+@connect(mapStateToProps)
 class Dashboard extends Component {
 	constructor(props) {
 		super(props);
@@ -119,6 +134,27 @@ class Dashboard extends Component {
 	}
 
 	render() {
+		let view = null;
+		if (this.props.dashboardView.dashboardCurrentTab === 'OVERVIEW') {
+			view = (
+				<DashboardMap
+					currentUser={this.state.currentUser}
+					selectedSensor={this.state.selectedSensor}
+					selectedRegion={this.state.selectedRegion.region}
+					onMarkerClick={this.handleMarkerClick}
+					position={this.state.position}
+					bounds={this.state.bounds}
+					markers={this.state.sensors}
+				/>
+			);
+		} else if (this.props.dashboardView.dashboardCurrentTab === 'ANALYTICS') {
+			view = <DashboardAnalytics />;
+		} else if (this.props.dashboardView.dashboardCurrentTab === 'DATA') {
+			view = <DashboardData />;
+		} else if (this.props.dashboardView.dashboardCurrentTab === 'ALERTS') {
+			view = <DashboardAlerts />;
+		}
+
 		return (
 			<div className="dashboard">
 				<DashboardFilter
@@ -135,15 +171,7 @@ class Dashboard extends Component {
 					<DashboardMainViewHeader
 						currentRegion={this.state.selectedRegion.region}
 					/>
-					<DashboardMap
-						currentUser={this.state.currentUser}
-						selectedSensor={this.state.selectedSensor}
-						selectedRegion={this.state.selectedRegion.region}
-						onMarkerClick={this.handleMarkerClick}
-						position={this.state.position}
-						bounds={this.state.bounds}
-						markers={this.state.sensors}
-					/>
+					{view}
 				</div>
 			</div>
 		);

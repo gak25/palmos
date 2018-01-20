@@ -45,13 +45,20 @@ class DashboardMainViewHeader extends Component {
 							</div>
 						) : null}
 					</div>
-					{/* <div className="map-nav-tab" id="header-last-update"> */}
-					{/* <h5>(since Fri Apr 23, 2017 to Tue Apr 29)</h5> */}
-					{/* </div> */}
 					<i
-						//className="fa fa-eye-slash"
-						className="fa fa-eye"
-						style={{ margin: '5px', cursor: 'pointer', color: '$palmos-grey' }}
+						className={
+							this.props.componentVisibility.dashboardStatusVisibility
+								? 'fa fa-expand'
+								: 'fa fa-compress'
+						}
+						style={{
+							margin: '5px',
+							cursor: 'pointer',
+							color: '#605E5E',
+							position: 'absolute',
+							right: '10px',
+							top: '10px'
+						}}
 						aria-hidden="true"
 						onClick={() => this.props.actions.toggleDashboardStatusVisibility()}
 					/>

@@ -2,6 +2,24 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 // import logo from '/app/assets/images/palmos_text.png';
 
+import * as DashboardVisibilityActions from '../actions/componentVisibility';
+import * as DashboardViewActions from '../actions/dashboardView';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+function mapStateToProps(state) {
+	return {
+		currentUser: state.currentUser.item,
+		componentVisibility: state.componentVisibility,
+		dashboardCurrentView: state.dashboardCurrentView
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return { actions: bindActionCreators(DashboardViewActions, dispatch) };
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 class NavTop extends Component {
 	constructor(props) {
 		super(props);
@@ -36,21 +54,29 @@ class NavTop extends Component {
 				</div>
 				<div id="top-nav">
 					<div className="header-overview">
-						<div className="nav-tab">
+						<div
+							className="nav-tab"
+							onClick={() => this.props.actions.setDashboardViewToOverview()}
+						>
 							OVERVIEW
-							<i className="fa fa-chevron-down" aria-hidden="true" />
 						</div>
-						<div className="nav-tab">
+						<div
+							className="nav-tab"
+							onClick={() => this.props.actions.setDashboardViewToAnalytics()}
+						>
 							ANALYTICS
-							<i className="fa fa-chevron-down" aria-hidden="true" />
 						</div>
-						<div className="nav-tab">
+						<div
+							className="nav-tab"
+							onClick={() => this.props.actions.setDashboardViewToData()}
+						>
 							DATA
-							<i className="fa fa-chevron-down" aria-hidden="true" />
 						</div>
-						<div className="nav-tab">
+						<div
+							className="nav-tab"
+							onClick={() => this.props.actions.setDashboardViewToAlerts()}
+						>
 							ALERTS
-							<i className="fa fa-chevron-down" aria-hidden="true" />
 						</div>
 						<div
 							className="nav-tab"
