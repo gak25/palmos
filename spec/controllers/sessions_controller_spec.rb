@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe SessionsController, type: :controller do
-  describe "#create" do
+  xdescribe "#create" do
 
     context "registered user, no remember" do
       let(:user) { create(:user) }
