@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import DashboardStatus from './DashboardStatus';
 const { compose, withProps, withHandlers } = require('recompose');
 import {
 	withScriptjs,
@@ -325,12 +326,21 @@ const MapComponent = compose(
 export default class DashboardMap extends React.PureComponent {
 	render() {
 		return (
-			<MapComponent
-				onMarkerClick={this.props.onMarkerClick}
-				position={this.props.position}
-				markers={this.props.markers}
-				bounds={this.props.bounds}
-			/>
+			<div className="dashboard-main-sub-view">
+				<div className="map">
+					<MapComponent
+						onMarkerClick={this.props.onMarkerClick}
+						position={this.props.position}
+						markers={this.props.markers}
+						bounds={this.props.bounds}
+					/>
+				</div>
+				<DashboardStatus
+					currentUser={this.props.currentUser}
+					selectedSensor={this.props.selectedSensor}
+					selectedRegion={this.props.selectedRegion}
+				/>
+			</div>
 		);
 	}
 }

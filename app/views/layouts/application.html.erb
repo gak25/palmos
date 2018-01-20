@@ -17,8 +17,7 @@
         <%= content_tag :span, msg %>
       </div>
     <% end %>
-    <div id='react-app'></div>
-    <%= javascript_pack_tag 'index.js' %>
     <%= yield %>
+    <%= javascript_pack_tag 'index.js' %>
   </body>
 </html>

@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import { GoogleMap, Marker } from 'react-google-maps';
 import DashboardMap from '../components/DashboardMap';
 import DashboardFilter from '../components/DashboardFilter';
-import DashboardStatus from '../components/DashboardStatus';
-import DashboardMapHeader from '../components/DashboardMapHeader';
+import DashboardMainViewHeader from '../components/DashboardMainViewHeader';
 
 class Dashboard extends Component {
 	constructor(props) {
@@ -43,7 +42,7 @@ class Dashboard extends Component {
 	}
 
 	handleMapFilter(input) {
-		console.log(input.target.value);
+		// console.log(input.target.value);
 	}
 
 	handleRegionDropdown(event) {
@@ -102,7 +101,6 @@ class Dashboard extends Component {
 	}
 
 	handleFilterReset(event) {
-		console.log('reset!');
 		this.setState({
 			selectedRegion: {}
 		});
@@ -133,25 +131,19 @@ class Dashboard extends Component {
 					handleFilterReset={this.handleFilterReset}
 					regionSelectDropdown={this.state.regionSelectDropdown}
 				/>
-				<div className="map-container">
-					<DashboardMapHeader
+				<div className="dashboard-main-view">
+					<DashboardMainViewHeader
 						currentRegion={this.state.selectedRegion.region}
 					/>
-					<div className="map-subcontainer">
-						<div className="map">
-							<DashboardMap
-								onMarkerClick={this.handleMarkerClick}
-								position={this.state.position}
-								bounds={this.state.bounds}
-								markers={this.state.sensors}
-							/>
-						</div>
-						<DashboardStatus
-							currentUser={this.state.currentUser}
-							selectedSensor={this.state.selectedSensor}
-							selectedRegion={this.state.selectedRegion.region}
-						/>
-					</div>
+					<DashboardMap
+						currentUser={this.state.currentUser}
+						selectedSensor={this.state.selectedSensor}
+						selectedRegion={this.state.selectedRegion.region}
+						onMarkerClick={this.handleMarkerClick}
+						position={this.state.position}
+						bounds={this.state.bounds}
+						markers={this.state.sensors}
+					/>
 				</div>
 			</div>
 		);

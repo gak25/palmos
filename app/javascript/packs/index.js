@@ -1,57 +1,61 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
-//
-// import { combineReducers } from 'redux';
-// import { routerReducer } from 'react-router-redux';
-//
-// export default combineReducers({
-// 	routing: routerReducer
-// });
-//
-// import SignInContainer from '../react/src/containers/SignInContainer';
-// import SignUpContainer from '../react/src/containers/SignUpContainer';
-// import Main from '../react/src/containers/Main';
-//
-// document.addEventListener('DOMContentLoaded', () => {
-// 	let reactElement = document.getElementById('react-app');
-// 	if (reactElement) {
-// 		ReactDOM.render(
-// 			<Router>
-// 				<Switch>
-// 					<Route exact path="/sign-up" component={SignUpContainer} />
-// 					<Route exact path="/sign-in" component={SignInContainer} />
-// 					<Route exact path="/" component={App} />
-// 				</Switch>
-// 			</Router>,
-// 			reactElement
-// 		);
-// 	}
-// });
-
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
+
+// import store, { history } from '../react/src/store/createStore';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
-import store, { history } from '../react/src/store/createStore';
+
+import createBrowserHistory from 'history/createBrowserHistory';
+import { Route } from 'react-router';
+
+import {
+	ConnectedRouter,
+	routerReducer,
+	routerMiddleware,
+	push
+} from 'react-router-redux';
+import { reducer as formReducer } from 'redux-form';
+import thunkMiddleware from 'redux-thunk';
+
 import Main from '../react/src/containers/Main';
+import SignUpForm from '../react/src/connectors/SignUp';
+import SignInForm from '../react/src/connectors/SignIn';
+
+import currentUser from '../react/src/reducers/currentUser';
+import notices from '../react/src/reducers/notices';
+
+const history = createBrowserHistory();
+
+const middlewares = [thunkMiddleware, routerMiddleware(history)];
+
+const store = createStore(
+	combineReducers({
+		currentUser,
+		notices,
+		form: formReducer,
+		router: routerReducer
+	}),
+	applyMiddleware(...middlewares)
+);
 
 const target = document.getElementById('react-app');
-// const target = document.querySelector('#react-app');
 
 document.addEventListener('DOMContentLoaded', () => {
 	if (target) {
-		render(
+		ReactDOM.render(
 			<Provider store={store}>
 				<ConnectedRouter history={history}>
 					<div>
-						<Main />
+						<Route exact path="/account" component={SignUpForm} />
+						<Route exact path="/sign-up" component={SignUpForm} />
+						<Route exact path="/sign-in" component={SignInForm} />
+						<Route exact path="/" component={Main} />
 					</div>
 				</ConnectedRouter>
 			</Provider>,
 			target
 		);
 	} else {
-		console.log('could not load DOM target root');
+		console.log('no root');
 	}
 });

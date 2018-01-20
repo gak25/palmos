@@ -8,31 +8,31 @@ class Main extends Component {
 		this.state = {
 			currentUser: {}
 		};
-		this.loadUserData = this.loadUserData.bind(this);
+		// this.loadUserData = this.loadUserData.bind(this);
 	}
 
-	loadUserData() {
-		fetch('/api/v1/users', {
-			credentials: 'same-origin',
-			method: 'GET',
-			headers: { 'Content-Type': 'application/json' }
-		})
-			.then(response => {
-				if (response.ok) {
-					return response;
-				}
-			})
-			.then(response => response.json())
-			.then(body => {
-				this.setState({
-					currentUser: body.current_user
-				});
-			});
-	}
+	// loadUserData() {
+	// 	fetch('/api/v1/users', {
+	// 		credentials: 'same-origin',
+	// 		method: 'GET',
+	// 		headers: { 'Content-Type': 'application/json' }
+	// 	})
+	// 		.then(response => {
+	// 			if (response.ok) {
+	// 				return response;
+	// 			}
+	// 		})
+	// 		.then(response => response.json())
+	// 		.then(body => {
+	// 			this.setState({
+	// 				currentUser: body.current_user
+	// 			});
+	// 		});
+	// }
 
-	componentDidMount() {
-		// this.loadUserData();
-	}
+	// componentDidMount() {
+	// this.loadUserData();
+	// }
 
 	render() {
 		return (
