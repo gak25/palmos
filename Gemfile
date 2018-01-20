@@ -1,11 +1,13 @@
 source 'https://rubygems.org'
 
 gem 'bcrypt', '~> 3.1.7'
+gem 'doorkeeper'
 gem 'faker'
 gem 'font-awesome-rails', '~> 4.5'
 gem 'geocoder'
 gem 'jbuilder', '~> 2.5'
 gem "jquery-rails"
+gem "oauth2"
 gem 'pg', '~> 0.18'
 gem 'postgresql'
 gem 'puma', '~> 3.7'

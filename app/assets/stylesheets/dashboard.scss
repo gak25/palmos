@@ -8,8 +8,8 @@ $map-status-width: 275px;
 
 // SMALL
 @media all and (min-width: 0px) {
-	.map-container,
-	.map-subcontainer,
+	.dashboard-main-view,
+	.dashboard-main-sub-view,
 	.dashboard {
 		flex-direction: column;
 	}
@@ -35,7 +35,7 @@ $map-status-width: 275px;
 	.dashboard {
 		flex-direction: row;
 	}
-	.map-subcontainer {
+	.dashboard-main-sub-view {
 		flex-direction: row;
 	}
 }
@@ -81,14 +81,14 @@ $map-status-width: 275px;
 	right: 0;
 }
 
-.map-container {
+.dashboard-main-view {
 	display: flex;
 	flex: 1;
 	order: 2;
 	background: $palmos-off-white;
 }
 
-.map-subcontainer {
+.dashboard-main-sub-view {
 	display: flex;
 	flex: 1;
 	order: 2;

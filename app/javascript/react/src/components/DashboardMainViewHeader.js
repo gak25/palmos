@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const DashboardMapHeader = props => {
+const DashboardMainViewHeader = props => {
 	return (
 		<div className="map-header">
 			<div className="map-header-overview">
@@ -37,4 +37,4 @@ const DashboardMapHeader = props => {
 	);
 };
 
-export default DashboardMapHeader;
+export default DashboardMainViewHeader;

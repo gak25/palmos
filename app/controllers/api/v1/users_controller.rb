@@ -1,4 +1,5 @@
-class Api::V1::UsersController < ApplicationController
+class Api::V1::UsersController < Api::ApiController
+  before_action :doorkeeper_authorize!
   skip_before_action :verify_authenticity_token
 
   def index
