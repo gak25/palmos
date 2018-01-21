@@ -14,6 +14,10 @@
 //= require jquery_ujs
 //= require_tree .
 
+$(function() {
+	$('.flash').fadeOut(3500);
+});
+
 truncateDecimals = function(number, digits) {
 	var multiplier = Math.pow(10, digits),
 		adjustedNum = number * multiplier,

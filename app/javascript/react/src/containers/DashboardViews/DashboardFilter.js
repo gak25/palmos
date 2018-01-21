@@ -1,75 +1,98 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
+import * as MapFilterActions from '../../actions/regions';
+import * as DashboardVisibilityActions from '../../actions/componentVisibility';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+function mapStateToProps(state) {
+	return {
+		currentUser: state.currentUser.item,
+		currentRegion: state.regions.currentRegion,
+		allRegions: state.regions.allRegions,
+		componentVisibility: state.componentVisibility
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		actions: bindActionCreators(
+			{ ...MapFilterActions, ...DashboardVisibilityActions },
+			dispatch
+		)
+	};
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 class DashboardFilter extends Component {
+	constructor(props) {
+		super();
+		this.handleRegionSelect = this.handleRegionSelect.bind(this);
+		this.handleFilterReset = this.handleFilterReset.bind(this);
+		this.handleRegionDropdown = this.handleRegionDropdown.bind(this);
+		this.handleMapFilter = this.handleMapFilter.bind(this);
+	}
+	handleRegionSelect(event) {
+		this.props.actions.setCurrentRegion(event.target.id);
+	}
+	handleFilterReset(event) {
+		console.log('resetting filter');
+	}
+	handleMapFilter(event) {
+		console.log('filter input: ' + event);
+	}
+	handleRegionDropdown() {
+		this.props.actions.toggleRegionSelectVisibility();
+	}
+
 	render() {
-		var currentRegion;
-		if (this.props.currentRegion.region) {
-			if (this.props.currentRegion.region.region_nickname) {
-				currentRegion = this.props.currentRegion.region.region_nickname;
-			} else {
-				currentRegion =
-					this.props.currentRegion.region.region_city +
-					', ' +
-					this.props.currentRegion.region.region_state_code;
-			}
+		var currentRegionTitle;
+		if (this.props.currentRegion) {
+			currentRegionTitle = this.props.currentRegion.region_nickname;
 		} else {
-			currentRegion = 'All Regions';
+			currentRegionTitle = 'All Regions';
 		}
-		let regionNames = this.props.regions.map(region => {
-			var key = region.region.id;
-			if (region.region.region_nickname) {
-				return (
-					<li key={key} id={key} onClick={this.props.handleRegionSelect}>
-						{region.region.region_nickname}
-					</li>
-				);
-			} else {
-				return (
-					<li key={key} id={key} onClick={this.props.handleRegionSelect}>
-						{region.region.region_city}, {region.region.region_state_code}
-					</li>
-				);
-			}
+
+		let regionNames = this.props.allRegions.map(region => {
+			return (
+				<li key={region.id} id={region.id} onClick={this.handleRegionSelect}>
+					{region.region_nickname}
+				</li>
+			);
 		});
 		regionNames.unshift(
 			<li
 				key={Date.now + Math.random() * 100}
 				id={-1}
-				onClick={this.props.handleRegionSelect}
+				onClick={this.handleRegionSelect}
 			>
 				All Regions
 			</li>
 		);
-		let dropdown = null;
-		if (this.props.regionSelectDropdown) {
-			dropdown = <ul id="map-filter-dropdown">{regionNames}</ul>;
-		}
 		return (
 			<div className="left-filter">
 				<div id="filter-title">FILTERS</div>
 				<div id="filter-status">
-					<div id="current-sensor-count">{this.props.sensors.length}</div>
+					{/* <div id="current-sensor-count">{this.props.sensors.length}</div> */}
 					<div id="total-sensor-count">/total</div>
 				</div>
-				<div onClick={this.props.handleFilterReset} id="filter-reset">
+				<div onClick={this.handleFilterReset} id="filter-reset">
 					RESET
 				</div>
 				<input
 					id="map-filter"
-					onChange={this.props.handleMapFilter}
+					onChange={this.handleMapFilter}
 					placeholder="Filter"
 				/>
 				<hr id="filter-section-divider" />
 				<div className="filter-category">
-					<div
-						id="filter-category-top"
-						onClick={this.props.handleRegionDropdown}
-					>
+					<div id="filter-category-top" onClick={this.handleRegionDropdown}>
 						<h5>REGIONS</h5>
-						<h4>{currentRegion}</h4>
+						<h4>{currentRegionTitle}</h4>
 					</div>
-					{dropdown}
+					{this.props.componentVisibility.regionSelectVisibility ? (
+						<ul id="map-filter-dropdown">{regionNames}</ul>
+					) : null}
 				</div>
 				<hr id="filter-section-divider" />
 			</div>

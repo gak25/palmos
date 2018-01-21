@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 import * as DashboardVisibilityActions from '../actions/componentVisibility';
 import { bindActionCreators } from 'redux';

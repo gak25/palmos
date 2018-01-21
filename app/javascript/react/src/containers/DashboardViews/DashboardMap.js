@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
 import DashboardStatus from './DashboardSensorStatus/DashboardStatus';
 const { compose, withProps, withHandlers } = require('recompose');
 import {
@@ -323,7 +323,6 @@ const MapComponent = compose(
 	</GoogleMap>
 ));
 
-import * as DashboardVisibilityActions from '../../actions/componentVisibility';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -334,11 +333,7 @@ function mapStateToProps(state) {
 	};
 }
 
-function mapDispatchToProps(dispatch) {
-	return { actions: bindActionCreators(DashboardVisibilityActions, dispatch) };
-}
-
-@connect(mapStateToProps, mapDispatchToProps)
+@connect(mapStateToProps)
 export default class DashboardMap extends React.PureComponent {
 	render() {
 		return (

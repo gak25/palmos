@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 // import logo from '/app/assets/images/palmos_text.png';
 
 import * as DashboardVisibilityActions from '../actions/componentVisibility';

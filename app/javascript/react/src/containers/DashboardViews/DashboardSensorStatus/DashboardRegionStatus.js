@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import NicknameForm from '../../Forms/NicknameForm';
 
 class DashboardRegionStatus extends Component {

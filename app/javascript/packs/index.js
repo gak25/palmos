@@ -15,7 +15,7 @@ import {
 } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
 import thunkMiddleware from 'redux-thunk';
-import logger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 
 import App from '../react/src/containers/App';
 import SignUpForm from '../react/src/connectors/SignUp';
@@ -25,10 +25,17 @@ import currentUser from '../react/src/reducers/currentUser';
 import notices from '../react/src/reducers/notices';
 import componentVisibility from '../react/src/reducers/componentVisibility';
 import dashboardView from '../react/src/reducers/dashboardView';
+import regions from '../react/src/reducers/regions';
 
 const history = createBrowserHistory();
 
-const middlewares = [logger, thunkMiddleware, routerMiddleware(history)];
+const middlewares = [
+	createLogger({
+		collapsed: true
+	}),
+	thunkMiddleware,
+	routerMiddleware(history)
+];
 
 const store = createStore(
 	combineReducers({
@@ -36,6 +43,7 @@ const store = createStore(
 		notices,
 		componentVisibility,
 		dashboardView,
+		regions,
 		form: formReducer,
 		router: routerReducer
 	}),

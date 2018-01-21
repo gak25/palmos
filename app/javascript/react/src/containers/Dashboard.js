@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { GoogleMap, Marker } from 'react-google-maps';
 import DashboardFilter from './DashboardViews/DashboardFilter';
 import DashboardHeader from './DashboardHeader';

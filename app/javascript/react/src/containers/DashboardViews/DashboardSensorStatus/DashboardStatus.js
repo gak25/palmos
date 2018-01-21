@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+
 import DashboardRegionStatus from './DashboardRegionStatus';
 import DashboardSensorStatus from './DashboardSensorStatus';
 
