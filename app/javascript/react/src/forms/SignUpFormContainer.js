@@ -2,7 +2,7 @@ import React from 'react';
 import { reduxForm, SubmissionError } from 'redux-form';
 import { push } from 'react-router-redux';
 
-import SignUpForm from '../containers/SignUpForm';
+import SignUpForm from '../containers/Forms/SignUpForm';
 
 import { clearNotices, flashNotice } from '../actions/flashNotice';
 import { createUser } from '../actions/createUser';

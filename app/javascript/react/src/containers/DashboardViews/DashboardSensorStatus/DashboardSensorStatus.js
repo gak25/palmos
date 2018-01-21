@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import NicknameForm from './NicknameFormContainer';
+import NicknameForm from '../../Forms/NicknameForm';
 import SensorGraph from './SensorGraph';
 import AccelerationGraph from './AccelerationGraph';
 

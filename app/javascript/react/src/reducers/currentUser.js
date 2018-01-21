@@ -6,7 +6,7 @@ import { FETCH_CREATE_SESSION_SUCCESS } from '../actions/createSession';
 
 let initialState = {
 	isFetching: false,
-	item: { id: null }
+	user: { id: null }
 };
 
 const currentUser = (state = initialState, action) => {
@@ -15,11 +15,10 @@ const currentUser = (state = initialState, action) => {
 			return Object.assign({}, state, { isFetching: true });
 		case FETCH_CURRENT_USER_SUCCESS:
 			return Object.assign({}, state, {
-				isFetching: false,
-				item: action.currentUser
+				isFetching: false
 			});
 		case FETCH_CREATE_SESSION_SUCCESS:
-			return Object.assign({}, state, { item: action.currentUser });
+			return Object.assign({}, state, { user: action.currentUser });
 		default:
 			return state;
 	}

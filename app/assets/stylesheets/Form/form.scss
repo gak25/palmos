@@ -1,6 +1,11 @@
 @import 'colors';
 @import 'mixins';
 
+fieldset {
+	border: none;
+	outline: none;
+}
+
 .form-background {
 	position: absolute;
 	width: 100%;
@@ -42,7 +47,7 @@
 #button-outline {
 	@extend #button-cta;
 	background: none;
-	padding: 2px 4px;
+	padding: 3px 5px;
 	border: 1px solid $palmos-dark-grey;
 	color: $palmos-dark-grey;
 }
@@ -89,4 +94,17 @@ input:not([type='checkbox']) {
 	padding: 2%;
 	border-radius: 7px;
 	background-color: orange;
+}
+
+#error {
+	box-shadow: 0 0 5px orange;
+}
+
+#forgot-password-link {
+	color: $palmos-grey;
+	text-decoration: none;
+
+	&:hover {
+		color: $palmos-turquoise;
+	}
 }

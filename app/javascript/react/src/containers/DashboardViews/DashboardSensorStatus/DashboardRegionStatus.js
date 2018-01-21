@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import NicknameForm from '../containers/NicknameFormContainer';
+import NicknameForm from '../../Forms/NicknameForm';
 
 class DashboardRegionStatus extends Component {
 	constructor(props) {

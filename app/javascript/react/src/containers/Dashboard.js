@@ -1,10 +1,28 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { GoogleMap, Marker } from 'react-google-maps';
-import DashboardMap from '../components/DashboardMap';
-import DashboardFilter from '../components/DashboardFilter';
-import DashboardMainViewHeader from '../components/DashboardMainViewHeader';
 
+import NavTop from './NavTop';
+import DashboardFilter from './DashboardViews/DashboardFilter';
+import DashboardHeader from './DashboardHeader';
+import DashboardMap from './DashboardViews/DashboardMap';
+import DashboardAnalytics from './DashboardViews/DashboardAnalytics';
+import DashboardData from './DashboardViews/DashboardData';
+import DashboardAlerts from './DashboardViews/DashboardAlerts';
+import DashboardAccount from './DashboardViews/DashboardAccount';
+import DashboardHardware from './DashboardViews/DashboardHardware';
+
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+function mapStateToProps(state) {
+	return {
+		currentUser: state.currentUser.user,
+		componentVisibility: state.componentVisibility,
+		dashboardView: state.dashboardView
+	};
+}
+
+@connect(mapStateToProps)
 class Dashboard extends Component {
 	constructor(props) {
 		super(props);
@@ -119,31 +137,51 @@ class Dashboard extends Component {
 	}
 
 	render() {
-		return (
-			<div className="dashboard">
-				<DashboardFilter
-					regions={this.state.userRegions}
-					currentRegion={this.state.selectedRegion}
-					sensors={this.state.sensors}
-					handleMapFilter={this.handleMapFilter}
-					handleRegionSelect={this.handleRegionSelect}
-					handleRegionDropdown={this.handleRegionDropdown}
-					handleFilterReset={this.handleFilterReset}
-					regionSelectDropdown={this.state.regionSelectDropdown}
+		let view = null;
+		if (this.props.dashboardView.dashboardCurrentTab === 'MAP OVERVIEW') {
+			view = (
+				<DashboardMap
+					currentUser={this.state.currentUser}
+					selectedSensor={this.state.selectedSensor}
+					selectedRegion={this.state.selectedRegion.region}
+					onMarkerClick={this.handleMarkerClick}
+					position={this.state.position}
+					bounds={this.state.bounds}
+					markers={this.state.sensors}
 				/>
-				<div className="dashboard-main-view">
-					<DashboardMainViewHeader
-						currentRegion={this.state.selectedRegion.region}
+			);
+		} else if (this.props.dashboardView.dashboardCurrentTab === 'ANALYTICS') {
+			view = <DashboardAnalytics />;
+		} else if (this.props.dashboardView.dashboardCurrentTab === 'DATA') {
+			view = <DashboardData />;
+		} else if (this.props.dashboardView.dashboardCurrentTab === 'ALERTS') {
+			view = <DashboardAlerts />;
+		} else if (this.props.dashboardView.dashboardCurrentTab === 'ACCOUNT') {
+			view = <DashboardAccount />;
+		} else if (this.props.dashboardView.dashboardCurrentTab === 'HARDWARE') {
+			view = <DashboardHardware />;
+		}
+
+		return (
+			<div>
+				<NavTop />
+				<div className="dashboard">
+					<DashboardFilter
+					// regions={this.state.userRegions}
+					// currentRegion={this.state.selectedRegion}
+					// sensors={this.state.sensors}
+					// handleMapFilter={this.handleMapFilter}
+					// handleRegionSelect={this.handleRegionSelect}
+					// handleRegionDropdown={this.handleRegionDropdown}
+					// handleFilterReset={this.handleFilterReset}
+					// regionSelectDropdown={this.state.regionSelectDropdown}
 					/>
-					<DashboardMap
-						currentUser={this.state.currentUser}
-						selectedSensor={this.state.selectedSensor}
-						selectedRegion={this.state.selectedRegion.region}
-						onMarkerClick={this.handleMarkerClick}
-						position={this.state.position}
-						bounds={this.state.bounds}
-						markers={this.state.sensors}
-					/>
+					<div className="dashboard-main-view">
+						<DashboardHeader
+						// currentRegion={this.state.selectedRegion.region}
+						/>
+						{view}
+					</div>
 				</div>
 			</div>
 		);

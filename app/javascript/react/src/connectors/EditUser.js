@@ -5,7 +5,7 @@ import EditUserFormContainer from '../forms/EditUserFormContainer';
 
 const mapStateToProps = state => {
 	return {
-		currentUser: state.currentUser.item
+		currentUser: state.currentUser.user
 	};
 };
 

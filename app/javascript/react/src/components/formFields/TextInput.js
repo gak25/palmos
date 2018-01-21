@@ -5,20 +5,13 @@ const TextInput = props => {
 
 	return (
 		<fieldset>
-			<label
-				// className={touched && error && 'is-invalid-label'}
-				htmlFor={name}
-			>
-				{label}
-			</label>
 			<input
-				// className={touched && error && 'is-invalid-input'}
-				id={name}
+				className="credentials"
+				id={touched && error ? 'error' : null}
+				placeholder={label}
 				type="text"
 				{...props.input}
 			/>
-			{touched &&
-				error && <span className="form-error is-visible">{error}</span>}
 		</fieldset>
 	);
 };

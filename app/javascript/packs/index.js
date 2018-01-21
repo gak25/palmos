@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// import store, { history } from '../react/src/store/createStore';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
@@ -16,22 +15,35 @@ import {
 } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
 import thunkMiddleware from 'redux-thunk';
+import { createLogger } from 'redux-logger';
 
-import Main from '../react/src/containers/Main';
+import App from '../react/src/containers/App';
 import SignUpForm from '../react/src/connectors/SignUp';
 import SignInForm from '../react/src/connectors/SignIn';
 
 import currentUser from '../react/src/reducers/currentUser';
 import notices from '../react/src/reducers/notices';
+import componentVisibility from '../react/src/reducers/componentVisibility';
+import dashboardView from '../react/src/reducers/dashboardView';
+import regions from '../react/src/reducers/regions';
 
 const history = createBrowserHistory();
 
-const middlewares = [thunkMiddleware, routerMiddleware(history)];
+const middlewares = [
+	createLogger({
+		collapsed: true
+	}),
+	thunkMiddleware,
+	routerMiddleware(history)
+];
 
 const store = createStore(
 	combineReducers({
 		currentUser,
 		notices,
+		componentVisibility,
+		dashboardView,
+		regions,
 		form: formReducer,
 		router: routerReducer
 	}),
@@ -46,16 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
 			<Provider store={store}>
 				<ConnectedRouter history={history}>
 					<div>
-						<Route exact path="/account" component={SignUpForm} />
 						<Route exact path="/sign-up" component={SignUpForm} />
 						<Route exact path="/sign-in" component={SignInForm} />
-						<Route exact path="/" component={Main} />
+						<Route exact path="/" component={App} />
 					</div>
 				</ConnectedRouter>
 			</Provider>,
 			target
 		);
-	} else {
-		console.log('no root');
 	}
 });
