@@ -5,7 +5,7 @@ import SignUpFormContainer from '../forms/SignUpFormContainer';
 
 const mapStateToProps = state => {
 	return {
-		currentUser: state.currentUser.item
+		currentUser: state.currentUser.user
 	};
 };
 

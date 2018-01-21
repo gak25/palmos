@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
 	return {
-		currentUser: state.currentUser.item,
+		currentUser: state.currentUser.user,
 		componentVisibility: state.componentVisibility,
 		dashboardCurrentView: state.dashboardCurrentView
 	};
@@ -28,10 +28,11 @@ class NavTop extends Component {
 		this.handleDropdown = this.handleDropdown.bind(this);
 	}
 
-	handleDropdown(click) {
-		click.preventDefault();
+	handleDropdown(event) {
+		event.preventDefault();
 		this.setState({ dropdown: !this.state.dropdown });
 	}
+
 	render() {
 		let navDropdown = null;
 		if (this.state.dropdown) {

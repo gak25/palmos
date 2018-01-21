@@ -6,8 +6,10 @@ import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
 	return {
-		currentUser: state.currentUser.item,
-		componentVisibility: state.componentVisibility
+		currentUser: state.currentUser.user,
+		componentVisibility: state.componentVisibility,
+		currentRegion: state.regions.currentRegion,
+		dashboardView: state.dashboardView
 	};
 }
 
@@ -22,46 +24,43 @@ class DashboardHeader extends Component {
 			<div className="map-header">
 				<div className="map-header-overview">
 					<div className="map-nav-tab">
-						<h4>MAP OVERVIEW</h4>
+						<h4>{this.props.dashboardView.dashboardCurrentTab}</h4>
 					</div>
-					<div className="map-nav-tab">
-						{this.props.currentRegion ? (
-							this.props.currentRegion.region_nickname ? (
-								<h4>{this.props.currentRegion.region_nickname}</h4>
-							) : (
-								<h4>{this.props.currentRegion.region_city}</h4>
-							)
-						) : (
-							<h5>All Regions</h5>
-						)}
-					</div>
-					<div className="map-nav-tab" id="map-nav-detail">
-						{this.props.currentRegion ? (
-							<div>
+					{this.props.currentRegion ? (
+						<div className="map-nav-tab">
+							<h4>{this.props.currentRegion.region_nickname}</h4>
+							<div className="map-nav-tab" id="map-nav-detail">
 								<h5>
 									{this.props.currentRegion.region_city},{' '}
 									{this.props.currentRegion.region_state_code}
 								</h5>
 							</div>
-						) : null}
-					</div>
-					<i
-						className={
-							this.props.componentVisibility.dashboardStatusVisibility
-								? 'fa fa-expand'
-								: 'fa fa-compress'
-						}
-						style={{
-							margin: '5px',
-							cursor: 'pointer',
-							color: '#605E5E',
-							position: 'absolute',
-							right: '10px',
-							top: '10px'
-						}}
-						aria-hidden="true"
-						onClick={() => this.props.actions.toggleDashboardStatusVisibility()}
-					/>
+						</div>
+					) : (
+						<div className="map-nav-tab">
+							<h4>All Regions</h4>
+						</div>
+					)}
+					{!this.props.dashboardView.statusDisplayToggleIcon ? (
+						<i
+							className={
+								this.props.componentVisibility.dashboardStatusVisibility
+									? 'fa fa-expand fa-2x'
+									: 'fa fa-compress fa-2x'
+							}
+							style={{
+								cursor: 'pointer',
+								color: '#605E5E',
+								position: 'absolute',
+								right: '10px',
+								top: '10px'
+							}}
+							aria-hidden="true"
+							onClick={() =>
+								this.props.actions.toggleDashboardStatusVisibility()
+							}
+						/>
+					) : null}
 				</div>
 			</div>
 		);

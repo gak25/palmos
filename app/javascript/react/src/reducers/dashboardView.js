@@ -7,31 +7,41 @@ import {
 	SET_DASHBOARD_CURRENT_TAB_HARDWARE
 } from '../actions/dashboardView';
 
-const dashboardView = (state = [], action) => {
+var initialState = {
+	dashboardCurrentTab: 'MAP OVERVIEW'
+};
+
+const dashboardView = (state = initialState, action) => {
 	switch (action.type) {
 		case SET_DASHBOARD_CURRENT_TAB_OVERVIEW:
 			return Object.assign({}, state, {
-				dashboardCurrentTab: 'OVERVIEW'
+				dashboardCurrentTab: 'MAP OVERVIEW',
+				statusDisplayToggleIcon: false
 			});
 		case SET_DASHBOARD_CURRENT_TAB_ANALYTICS:
 			return Object.assign({}, state, {
-				dashboardCurrentTab: 'ANALYTICS'
+				dashboardCurrentTab: 'ANALYTICS',
+				statusDisplayToggleIcon: true
 			});
 		case SET_DASHBOARD_CURRENT_TAB_DATA:
 			return Object.assign({}, state, {
-				dashboardCurrentTab: 'DATA'
+				dashboardCurrentTab: 'DATA',
+				statusDisplayToggleIcon: true
 			});
 		case SET_DASHBOARD_CURRENT_TAB_ALERTS:
 			return Object.assign({}, state, {
-				dashboardCurrentTab: 'ALERTS'
+				dashboardCurrentTab: 'ALERTS',
+				statusDisplayToggleIcon: true
 			});
 		case SET_DASHBOARD_CURRENT_TAB_ACCOUNT:
 			return Object.assign({}, state, {
-				dashboardCurrentTab: 'ACCOUNT'
+				dashboardCurrentTab: 'ACCOUNT',
+				statusDisplayToggleIcon: true
 			});
 		case SET_DASHBOARD_CURRENT_TAB_HARDWARE:
 			return Object.assign({}, state, {
-				dashboardCurrentTab: 'HARDWARE'
+				dashboardCurrentTab: 'HARDWARE',
+				statusDisplayToggleIcon: true
 			});
 		default:
 			return state;

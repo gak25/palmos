@@ -1,26 +1,20 @@
 import React, { Component } from 'react';
 import Dashboard from './Dashboard';
-import NavTop from './NavTop';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
 	return {
-		currentUser: state.currentUser.item
+		currentUser: state.currentUser.user
 	};
 }
 
 @connect(mapStateToProps)
-class Main extends Component {
+class App extends Component {
 	render() {
-		return (
-			<div>
-				<NavTop currentUser={this.props.currentUser} />
-				<Dashboard currentUser={this.props.currentUser} />
-			</div>
-		);
+		return <Dashboard />;
 	}
 }
 
-export default Main;
+export default App;

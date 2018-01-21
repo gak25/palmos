@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
 	return {
-		currentUser: state.currentUser.item,
+		currentUser: state.currentUser.user,
 		componentVisibility: state.componentVisibility
 	};
 }

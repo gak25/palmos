@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { GoogleMap, Marker } from 'react-google-maps';
+
+import NavTop from './NavTop';
 import DashboardFilter from './DashboardViews/DashboardFilter';
 import DashboardHeader from './DashboardHeader';
 import DashboardMap from './DashboardViews/DashboardMap';
@@ -14,7 +16,7 @@ import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
 	return {
-		currentUser: state.currentUser.item,
+		currentUser: state.currentUser.user,
 		componentVisibility: state.componentVisibility,
 		dashboardView: state.dashboardView
 	};
@@ -136,7 +138,7 @@ class Dashboard extends Component {
 
 	render() {
 		let view = null;
-		if (this.props.dashboardView.dashboardCurrentTab === 'OVERVIEW') {
+		if (this.props.dashboardView.dashboardCurrentTab === 'MAP OVERVIEW') {
 			view = (
 				<DashboardMap
 					currentUser={this.state.currentUser}
@@ -161,20 +163,25 @@ class Dashboard extends Component {
 		}
 
 		return (
-			<div className="dashboard">
-				<DashboardFilter
-					regions={this.state.userRegions}
-					currentRegion={this.state.selectedRegion}
-					sensors={this.state.sensors}
-					handleMapFilter={this.handleMapFilter}
-					handleRegionSelect={this.handleRegionSelect}
-					handleRegionDropdown={this.handleRegionDropdown}
-					handleFilterReset={this.handleFilterReset}
-					regionSelectDropdown={this.state.regionSelectDropdown}
-				/>
-				<div className="dashboard-main-view">
-					<DashboardHeader currentRegion={this.state.selectedRegion.region} />
-					{view}
+			<div>
+				<NavTop />
+				<div className="dashboard">
+					<DashboardFilter
+					// regions={this.state.userRegions}
+					// currentRegion={this.state.selectedRegion}
+					// sensors={this.state.sensors}
+					// handleMapFilter={this.handleMapFilter}
+					// handleRegionSelect={this.handleRegionSelect}
+					// handleRegionDropdown={this.handleRegionDropdown}
+					// handleFilterReset={this.handleFilterReset}
+					// regionSelectDropdown={this.state.regionSelectDropdown}
+					/>
+					<div className="dashboard-main-view">
+						<DashboardHeader
+						// currentRegion={this.state.selectedRegion.region}
+						/>
+						{view}
+					</div>
 				</div>
 			</div>
 		);

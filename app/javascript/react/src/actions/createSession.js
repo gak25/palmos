@@ -1,4 +1,4 @@
-import humps from 'humps';
+// import humps from 'humps';
 import { SubmissionError } from 'redux-form';
 
 import baseUrl from '../constants/baseUrl';
@@ -34,7 +34,7 @@ let fetchCreateSessionFailure = () => {
 
 let createSession = values => dispatch => {
 	dispatch(fetchCreateSession());
-	let payload = JSON.stringify(humps.decamelizeKeys(values));
+	let payload = JSON.stringify(values);
 	return fetch(`${baseUrl}/api/v1/sessions.json`, {
 		credentials: 'same-origin',
 		method: 'POST',
@@ -42,19 +42,17 @@ let createSession = values => dispatch => {
 		body: payload
 	})
 		.then(response => {
-			return response.json();
+			if (response.ok) {
+				return response.json();
+			} else {
+				throw response.error;
+			}
 		})
 		.then(data => {
-			if (data.error) {
-				console.log('error!');
-				throw data.error;
-			} else {
-				// dispatch(fetchCreateSessionSuccess(humps.camelizeKeys(data))); // used to be data.user
-			}
+			// dispatch(fetchCreateSessionSuccess(data)); // used to be data.user
 			return data;
 		})
 		.catch(error => {
-			console.log('catching error');
 			dispatch(fetchCreateSessionFailure());
 			throw new SubmissionError({ _error: error });
 		});

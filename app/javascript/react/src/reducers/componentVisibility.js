@@ -3,7 +3,11 @@ import {
 	TOGGLE_REGION_SELECT_VISIBILITY
 } from '../actions/componentVisibility';
 
-const componentVisibility = (state = [], action) => {
+var initialState = {
+	dashboardStatusVisibility: true
+};
+
+const componentVisibility = (state = initialState, action) => {
 	switch (action.type) {
 		case TOGGLE_DASHBOARD_STATUS_VISIBILITY:
 			return Object.assign({}, state, {
