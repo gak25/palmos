@@ -38,8 +38,12 @@ class NavTop extends Component {
 		if (this.state.dropdown) {
 			navDropdown = (
 				<div className="account-dropdown">
-					<Link to="/account">Account</Link>
-					<Link to="/hardware">Hardware</Link>
+					<div onClick={() => this.props.actions.setDashboardViewToAccount()}>
+						Account
+					</div>
+					<div onClick={() => this.props.actions.setDashboardViewToHardware()}>
+						Hardware
+					</div>
 					<a href="/sign-out" methods="delete">
 						Sign Out
 					</a>

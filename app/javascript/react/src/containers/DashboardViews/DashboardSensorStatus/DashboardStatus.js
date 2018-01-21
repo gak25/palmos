@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import DashboardRegionStatus from '../containers/DashboardRegionStatus';
-import DashboardSensorStatus from '../containers/DashboardSensorStatus';
+import DashboardRegionStatus from './DashboardRegionStatus';
+import DashboardSensorStatus from './DashboardSensorStatus';
 
-import * as DashboardVisibilityActions from '../actions/componentVisibility';
+import * as DashboardVisibilityActions from '../../../actions/componentVisibility';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 

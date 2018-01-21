@@ -3,10 +3,10 @@ import { Field } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { push } from 'react-router-redux';
 
-import { flashNotice } from '../actions/flashNotice';
+import { flashNotice } from '../../actions/flashNotice';
 
-import Password from '../components/formFields/Password';
-import TextInput from '../components/formFields/TextInput';
+import Password from '../../components/formFields/Password';
+import TextInput from '../../components/formFields/TextInput';
 
 class SignInForm extends Component {
 	constructor(props) {
@@ -40,22 +40,25 @@ class SignInForm extends Component {
 						<Field
 							name="password"
 							label="Password"
-							showForgotLink={true}
+							// showForgotLink={true}
 							component={Password}
 						/>
 					</div>
+					<a id="forgot-password-link" href="password_resets/new">
+						Forgot your password?
+					</a>
 					<div className="form-actions">
+						<Link id="button-outline" to="/sign-up">
+							Sign Up
+						</Link>
+						&nbsp;
 						<button
-							className="button"
+							id="button-cta"
 							disabled={this.props.submitting}
 							type="submit"
 						>
 							Sign In
 						</button>
-						&nbsp; &nbsp;
-						<Link className="button" to="/sign-up">
-							Sign Up
-						</Link>
 					</div>
 				</form>
 			</div>

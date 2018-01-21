@@ -17,7 +17,7 @@ import { reducer as formReducer } from 'redux-form';
 import thunkMiddleware from 'redux-thunk';
 import logger from 'redux-logger';
 
-import Main from '../react/src/containers/Main';
+import App from '../react/src/containers/App';
 import SignUpForm from '../react/src/connectors/SignUp';
 import SignInForm from '../react/src/connectors/SignIn';
 
@@ -50,10 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			<Provider store={store}>
 				<ConnectedRouter history={history}>
 					<div>
-						<Route exact path="/account" component={SignUpForm} />
 						<Route exact path="/sign-up" component={SignUpForm} />
 						<Route exact path="/sign-in" component={SignInForm} />
-						<Route exact path="/" component={Main} />
+						<Route exact path="/" component={App} />
 					</div>
 				</ConnectedRouter>
 			</Provider>,

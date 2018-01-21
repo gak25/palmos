@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import DashboardStatus from './DashboardStatus';
+import DashboardStatus from './DashboardSensorStatus/DashboardStatus';
 const { compose, withProps, withHandlers } = require('recompose');
 import {
 	withScriptjs,
@@ -323,7 +323,7 @@ const MapComponent = compose(
 	</GoogleMap>
 ));
 
-import * as DashboardVisibilityActions from '../actions/componentVisibility';
+import * as DashboardVisibilityActions from '../../actions/componentVisibility';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 

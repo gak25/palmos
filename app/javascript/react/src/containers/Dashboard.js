@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { GoogleMap, Marker } from 'react-google-maps';
-import DashboardFilter from '../components/DashboardFilter';
-import DashboardMainViewHeader from '../components/DashboardMainViewHeader';
-import DashboardMap from '../components/DashboardMap';
-import DashboardAnalytics from './DashboardAnalytics';
-import DashboardData from './DashboardData';
-import DashboardAlerts from './DashboardAlerts';
+import DashboardFilter from './DashboardViews/DashboardFilter';
+import DashboardHeader from './DashboardHeader';
+import DashboardMap from './DashboardViews/DashboardMap';
+import DashboardAnalytics from './DashboardViews/DashboardAnalytics';
+import DashboardData from './DashboardViews/DashboardData';
+import DashboardAlerts from './DashboardViews/DashboardAlerts';
+import DashboardAccount from './DashboardViews/DashboardAccount';
+import DashboardHardware from './DashboardViews/DashboardHardware';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -153,6 +155,10 @@ class Dashboard extends Component {
 			view = <DashboardData />;
 		} else if (this.props.dashboardView.dashboardCurrentTab === 'ALERTS') {
 			view = <DashboardAlerts />;
+		} else if (this.props.dashboardView.dashboardCurrentTab === 'ACCOUNT') {
+			view = <DashboardAccount />;
+		} else if (this.props.dashboardView.dashboardCurrentTab === 'HARDWARE') {
+			view = <DashboardHardware />;
 		}
 
 		return (
@@ -168,9 +174,7 @@ class Dashboard extends Component {
 					regionSelectDropdown={this.state.regionSelectDropdown}
 				/>
 				<div className="dashboard-main-view">
-					<DashboardMainViewHeader
-						currentRegion={this.state.selectedRegion.region}
-					/>
+					<DashboardHeader currentRegion={this.state.selectedRegion.region} />
 					{view}
 				</div>
 			</div>

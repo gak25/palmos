@@ -2,7 +2,7 @@ import React from 'react';
 import { reduxForm, SubmissionError } from 'redux-form';
 import { push } from 'react-router-redux';
 
-import EditUserForm from '../containers/EditUserForm';
+import EditUserForm from '../containers/Forms/EditUserForm';
 
 import { clearNotices, flashNotice } from '../actions/flashNotice';
 import { updateUser } from '../actions/updateUser';

@@ -2,7 +2,7 @@ import React from 'react';
 import { change, reduxForm, reset } from 'redux-form';
 import { push } from 'react-router-redux';
 
-import SignInForm from '../containers/SignInForm';
+import SignInForm from '../containers/Forms/SignInForm';
 
 import { clearNotices, flashNotice } from '../actions/flashNotice';
 import { createSession } from '../actions/createSession';

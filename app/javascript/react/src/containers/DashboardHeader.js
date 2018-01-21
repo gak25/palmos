@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
 import * as DashboardVisibilityActions from '../actions/componentVisibility';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -16,7 +17,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-class DashboardMainViewHeader extends Component {
+class DashboardHeader extends Component {
 	render() {
 		return (
 			<div className="map-header">
@@ -68,4 +69,4 @@ class DashboardMainViewHeader extends Component {
 	}
 }
 
-export default DashboardMainViewHeader;
+export default DashboardHeader;

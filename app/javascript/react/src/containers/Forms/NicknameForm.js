@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import TextInput from '../components/TextInput';
+import TextInput from '../../components/formFields/TextInput';
 
-class NicknameFormContainer extends Component {
+class NicknameForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -86,4 +86,4 @@ class NicknameFormContainer extends Component {
 	}
 }
 
-export default NicknameFormContainer;
+export default NicknameForm;
