@@ -14,8 +14,8 @@ class CreateSensors < ActiveRecord::Migration[5.1]
       t.float :sensor_water_pressure_kPa, null: false, default: 145.00
       t.float :sensor_altitude_meters, null: false, default: 0.00
 
-      t.float :sensor_water_pressure_kPa_history, null: false, array: true, default: []
-      t.float :sensor_risk_level_history, null: false, array: true, default: []
+      t.float :sensor_water_pressure_kPa_history, array: true
+      t.float :sensor_risk_level_history, array: true
 
       t.timestamps null: false
     end

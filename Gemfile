@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem "active_model_serializers", "~> 0.10.0"
 gem 'bcrypt', '~> 3.1.7'
 gem 'doorkeeper'
 gem 'faker'
@@ -8,8 +9,10 @@ gem 'geocoder'
 gem 'jbuilder', '~> 2.5'
 gem "jquery-rails"
 gem "oauth2"
-gem 'pg', '~> 0.18'
-gem 'postgresql'
+gem 'mysql2'
+# gem 'pg', '~> 0.18'
+gem 'yaml_db'
+# gem 'postgresql'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.4'
 gem 'sass-rails', '~> 5.0'
