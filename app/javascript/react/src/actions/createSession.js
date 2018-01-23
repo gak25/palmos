@@ -42,15 +42,15 @@ let createSession = values => dispatch => {
 		body: payload
 	})
 		.then(response => {
-			if (response.ok) {
+			if (!response.error) {
 				return response.json();
 			} else {
 				throw response.error;
 			}
 		})
 		.then(data => {
-			// dispatch(fetchCreateSessionSuccess(data)); // used to be data.user
-			return data;
+			// dispatch(fetchCreateSessionSuccess(data.user)); // used to be data.user
+			return data.user;
 		})
 		.catch(error => {
 			dispatch(fetchCreateSessionFailure());

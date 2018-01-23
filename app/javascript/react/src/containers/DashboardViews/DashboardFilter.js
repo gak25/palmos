@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import * as MapFilterActions from '../../actions/regions';
 import * as DashboardVisibilityActions from '../../actions/componentVisibility';
+import * as DashboardViewActions from '../../actions/dashboardView';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -17,7 +18,11 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return {
 		actions: bindActionCreators(
-			{ ...MapFilterActions, ...DashboardVisibilityActions },
+			{
+				...MapFilterActions,
+				...DashboardVisibilityActions,
+				...DashboardViewActions
+			},
 			dispatch
 		)
 	};
@@ -34,6 +39,7 @@ class DashboardFilter extends Component {
 	}
 	handleRegionSelect(event) {
 		this.props.actions.setCurrentRegion(event.target.id);
+		this.props.actions.setDashboardStatusView('REGION');
 	}
 	handleFilterReset(event) {
 		console.log('resetting filter');

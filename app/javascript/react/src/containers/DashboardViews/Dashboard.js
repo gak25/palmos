@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { GoogleMap, Marker } from 'react-google-maps';
 
 import NavTop from './NavTop';
-import DashboardFilter from './DashboardViews/DashboardFilter';
+
+import DashboardFilter from './DashboardFilter';
 import DashboardHeader from './DashboardHeader';
-import DashboardMap from './DashboardViews/DashboardMap';
-import DashboardAnalytics from './DashboardViews/DashboardAnalytics';
-import DashboardData from './DashboardViews/DashboardData';
-import DashboardAlerts from './DashboardViews/DashboardAlerts';
-import DashboardAccount from './DashboardViews/DashboardAccount';
-import DashboardHardware from './DashboardViews/DashboardHardware';
+import DashboardMap from './DashboardMap';
+import DashboardAnalytics from './DashboardAnalytics';
+import DashboardData from './DashboardData';
+import DashboardAlerts from './DashboardAlerts';
+import DashboardAccount from './DashboardAccount';
+import DashboardHardware from './DashboardHardware';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

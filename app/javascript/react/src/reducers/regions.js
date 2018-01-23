@@ -7,13 +7,17 @@ var initialRegionState = {
 			id: '101',
 			region_nickname: "Artisan's Asylum",
 			region_city: 'Somerville',
-			region_state_code: 'MA'
+			region_state_code: 'MA',
+			region_latitude: 40.82590937,
+			region_longitude: 71.37393774
 		},
 		{
 			id: '102',
 			region_nickname: "Martha's Vineyard",
 			region_city: "Martha's Vineyard",
-			region_state_code: 'MA'
+			region_state_code: 'MA',
+			region_latitude: 41.836794,
+			region_longitude: 70.73580309
 		}
 	]
 };
@@ -24,9 +28,10 @@ const currentRegion = (state = initialRegionState, action) => {
 			var region = state.allRegions.find(
 				region => region.id === action.region_id
 			);
-			return Object.assign({}, state, {
+			return {
+				...state,
 				currentRegion: region
-			});
+			};
 		default:
 			return state;
 	}

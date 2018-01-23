@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 // import logo from '/app/assets/images/palmos_text.png';
 
-import * as DashboardVisibilityActions from '../actions/componentVisibility';
-import * as DashboardViewActions from '../actions/dashboardView';
+import * as DashboardVisibilityActions from '../../actions/componentVisibility';
+import * as DashboardViewActions from '../../actions/dashboardView';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 

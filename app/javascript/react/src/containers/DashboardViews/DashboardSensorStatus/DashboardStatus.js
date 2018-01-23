@@ -1,48 +1,40 @@
 import React, { Component } from 'react';
 
+import DashboardStatusOverview from './DashboardStatusOverview';
 import DashboardRegionStatus from './DashboardRegionStatus';
 import DashboardSensorStatus from './DashboardSensorStatus';
 
-import * as DashboardVisibilityActions from '../../../actions/componentVisibility';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
 	return {
-		currentUser: state.currentUser.user,
-		componentVisibility: state.componentVisibility
+		dashboardView: state.dashboardView
 	};
 }
 
-function mapDispatchToProps(dispatch) {
-	return { actions: bindActionCreators(DashboardVisibilityActions, dispatch) };
-}
-
-@connect(mapStateToProps, mapDispatchToProps)
+@connect(mapStateToProps)
 class DashboardStatus extends Component {
 	render() {
-		var status = null;
-		if (Object.keys(this.props.selectedSensor).length === 1) {
-			status = (
-				<DashboardSensorStatus
-					currentUser={this.props.currentUser}
-					sensor={this.props.selectedSensor}
-					handleNicknameInput={this.props.handleNicknameInput}
-				/>
-			);
-		} else if (this.props.selectedRegion) {
-			status = (
-				<DashboardRegionStatus
-					currentUser={this.props.currentUser}
-					region={this.props.selectedRegion}
-					handleNicknameInput={this.props.handleNicknameInput}
-				/>
-			);
+		var component = null;
+		switch (this.props.dashboardView.dashboardStatusView) {
+			case 'ALL REGIONS':
+				component = <DashboardStatusOverview />;
+				break;
+			case 'REGION':
+				component = <DashboardRegionStatus />;
+				break;
+			case 'SENSOR':
+				component = <DashboardSensorStatus />;
+				break;
+			default:
+				component = <DashboardStatusOverview />;
+				break;
 		}
 
 		return (
 			<div className="right-status">
-				{status}
+				{component}
 				<script src="/javascripts/Chart.bundle.min.js" />
 			</div>
 		);

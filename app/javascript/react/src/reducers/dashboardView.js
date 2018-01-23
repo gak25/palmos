@@ -4,11 +4,13 @@ import {
 	SET_DASHBOARD_CURRENT_TAB_DATA,
 	SET_DASHBOARD_CURRENT_TAB_ALERTS,
 	SET_DASHBOARD_CURRENT_TAB_ACCOUNT,
-	SET_DASHBOARD_CURRENT_TAB_HARDWARE
+	SET_DASHBOARD_CURRENT_TAB_HARDWARE,
+	SET_DASHBOARD_STATUS_VIEW
 } from '../actions/dashboardView';
 
 var initialState = {
-	dashboardCurrentTab: 'MAP OVERVIEW'
+	dashboardCurrentTab: 'MAP OVERVIEW',
+	dashboardStatusView: 'ALL REGIONS'
 };
 
 const dashboardView = (state = initialState, action) => {
@@ -42,6 +44,10 @@ const dashboardView = (state = initialState, action) => {
 			return Object.assign({}, state, {
 				dashboardCurrentTab: 'HARDWARE',
 				statusDisplayToggleIcon: true
+			});
+		case SET_DASHBOARD_STATUS_VIEW:
+			return Object.assign({}, state, {
+				dashboardStatusView: action.view
 			});
 		default:
 			return state;

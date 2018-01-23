@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import * as DashboardVisibilityActions from '../actions/componentVisibility';
+import * as DashboardVisibilityActions from '../../actions/componentVisibility';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 

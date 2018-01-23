@@ -1,12 +1,29 @@
 import React, { Component } from 'react';
 import NicknameForm from '../../Forms/NicknameForm';
 
+import * as DashboardVisibilityActions from '../../../actions/componentVisibility';
+import * as DashboardView from '../../../actions/dashboardView';
+
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+function mapStateToProps(state) {
+	return {
+		currentUser: state.currentUser.user,
+		region: state.regions
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		actions: bindActionCreators(...DashboardView, dispatch)
+	};
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 class DashboardRegionStatus extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			region: {}
-		};
 		this.handleRegionNicknameInput = this.handleRegionNicknameInput.bind(this);
 	}
 
@@ -30,25 +47,20 @@ class DashboardRegionStatus extends Component {
 			});
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.region != this.props.region) {
-			this.setState({ region: nextProps.region });
-		}
-	}
-
 	render() {
+		const currentRegion = this.props.region.currentRegion;
 		return (
 			<div id="current-detail">
 				<div id="current-detail-name">
-					<div>Region ID: {this.props.region.id}</div>
-					<NicknameForm
+					<div>Region ID: {currentRegion.id}</div>
+					{/* <NicknameForm
 						changeNickname={this.handleRegionNicknameInput}
-						nickname={this.props.region.region_nickname}
-					/>
+						nickname={currentRegion.region_nickname}
+					/> */}
 				</div>
 				<h5 id="detail-lat-lng">
-					{truncateDecimals(this.props.region.region_latitude, 6)},{' '}
-					{truncateDecimals(this.props.region.region_longitude, 6)}
+					{truncateDecimals(currentRegion.region_latitude, 6)},{' '}
+					{truncateDecimals(currentRegion.region_longitude, 6)}
 				</h5>
 				<hr id="sensor-section-divider" />
 			</div>
