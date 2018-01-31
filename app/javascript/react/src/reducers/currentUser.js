@@ -15,7 +15,8 @@ const currentUser = (state = initialState, action) => {
 			return Object.assign({}, state, { isFetching: true });
 		case FETCH_CURRENT_USER_SUCCESS:
 			return Object.assign({}, state, {
-				isFetching: false
+				isFetching: false,
+				user: action.currentUser
 			});
 		case FETCH_CREATE_SESSION_SUCCESS:
 			return Object.assign({}, state, { user: action.currentUser });

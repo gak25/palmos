@@ -24,7 +24,7 @@ let onSubmit = (values, dispatch) => {
 	return dispatch(createSession(values))
 		.then(data => {
 			dispatch(clearNotices());
-			dispatch(flashNotice({ success: `Signed in as ${data.handle}.` }));
+			dispatch(flashNotice({ success: `Signed in as ${data.user.handle}.` }));
 			dispatch(push('/'));
 		})
 		.catch(error => {
