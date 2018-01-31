@@ -1,5 +1,5 @@
 class Sensor < ApplicationRecord
-  belongs_to :region
+  # belongs_to :region
   # before_save :create_nickname
   #
   # def create_nickname

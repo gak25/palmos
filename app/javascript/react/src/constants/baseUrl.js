@@ -5,7 +5,7 @@ switch (process.env.NODE_ENV) {
 		baseUrl = 'https://www.palmos.co/';
 		break;
 	default:
-		baseUrl = 'http://localhost:5000';
+		baseUrl = 'http://localhost:3000';
 }
 
 export default baseUrl;

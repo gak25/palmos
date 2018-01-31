@@ -19,6 +19,9 @@ Rails.application.routes.draw do
         end
       end
 
+      post "data_store", to: "sensors#data_store"
+      post "connection_test", to: "sensors#connection_test"
+
       get "users/:handle", to: "users#show"
       get "users/:handle/sensors", to: "users#sensors"
       get "users/:handle/regions", to: "users#regions"

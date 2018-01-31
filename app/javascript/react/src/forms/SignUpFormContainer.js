@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { reduxForm, SubmissionError } from 'redux-form';
 import { push } from 'react-router-redux';
+import { connect } from 'react-redux';
 
-import SignUpForm from '../containers/Forms/SignUpForm';
+import SignUpForm from '../forms/SignUpForm';
 
 import { clearNotices, flashNotice } from '../actions/flashNotice';
 import { createUser } from '../actions/createUser';
@@ -64,14 +65,23 @@ let onSubmit = (values, dispatch) => {
 		});
 };
 
-const SignUpFormContainer = props => {
-	const ConnectedSignUpForm = reduxForm({
-		form: 'signUp',
-		validate,
-		onSubmit
-	})(SignUpForm);
-
-	return <ConnectedSignUpForm currentUser={props.currentUser} />;
+const mapStateToProps = state => {
+	return {
+		currentUser: state.currentUser.user
+	};
 };
+
+@connect(mapStateToProps)
+class SignUpFormContainer extends Component {
+	render() {
+		const ConnectedSignUpForm = reduxForm({
+			form: 'signUp',
+			validate,
+			onSubmit
+		})(SignUpForm);
+
+		return <ConnectedSignUpForm currentUser={this.props.currentUser} />;
+	}
+}
 
 export default SignUpFormContainer;

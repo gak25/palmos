@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EditUserForm from '../../connectors/EditUser';
+import EditUserForm from '../../forms/EditUserForm';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

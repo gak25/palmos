@@ -1,4 +1,4 @@
 class Region < ApplicationRecord
   belongs_to :user
-  has_many :sensors
+  # has_many :sensors
 end

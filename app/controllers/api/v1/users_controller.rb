@@ -1,65 +1,51 @@
 class Api::V1::UsersController < Api::ApiController
-  before_action :doorkeeper_authorize!
-  skip_before_action :verify_authenticity_token
+  before_action :doorkeeper_authorize!, only: [:show]
+  before_action :authenticate_user_api!, only: [:update]
 
-  def index
-    render json: { index: User.all, current_user: current_user }
+  def create
+    user = User.new(user_params)
+    user.password = params[:password]
+    user.password_confirmation = params[:password_confirmation]
+    if user.save
+      # user.send_confirmation_email
+      render json: user, status: :created
+    else
+      user.valid?
+      render json: { error: user.errors }, status: :unprocessable_entity
+    end
   end
 
   def show
-    @user = User.find_by(handle: user_handle[:handle])
-    render json: @user
+    render json: authorized_user, adapter: :attributes
   end
 
-  def create
-    @user = User.new(user_params)
-    if @user.save
-      # @user.send_confirmation_email
-      sign_in(@user)
-      # flash.now[:notice] = "Registration successful."
-      render plain: "200"
+  def update
+    if !current_user.authenticate(params[:password])
+      current_user.errors.add(:password, :invalid)
+      render json: { error: current_user.errors }, status: :unprocessable_entity
     else
-      flash.now[:alert] = "There was a problem with your registration."
-      render plain: "403"
+      current_user.assign_attributes(update_params)
+      if current_user.changed.include?("email") && current_user.valid?
+        current_user.confirmed_at = nil
+        current_user.send(:generate_confirmation_digest)
+        sign_out
+        # Please confirm your email to re-activate your account.
+      end
+      if current_user.save
+        render json: current_user
+      else
+        render json: { error: current_user.errors }, status: :unprocessable_entity
+      end
     end
   end
 
-  def sensors
-    @sensor_list = User.find_by(handle: user_handle[:handle]).sensors
-    render json: @sensor_list
-  end
+  protected
 
-  def regions
-    @user_data = []
-    regions_list = User.find_by(handle: user_handle[:handle]).regions
-    if regions_list.where(active: true).first
-      active_region = regions_list.where(active: true).first
-    else
-      active_region = regions_list.first
-    end
-    regions_list.each do |region|
-      data = {}
-      data[:region] = region
-      data[:sensors] = region.sensors
-      @user_data.push(data)
-    end
-    @user_data.push({ active_region: active_region })
-    render json: @user_data
-  end
-
-  private
-
-  def region_params
-    params.permit(:region_id)
-  end
-
-
-  def user_handle
-    params.permit(:handle)
+  def update_params
+    params.require(:user).permit(:email, :first_name, :last_name)
   end
 
   def user_params
-    params.permit(:first_name, :last_name, :handle, :email, :password)
+    params.require(:user).permit(:handle, :email, :first_name, :last_name)
   end
-
 end

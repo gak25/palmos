@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180118205139) do
+ActiveRecord::Schema.define(version: 20180129232000) do
 
   create_table "Open_Source_office", primary_key: "datetime", id: :datetime, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "city", limit: 20
@@ -193,22 +193,26 @@ ActiveRecord::Schema.define(version: 20180118205139) do
   end
 
   create_table "sensors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.bigint "region_id"
-    t.string "sensor_nickname", null: false
     t.string "sensor_status", default: "healthy", null: false
     t.float "sensor_risk_level", limit: 24, default: 61.0, null: false
     t.float "sensor_latitude", limit: 24, default: 42.3815, null: false
     t.float "sensor_longitude", limit: 24, default: -71.1051, null: false
-    t.float "sensor_acceleration_x_mGal", limit: 24, default: 1.89, null: false
-    t.float "sensor_acceleration_y_mGal", limit: 24, default: 3.45, null: false
-    t.float "sensor_acceleration_z_mGal", limit: 24, default: 1.44, null: false
-    t.float "sensor_water_pressure_kPa", limit: 24, default: 145.0, null: false
+    t.float "sensor_acc_x", limit: 24, default: 1.89, null: false
+    t.float "sensor_acc_y", limit: 24, default: 3.45, null: false
+    t.float "sensor_acc_z", limit: 24, default: 1.44, null: false
+    t.float "sensor_water_pressure", limit: 24, default: 145.0, null: false
     t.float "sensor_altitude_meters", limit: 24, default: 0.0, null: false
-    t.float "sensor_water_pressure_kPa_history", limit: 24
+    t.float "sensor_water_pressure_history", limit: 24
     t.float "sensor_risk_level_history", limit: 24
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["region_id"], name: "index_sensors_on_region_id"
+    t.string "sensor_current_time", default: "2018-01-29 22:57:52.156496", null: false
+    t.string "sensor_date", default: "2018-01-29", null: false
+    t.float "sensor_speed", limit: 24, default: 0.0, null: false
+    t.float "sensor_angle", limit: 24, default: 0.0, null: false
+    t.float "sensor_temp_celcius", limit: 24, default: 0.0, null: false
+    t.float "sensor_humidity_percentage", limit: 24, default: 0.0, null: false
+    t.float "sensor_distance", limit: 24
   end
 
   create_table "test", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|

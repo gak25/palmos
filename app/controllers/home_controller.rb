@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  # skip_before_action :verify_authenticity_token
   def index
-    puts "IN HOME CONTROLLER-------------------------------------------------------"
     if current_user
       flash.now[:success] = "Signed in as #{current_user.handle}"
       render :'dashboard/index'

@@ -3,11 +3,10 @@ import { Field } from 'redux-form';
 import { push } from 'react-router-redux';
 import { Link } from 'react-router-dom';
 
-import { flashNotice } from '../../actions/flashNotice';
+import { flashNotice } from '../actions/flashNotice';
 
-import Password from '../../components/formFields/Password';
-// import ReCaptcha from '../components/formFields/ReCaptcha';
-import TextInput from '../../components/formFields/TextInput';
+import Password from '../components/formFields/Password';
+import TextInput from '../components/formFields/TextInput';
 
 class SignUpForm extends Component {
 	constructor(props) {
@@ -26,9 +25,6 @@ class SignUpForm extends Component {
 			<div className="form-background">
 				<form className="register-forms" onSubmit={this.props.handleSubmit}>
 					<i className="fa fa-user fa-4x" id="lock-icon" aria-hidden="true" />
-					{/* <div id="sign-in-instructions">
-						<h3>Register</h3>
-					</div> */}
 					<div className="form-inputs">
 						<Field name="handle" label="Username" component={TextInput} />
 						<Field name="email" label="Email" component={TextInput} />
@@ -48,7 +44,6 @@ class SignUpForm extends Component {
 							label="Password confirmation"
 							component={Password}
 						/>
-						{/* <Field name='reCaptchaResponse' component={ReCaptcha} /> */}
 					</div>
 					<div className="form-actions">
 						<Link id="button-outline" to="/sign-in">

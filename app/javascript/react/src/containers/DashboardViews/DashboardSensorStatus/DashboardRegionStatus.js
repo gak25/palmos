@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NicknameForm from '../../Forms/NicknameForm';
+import NicknameForm from '../../../forms/NicknameForm';
 
 import * as DashboardVisibilityActions from '../../../actions/componentVisibility';
 import * as DashboardView from '../../../actions/dashboardView';
