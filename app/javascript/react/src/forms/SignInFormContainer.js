@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { change, reduxForm, reset } from 'redux-form';
 import { push } from 'react-router-redux';
+import { connect } from 'react-redux';
 
-import SignInForm from '../containers/Forms/SignInForm';
+import SignInForm from '../forms/SignInForm';
 
 import { clearNotices, flashNotice } from '../actions/flashNotice';
 import { createSession } from '../actions/createSession';
@@ -23,7 +24,7 @@ let onSubmit = (values, dispatch) => {
 	return dispatch(createSession(values))
 		.then(data => {
 			dispatch(clearNotices());
-			dispatch(flashNotice({ success: `Signed in as ${data.handle}.` }));
+			dispatch(flashNotice({ success: `Signed in as ${data.user.handle}.` }));
 			dispatch(push('/'));
 		})
 		.catch(error => {
@@ -33,23 +34,32 @@ let onSubmit = (values, dispatch) => {
 		});
 };
 
-const SignInFormContainer = props => {
-	const switchHandler = value => {
-		props.dispatch(change('signIn', 'rememberMe', value));
+const mapStateToProps = state => {
+	return {
+		currentUser: state.currentUser.user
 	};
-
-	const ConnectedSignInForm = reduxForm({
-		form: 'signIn',
-		validate,
-		onSubmit
-	})(SignInForm);
-
-	return (
-		<ConnectedSignInForm
-			currentUser={props.currentUser}
-			switchHandler={switchHandler}
-		/>
-	);
 };
+
+@connect(mapStateToProps)
+class SignInFormContainer extends Component {
+	render() {
+		const switchHandler = value => {
+			this.props.dispatch(change('signIn', 'rememberMe', value));
+		};
+
+		const ConnectedSignInForm = reduxForm({
+			form: 'signIn',
+			validate,
+			onSubmit
+		})(SignInForm);
+
+		return (
+			<ConnectedSignInForm
+				currentUser={this.props.currentUser}
+				switchHandler={switchHandler}
+			/>
+		);
+	}
+}
 
 export default SignInFormContainer;

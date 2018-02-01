@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user, :user_signed_in?, :sign_in, :sign_out
-  protect_from_forgery with: :exception
+  # protect_from_forgery with: :exception
 
   def authenticate_user!
     if !user_signed_in?

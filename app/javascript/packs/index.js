@@ -18,8 +18,8 @@ import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 
 import App from '../react/src/containers/App';
-import SignUpForm from '../react/src/connectors/SignUp';
-import SignInForm from '../react/src/connectors/SignIn';
+import SignUpForm from '../react/src/forms/SignUpFormContainer';
+import SignInForm from '../react/src/forms/SignInFormContainer';
 
 import currentUser from '../react/src/reducers/currentUser';
 import notices from '../react/src/reducers/notices';

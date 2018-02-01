@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import TextInput from '../../components/formFields/TextInput';
+import TextInput from '../components/formFields/TextInput';
+import { connect } from 'react-redux';
 
+function mapStateToProps(state) {
+	return {
+		currentUser: state.currentUser.user
+	};
+}
+
+@connect(mapStateToProps)
 class NicknameForm extends Component {
 	constructor(props) {
 		super(props);

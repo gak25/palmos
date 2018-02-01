@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NicknameForm from '../../Forms/NicknameForm';
+import NicknameForm from '../../../forms/NicknameForm';
 import SensorGraph from './SensorGraph';
 import AccelerationGraph from './AccelerationGraph';
 

@@ -3,10 +3,10 @@ import { Field } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { push } from 'react-router-redux';
 
-import { flashNotice } from '../../actions/flashNotice';
+import { flashNotice } from '../actions/flashNotice';
 
-import Password from '../../components/formFields/Password';
-import TextInput from '../../components/formFields/TextInput';
+import Password from '../components/formFields/Password';
+import TextInput from '../components/formFields/TextInput';
 
 class SignInForm extends Component {
 	constructor(props) {
@@ -15,7 +15,7 @@ class SignInForm extends Component {
 
 	componentWillMount() {
 		if (this.props.currentUser.id) {
-			this.props.dispatch(push('/sign-in'));
+			this.props.dispatch(push('/'));
 			this.props.dispatch(flashNotice({ alert: 'You are already signed in.' }));
 		}
 	}

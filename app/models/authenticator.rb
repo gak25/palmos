@@ -13,7 +13,8 @@ class Authenticator
   attr_reader :user
 
   def authenticated?
-    user.present? && user.authenticate(@password) && confirmed?
+    user.present? && user.authenticate(@password)
+    # && confirmed?
   end
 
   def confirmed?
