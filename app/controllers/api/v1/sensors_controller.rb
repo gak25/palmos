@@ -18,7 +18,7 @@ class Api::V1::SensorsController < ApplicationController
     response_array = response.split(',')
     response_to_hash = {}
     response_to_hash[:id] = response_array[0]
-    response_to_hash[:region_id] = 1
+    # response_to_hash[:region_id] = 1
     response_to_hash[:sensor_current_time] = response_array[1]
     response_to_hash[:sensor_date] = response_array[2]
     response_to_hash[:sensor_latitude] = response_array[3] + response_array[4]
@@ -32,19 +32,22 @@ class Api::V1::SensorsController < ApplicationController
     response_to_hash[:sensor_acc_y] = response_array[13]
     response_to_hash[:sensor_acc_z] = response_array[14]
     response_to_hash[:sensor_distance] = response_array[15]
-    puts response_to_hash
+    # puts response_to_hash
+
     if Sensor.exists?(response_to_hash[:id])
-      Sensor.update(response)
+      # puts "SENSOR ALREADY EXISTS - updating"
+      Sensor.update(response_to_hash)
     else
-      Sensor.new(response)
+      # puts "SENSOR DOES NOT EXIST - creating"
+      Sensor.new(response_to_hash)
       if Sensor.save
         puts "Saved successfully"
       else
         puts "Error saving new sensor"
       end
     end
+
     head :no_content
-    # render json: response_to_hash.to_json, status: :received
   end
 
   private
