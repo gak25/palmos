@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Field } from 'redux-form';
-import { connect } from 'react-redux';
 
 import Password from '../components/formFields/Password';
 import TextInput from '../components/formFields/TextInput';
@@ -30,13 +29,5 @@ class EditUserForm extends Component {
 		);
 	}
 }
-
-const mapStateToProps = state => {
-	return {
-		currentUser: state.currentUser.user
-	};
-};
-
-const EditUser = connect(mapStateToProps)(EditUserForm);
 
 export default EditUserForm;

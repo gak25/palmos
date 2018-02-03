@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { reduxForm, SubmissionError } from 'redux-form';
 import { push } from 'react-router-redux';
+import { connect } from 'react-redux';
 
-import EditUserForm from '../containers/Forms/EditUserForm';
+import EditUserForm from '../forms/EditUserForm';
 
 import { clearNotices, flashNotice } from '../actions/flashNotice';
 import { updateUser } from '../actions/updateUser';
@@ -46,22 +47,23 @@ let onSubmit = (values, dispatch) => {
 		});
 };
 
-const EditUserFormContainer = props => {
-	let initialValues = {
-		email: props.currentUser.email,
-		handle: props.currentUser.handle,
-		firstName: props.currentUser.firstName,
-		lastName: props.currentUser.lastName
+const mapStateToProps = state => {
+	return {
+		currentUser: state.currentUser.user
 	};
-
-	const ConnectedEditUserForm = reduxForm({
-		form: 'editUser',
-		validate,
-		onSubmit,
-		initialValues
-	})(EditUserForm);
-
-	return <ConnectedEditUserForm currentUser={props.currentUser} />;
 };
+
+@connect(mapStateToProps)
+class EditUserFormContainer extends Component {
+	render() {
+		const ConnectedEditUserForm = reduxForm({
+			form: 'editUser',
+			validate,
+			onSubmit
+		})(EditUserForm);
+
+		return <ConnectedEditUserForm currentUser={this.props.currentUser} />;
+	}
+}
 
 export default EditUserFormContainer;
