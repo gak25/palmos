@@ -10,10 +10,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      # resources :users, param: :handle, only: [:index, :show]
+      get "me", to: "users#show"
       resources :password_resets, only: [:create, :update]
       resources :sessions, only: [:create]
-      resources :users, param: :handle, only: [:create, :update] do
+      resources :users, param: :handle, only: [:create, :update, :show] do
         collection do
           resources :current, only: :index
         end
