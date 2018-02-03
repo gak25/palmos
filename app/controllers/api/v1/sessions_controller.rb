@@ -3,7 +3,7 @@ class Api::V1::SessionsController < Api::ApiController
     authenticator = Authenticator.new(params[:session])
     if authenticator.authenticated?
       sign_in(authenticator.user)
-      remember(authenticator.user) if authenticator.remember_me?
+      remember(authenticator.user) if authenticator.remember_me? === "true" || authenticator.remember_me? === true || authenticator.remember_me? === "1"
       render json: { user: authenticator.user }, status: :created
     else
       if authenticator.confirmed?

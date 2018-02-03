@@ -57,7 +57,6 @@ class ApplicationController < ActionController::Base
 
   def sign_in(user)
     session[:user_id] = user.id
-    flash.now[:success] = "Signed in as #{user.handle} from application api controller"
   end
 
   def sign_out
