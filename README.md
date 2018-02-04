@@ -1,6 +1,6 @@
 # Palmos
 
-[ ![Codeship Status for palmos/palmos_web](https://app.codeship.com/projects/a034b610-c695-0135-9eb9-1e50aff0702d/status?branch=master)](https://app.codeship.com/projects/261212)
+[ ![Codeship Status for palmos/palmos_web](https://app.codeship.com/projects/a034b610-c695-0135-9eb9-1e50aff0702d/status?branch=master)](https://app.codeship.com/projects/261212)[![Maintainability](https://api.codeclimate.com/v1/badges/2922eba3b2b8516af001/maintainability)](https://codeclimate.com/github/drewandre/palette-dashboard/maintainability)[![Test Coverage](https://api.codeclimate.com/v1/badges/2922eba3b2b8516af001/test_coverage)](https://codeclimate.com/github/drewandre/palette-dashboard/test_coverage)
 
 ## To run locally:
 _Note that you’ll need to have [Node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/) installed._
