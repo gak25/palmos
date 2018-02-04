@@ -21,7 +21,7 @@ _Note that you’ll need to have [Node](https://nodejs.org/en/) and [npm](https:
 
 ## To debug:
 * run `$ rails c` to enter the rails console (`$ exit` to exit)
-* use `binding.pry` in any .rb files and `debugger` in any  .js files _(note pry will not work with `foreman start` - instead, run `$ bundle exec rails s` in one terminal window for viewing pry, and `$ yarn start` in another window)
+* use `binding.pry` in any .rb files and `debugger` in any  .js files _(note pry will not work with `foreman start` - instead, run `$ bundle exec rails s` in one terminal window for viewing pry, and `$ yarn start` in another window)_
 
 ## Linting:
 
