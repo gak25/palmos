@@ -5,17 +5,23 @@
 ## To run locally:
 _Note that you’ll need to have [Node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/) installed._
 * create a directory (`$ mkdir palmos`) and navigate into that directory (`$ cd palmos`)
-* run `$ git clone https://gitlab.com/palmos/palmos_web.git`
+* run `$ git clone https://github.com/drewandre/palmos.git`
 * run `$ bundle install` to install gem dependencies
 * run `$ yarn install` to install package dependencies
-* run `$ rake db:setup` to configure PostgreSQL database
-* run `$ foreman start`, and visit `localhost:5000` to view the application
+* run `$ rake db:setup` to configure MySQL database
+* add AWS RDS credentials in `/config/database.yml`
+* adjust base development URL in `/app/javascript/react/src/constants/baseUrl.js`
+* run `$ foreman start`, and visit either `localhost:3000`, or dev URL of your choice to view the application
 
-## To debug:
+## To run unit/feature tests:
 
 * to run react tests, `$ yarn test` (optionally visit localhost:9397 in your browser)
+* to run a single-run test, run `$ yarn test --single-run`
 * run `$ rspec` to view the status of all unit tests
+
+## To debug:
 * run `$ rails c` to enter the rails console (`$ exit` to exit)
+* use `binding.pry` in any .rb files and `debugger` in any  .js files _(note pry will not work with `foreman start` - instead, run `$ bundle exec rails s` in one terminal window for viewing pry, and `$ yarn start` in another window)
 
 ## Linting:
 
