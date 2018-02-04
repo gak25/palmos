@@ -13,11 +13,11 @@ _Note that you’ll need to have [Node](https://nodejs.org/en/) and [npm](https:
 * adjust base development URL in `/app/javascript/react/src/constants/baseUrl.js`
 * run `$ foreman start`, and visit either `localhost:3000`, or dev URL of your choice to view the application
 
-## To run unit/feature tests:
+## To run tests:
 
-* to run react tests, `$ yarn test` (optionally visit localhost:9397 in your browser)
-* to run a single-run test, run `$ yarn test --single-run`
-* run `$ rspec` to view the status of all unit tests
+* to run feature tests, run `$ yarn test`
+* to run feature tests continously in the background, run `$ karma start` (optionally visit localhost:9397 in your browser)
+* to run unit tests, run `$ rspec` (optionally open `/coverage/index.html` in your browser to view coverage report)
 
 ## To debug:
 * run `$ rails c` to enter the rails console (`$ exit` to exit)
