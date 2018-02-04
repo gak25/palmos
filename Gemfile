@@ -25,6 +25,7 @@ group :development, :test do
   gem 'capybara'
   gem 'capybara-email'
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'simplecov', require: false
   gem 'valid_attribute'
   gem "factory_bot_rails"
   gem 'pry'
