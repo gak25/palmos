@@ -1,1 +1,2 @@
-localtunnel: lt --subdomain palmos --port 3000
+web: bundle exec rails s
+webpack: yarn start
