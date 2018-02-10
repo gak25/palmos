@@ -1,6 +1,4 @@
-class Api::V1::RegionsController < ApplicationController
-  protect_from_forgery with: :null_session
-
+class Api::V1::RegionsController < Api::ApiController
   def region_update
     if(region_params[:id] != "-1")
       Region.update_all active: false

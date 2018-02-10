@@ -16,14 +16,15 @@ Rails.application.routes.draw do
       resources :users, param: :handle, only: [:create, :update, :show] do
         collection do
           resources :current, only: :index
+          resources :sensors, only: [:connection_test, :update, :show, :index, :data_store]
         end
       end
 
       post "data_store", to: "sensors#data_store"
       post "connection_test", to: "sensors#connection_test"
 
-      get "users/:handle", to: "users#show"
-      get "users/:handle/sensors", to: "users#sensors"
+      # get "users/:handle", to: "users#show"
+      # get "users/:handle/sensors", to: "users#sensors"
       get "users/:handle/regions", to: "users#regions"
       post "users/:handle/regions/:id", to: "regions#region_update"
       post "users/:handle/sensors/:sensor_id", to: "sensors#sensor_update"
@@ -39,6 +40,6 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:edit, :new]
   # resources :users, only: [:create, :edit, :update]
 
-  use_doorkeeper
+  # use_doorkeeper
 
 end

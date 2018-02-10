@@ -1,6 +1,13 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :user_signed_in?, :sign_in, :sign_out
-  # protect_from_forgery with: :exception
+  helper_method :current_user, :user_signed_in?
+  protect_from_forgery with: :exception
+
+  before_action :initialize_session!
+
+  def initialize_session!
+    puts 'initializing session'
+    session[:init] = true;
+  end
 
   def authenticate_user!
     if !user_signed_in?
@@ -32,13 +39,6 @@ class ApplicationController < ActionController::Base
     session[:post_auth_path] = request.path
   end
 
-  def prevent_duplicate_sign_in
-    if user_signed_in?
-      flash[:alert] = "You are already signed in"
-      redirect_to root_path
-    end
-  end
-
   def remember(user)
     user.generate_remember_digest
     cookies.signed[:user_id] = { value: user.id, expires: 30.days.from_now }
@@ -68,5 +68,4 @@ class ApplicationController < ActionController::Base
   def user_signed_in?
     !current_user.nil?
   end
-
 end

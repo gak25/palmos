@@ -26,6 +26,7 @@ import notices from '../react/src/reducers/notices';
 import componentVisibility from '../react/src/reducers/componentVisibility';
 import dashboardView from '../react/src/reducers/dashboardView';
 import regions from '../react/src/reducers/regions';
+import sensors from '../react/src/reducers/sensors';
 
 const history = createBrowserHistory();
 
@@ -44,6 +45,7 @@ const store = createStore(
 		componentVisibility,
 		dashboardView,
 		regions,
+		sensors,
 		form: formReducer,
 		router: routerReducer
 	}),

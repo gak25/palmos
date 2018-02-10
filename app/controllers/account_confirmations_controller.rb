@@ -1,5 +1,4 @@
 class AccountConfirmationsController < ApplicationController
-
   def edit
     user = User.find_by(email: params[:email])
     if user && user.confirmed_at.nil? && user.authenticated?(:confirmation, params[:id])
@@ -10,5 +9,4 @@ class AccountConfirmationsController < ApplicationController
     end
     redirect_to root_path
   end
-
 end
