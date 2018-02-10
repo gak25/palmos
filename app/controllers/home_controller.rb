@@ -18,6 +18,6 @@ class HomeController < ApplicationController
     UserMailer.contact(@name, @from_email).deliver_now
     UserMailer.palmos_summary(@name, @from_email, @location, @phone, @comments).deliver_now
 
-    redirect_to root_path
+    redirect_to '/'
   end
 end
