@@ -13,7 +13,7 @@ engines:
       max_line_length:
         enabled: false
   duplication:
-    enabled: true
+    enabled: false
     exclude_paths:
       - "spec/"
     config:
@@ -33,6 +33,7 @@ ratings:
 exclude_paths:
 - app/assets/javascripts/application.js
 - app/assets/javascripts/cable.js
+- app/assets/javascripts/Chart.bundle.min.js
 - config/
 - db/
 - vendor/

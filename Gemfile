@@ -30,6 +30,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem 'pry'
   gem 'launchy'
+  gem "brakeman", :require => false
 end
 
 group :development do

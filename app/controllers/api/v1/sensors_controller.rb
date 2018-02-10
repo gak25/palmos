@@ -1,7 +1,15 @@
-class Api::V1::SensorsController < ApplicationController
-  # protect_from_forgery with: :null_session
+class Api::V1::SensorsController < Api::ApiController
+  def index
+    # puts 'in index, and current_user = '
+    @sensors = Sensor.where(user: current_user)
+    render json: @sensors
+  end
 
-  def sensor_update
+  def show
+    puts "Went to sensor#show"
+  end
+
+  def update
     @sensor = Sensor.find_by(id: sensor_params[:sensor_id])
     @sensor.update(sensor_nickname: sensor_params[:nickname])
     render json: @sensor

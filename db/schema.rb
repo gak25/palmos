@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180129232000) do
+ActiveRecord::Schema.define(version: 20180209212429) do
 
   create_table "Open_Source_office", primary_key: "datetime", id: :datetime, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "city", limit: 20
@@ -213,6 +213,8 @@ ActiveRecord::Schema.define(version: 20180129232000) do
     t.float "sensor_temp_celcius", limit: 24, default: 0.0, null: false
     t.float "sensor_humidity_percentage", limit: 24, default: 0.0, null: false
     t.float "sensor_distance", limit: 24
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_sensors_on_user_id"
   end
 
   create_table "test", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -235,12 +237,16 @@ ActiveRecord::Schema.define(version: 20180129232000) do
     t.string "universally_unique_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "sensor_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["handle"], name: "index_users_on_handle", unique: true
+    t.index ["sensor_id"], name: "index_users_on_sensor_id"
     t.index ["universally_unique_id"], name: "index_users_on_universally_unique_id", unique: true
   end
 
   add_foreign_key "landslide_record", "city_list", column: "city_id", primary_key: "city_id", name: "landslide_record_ibfk_1", on_delete: :cascade
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
+  add_foreign_key "sensors", "users"
+  add_foreign_key "users", "sensors"
 end
