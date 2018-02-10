@@ -32,6 +32,10 @@ _note that the linter watch task is run automatically in development and once in
 * to run the linter once, run `$ yarn lint`
 * to run the watch task, run `$ yarn lint:watch`
 
+## To run [Brakeman](https://brakemanscanner.org/) security analysis:
+_note there may be vulnerabilities Brakeman does not test for or did not discover. No security tool has 100% coverage_
+* run `$ brakeman` from the project's root folder
+
 ## To declare development and test environment variables (i.e. company passwords, emails, etc)
 
 * from the project's home directory, run `$ open config/secrets.yml`
