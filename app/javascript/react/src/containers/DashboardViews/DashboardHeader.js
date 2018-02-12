@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 
-import * as DashboardVisibilityActions from '../../actions/componentVisibility';
+import * as DashboardActions from '../../actions/dashboard';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
 	return {
-		currentUser: state.currentUser.user,
-		componentVisibility: state.componentVisibility,
+		currentUser: state.user,
 		currentRegion: state.regions.currentRegion,
-		dashboardView: state.dashboardView
+		dashboard: state.dashboard
 	};
 }
 
 function mapDispatchToProps(dispatch) {
-	return { actions: bindActionCreators(DashboardVisibilityActions, dispatch) };
+	return { actions: bindActionCreators(DashboardActions, dispatch) };
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -24,7 +23,7 @@ class DashboardHeader extends Component {
 			<div className="map-header">
 				<div className="map-header-overview">
 					<div className="map-nav-tab">
-						<h4>{this.props.dashboardView.dashboardCurrentTab}</h4>
+						<h4>{this.props.dashboard.dashboardCurrentTab}</h4>
 					</div>
 					{this.props.currentRegion ? (
 						<div className="map-nav-tab">
@@ -41,10 +40,10 @@ class DashboardHeader extends Component {
 							<h4>All Regions</h4>
 						</div>
 					)}
-					{!this.props.dashboardView.statusDisplayToggleIcon ? (
+					{!this.props.dashboard.statusDisplayToggleIcon ? (
 						<i
 							className={
-								this.props.componentVisibility.dashboardStatusVisibility
+								this.props.dashboard.dashboardStatusVisibility
 									? 'fa fa-expand fa-2x'
 									: 'fa fa-compress fa-2x'
 							}

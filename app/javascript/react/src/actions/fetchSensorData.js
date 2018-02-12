@@ -2,21 +2,12 @@ import humps from 'humps';
 
 import baseUrl from '../constants/baseUrl';
 
-const FETCH_SENSOR_DATA = 'FETCH_SENSOR_DATA';
+import { setLoading } from './dashboard';
+
 const FETCH_SENSOR_DATA_SUCCESS = 'FETCH_SENSOR_DATA_SUCCESS';
 const FETCH_SENSOR_DATA_FAILURE = 'FETCH_SENSOR_DATA_FAILURE';
 
-export {
-	FETCH_SENSOR_DATA,
-	FETCH_SENSOR_DATA_SUCCESS,
-	FETCH_SENSOR_DATA_FAILURE
-};
-
-let fetchUpdateSensor = () => {
-	return {
-		type: FETCH_SENSOR_DATA
-	};
-};
+export { FETCH_SENSOR_DATA_SUCCESS, FETCH_SENSOR_DATA_FAILURE };
 
 let fetchUpdateSensorSuccess = sensors => {
 	return {
@@ -32,29 +23,22 @@ let fetchUpdateSensorFailure = () => {
 };
 
 let fetchSensorData = values => dispatch => {
-	dispatch(fetchUpdateSensor());
-	return fetch(`${baseUrl}/api/v1/users/sensors`)
+	return fetch(`${baseUrl}/api/v1/users/sensors`, {
+		credentials: 'same-origin',
+		method: 'GET',
+		headers: { 'Content-Type': 'application/json' }
+	})
 		.then(response => {
-			debugger;
 			return response.json();
 		})
 		.then(data => {
-			// if (data.error) {
-			// 	throw data.error;
-			// } else {
-			// 	dispatch(fetchUpdateSensorSuccess());
-			// }
+			dispatch(fetchUpdateSensorSuccess(data));
 			return data;
+		})
+		.catch(errors => {
+			dispatch(fetchUpdateSensorFailure());
+			throw errors;
 		});
-	// .catch(errors => {
-	// 	dispatch(fetchUpdateSensorFailure());
-	// 	throw errors;
-	// });
 };
 
-export {
-	fetchSensorData,
-	fetchUpdateSensor,
-	fetchUpdateSensorSuccess,
-	fetchUpdateSensorFailure
-};
+export { fetchSensorData, fetchUpdateSensorSuccess, fetchUpdateSensorFailure };

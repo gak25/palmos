@@ -21,10 +21,9 @@ import App from '../react/src/containers/App';
 import SignUpForm from '../react/src/forms/SignUpFormContainer';
 import SignInForm from '../react/src/forms/SignInFormContainer';
 
-import currentUser from '../react/src/reducers/currentUser';
+import users from '../react/src/reducers/users';
 import notices from '../react/src/reducers/notices';
-import componentVisibility from '../react/src/reducers/componentVisibility';
-import dashboardView from '../react/src/reducers/dashboardView';
+import dashboard from '../react/src/reducers/dashboard';
 import regions from '../react/src/reducers/regions';
 import sensors from '../react/src/reducers/sensors';
 
@@ -40,10 +39,9 @@ const middlewares = [
 
 const store = createStore(
 	combineReducers({
-		currentUser,
+		users,
 		notices,
-		componentVisibility,
-		dashboardView,
+		dashboard,
 		regions,
 		sensors,
 		form: formReducer,
@@ -68,5 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			</Provider>,
 			target
 		);
+	} else {
+		console.log('Error locating React root!');
 	}
 });

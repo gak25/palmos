@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 // import logo from '/app/assets/images/palmos_text.png';
 
-import * as DashboardVisibilityActions from '../../actions/componentVisibility';
-import * as DashboardViewActions from '../../actions/dashboardView';
+import * as DashboardViewActions from '../../actions/dashboard';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
 	return {
-		currentUser: state.currentUser.user,
-		componentVisibility: state.componentVisibility,
-		dashboardCurrentView: state.dashboardCurrentView
+		currentUser: state.user,
+		dashboardCurrentView: state.dashboard.dashboardCurrentView
 	};
 }
 

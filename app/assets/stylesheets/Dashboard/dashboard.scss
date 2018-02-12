@@ -6,6 +6,19 @@ $map-header-height: 50px;
 $map-filter-width: 250px;
 $map-status-width: 275px;
 
+#loading-overlay {
+	@include center();
+	z-index: 999;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.9);
+}
+
+#loading-icon {
+	@include center();
+	z-index: 999;
+}
+
 // SMALL
 @media all and (min-width: 0px) {
 	.dashboard-main-view,

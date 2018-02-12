@@ -34,7 +34,6 @@ Rails.application.configure do
   # config.action_mailer.perform_caching = false
   #
   # config.action_mailer.perform_caching = false
-
   config.action_mailer.default_url_options = { host: "#{Rails.application.class.parent_name.downcase}.#{ENV[
       'EMAIL_DOMAIN']}" }
     config.action_mailer.delivery_method = :smtp

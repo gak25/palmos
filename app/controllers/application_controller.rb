@@ -2,13 +2,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :user_signed_in?
   protect_from_forgery with: :exception
 
-  before_action :initialize_session!
-
-  def initialize_session!
-    puts 'initializing session'
-    session[:init] = true;
-  end
-
   def authenticate_user!
     if !user_signed_in?
       persist_location!

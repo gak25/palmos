@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
 	return {
-		dashboardView: state.dashboardView
+		dashboard: state.dashboard
 	};
 }
 
@@ -17,7 +17,7 @@ function mapStateToProps(state) {
 class DashboardStatus extends Component {
 	render() {
 		var component = null;
-		switch (this.props.dashboardView.dashboardStatusView) {
+		switch (this.props.dashboard.dashboardStatusView) {
 			case 'ALL REGIONS':
 				component = <DashboardStatusOverview />;
 				break;

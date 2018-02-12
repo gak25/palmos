@@ -17,14 +17,17 @@ function mapDispatchToProps(dispatch) {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export class App extends Component {
-	componentDidMount() {
-		// this.timer = setInterval(() => {
+	componentWillMount() {
 		this.props.actions.fetchSensorData();
-		// }, 3000);
+	}
+	componentDidMount() {
+		this.timer = setInterval(() => {
+			this.props.actions.fetchSensorData();
+		}, 5000);
 	}
 
 	componentWillUnmount() {
-		// clearTimeout(this.timer);
+		clearTimeout(this.timer);
 	}
 
 	render() {

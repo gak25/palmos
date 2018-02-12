@@ -22,7 +22,7 @@ var initialRegionState = {
 	]
 };
 
-const currentRegion = (state = initialRegionState, action) => {
+const regions = (state = initialRegionState, action) => {
 	switch (action.type) {
 		case SET_MAP_CURRENT_REGION:
 			var region = state.allRegions.find(
@@ -37,4 +37,4 @@ const currentRegion = (state = initialRegionState, action) => {
 	}
 };
 
-export default currentRegion;
+export default regions;

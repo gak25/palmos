@@ -1,6 +1,5 @@
 class Api::V1::SensorsController < Api::ApiController
   def index
-    # puts 'in index, and current_user = '
     @sensors = Sensor.where(user: current_user)
     render json: @sensors
   end

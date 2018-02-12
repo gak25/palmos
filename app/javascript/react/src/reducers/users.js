@@ -5,17 +5,16 @@ import {
 import { FETCH_CREATE_SESSION_SUCCESS } from '../actions/createSession';
 
 let initialState = {
-	isFetching: false,
-	user: { id: null }
+	user: null
 };
 
-const currentUser = (state = initialState, action) => {
+const users = (state = initialState, action) => {
 	switch (action.type) {
 		case FETCH_CURRENT_USER:
-			return Object.assign({}, state, { isFetching: true });
+			return Object.assign({}, state, { loading: true });
 		case FETCH_CURRENT_USER_SUCCESS:
 			return Object.assign({}, state, {
-				isFetching: false,
+				loading: false,
 				user: action.currentUser
 			});
 		case FETCH_CREATE_SESSION_SUCCESS:
@@ -25,4 +24,4 @@ const currentUser = (state = initialState, action) => {
 	}
 };
 
-export default currentUser;
+export default users;

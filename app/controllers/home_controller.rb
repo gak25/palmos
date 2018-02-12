@@ -15,6 +15,7 @@ class HomeController < ApplicationController
     @from_email = params["from_email"]
     @phone = params["phone"]
     @comments = params["comments"]
+
     UserMailer.contact(@name, @from_email).deliver_now
     UserMailer.palmos_summary(@name, @from_email, @location, @phone, @comments).deliver_now
 

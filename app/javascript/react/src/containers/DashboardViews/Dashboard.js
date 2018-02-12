@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { GoogleMap, Marker } from 'react-google-maps';
+import { FoldingCube } from 'better-react-spinkit';
+
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import NavTop from './NavTop';
-
 import DashboardFilter from './DashboardFilter';
 import DashboardHeader from './DashboardHeader';
 import DashboardMap from './DashboardMap';
@@ -12,14 +15,10 @@ import DashboardAlerts from './DashboardAlerts';
 import DashboardAccount from './DashboardAccount';
 import DashboardHardware from './DashboardHardware';
 
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-
 function mapStateToProps(state) {
 	return {
-		currentUser: state.currentUser.user,
-		componentVisibility: state.componentVisibility,
-		dashboardView: state.dashboardView
+		currentUser: state.user,
+		dashboard: state.dashboard
 	};
 }
 
@@ -27,47 +26,14 @@ function mapStateToProps(state) {
 class Dashboard extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			currentUser: {},
-			userRegions: [],
-			selectedRegion: {},
-			selectedSensor: [],
-			bounds: {},
-			position: {},
-			sensors: [],
-			regionSelectDropdown: false
-		};
 		this.handleMapFilter = this.handleMapFilter.bind(this);
-		this.fetchUserRegions = this.fetchUserRegions.bind(this);
-		this.handleRegionDropdown = this.handleRegionDropdown.bind(this);
 		this.handleRegionSelect = this.handleRegionSelect.bind(this);
 		this.handleMarkerClick = this.handleMarkerClick.bind(this);
 		this.setRegion = this.setRegion.bind(this);
 		this.handleFilterReset = this.handleFilterReset.bind(this);
 	}
-	fetchUserRegions(currentUser) {
-		fetch(`/api/v1/users/${currentUser.handle}/regions`)
-			.then(response => response.json())
-			.then(data => {
-				if (data.length > 1) {
-					var activeRegion = data.pop();
-					this.setState({
-						selectedRegion: activeRegion.active_region,
-						userRegions: data
-					});
-					this.setRegion(activeRegion.active_region.id);
-				}
-			});
-	}
 
-	handleMapFilter(input) {
-		// console.log(input.target.value);
-	}
-
-	handleRegionDropdown(event) {
-		event.preventDefault();
-		this.setState({ regionSelectDropdown: !this.state.regionSelectDropdown });
-	}
+	handleMapFilter(input) {}
 
 	handleRegionSelect(event) {
 		event.preventDefault();
@@ -119,68 +85,40 @@ class Dashboard extends Component {
 		}
 	}
 
-	handleFilterReset(event) {
-		this.setState({
-			selectedRegion: {}
-		});
-	}
+	handleFilterReset(event) {}
 
 	handleMarkerClick(marker) {
 		var selectedSensor = [marker];
-		this.setState({ selectedSensor: selectedSensor });
-	}
-
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.currentUser != this.props.currentUser) {
-			this.fetchUserRegions(nextProps.currentUser);
-			this.setState({ currentUser: nextProps.currentUser });
-		}
 	}
 
 	render() {
 		let view = null;
-		if (this.props.dashboardView.dashboardCurrentTab === 'MAP OVERVIEW') {
-			view = (
-				<DashboardMap
-					currentUser={this.state.currentUser}
-					selectedSensor={this.state.selectedSensor}
-					selectedRegion={this.state.selectedRegion.region}
-					onMarkerClick={this.handleMarkerClick}
-					position={this.state.position}
-					bounds={this.state.bounds}
-					markers={this.state.sensors}
-				/>
-			);
-		} else if (this.props.dashboardView.dashboardCurrentTab === 'ANALYTICS') {
+		if (this.props.dashboard.dashboardCurrentTab === 'MAP OVERVIEW') {
+			view = <DashboardMap onMarkerClick={this.handleMarkerClick} />;
+		} else if (this.props.dashboard.dashboardCurrentTab === 'ANALYTICS') {
 			view = <DashboardAnalytics />;
-		} else if (this.props.dashboardView.dashboardCurrentTab === 'DATA') {
+		} else if (this.props.dashboard.dashboardCurrentTab === 'DATA') {
 			view = <DashboardData />;
-		} else if (this.props.dashboardView.dashboardCurrentTab === 'ALERTS') {
+		} else if (this.props.dashboard.dashboardCurrentTab === 'ALERTS') {
 			view = <DashboardAlerts />;
-		} else if (this.props.dashboardView.dashboardCurrentTab === 'ACCOUNT') {
+		} else if (this.props.dashboard.dashboardCurrentTab === 'ACCOUNT') {
 			view = <DashboardAccount />;
-		} else if (this.props.dashboardView.dashboardCurrentTab === 'HARDWARE') {
+		} else if (this.props.dashboard.dashboardCurrentTab === 'HARDWARE') {
 			view = <DashboardHardware />;
 		}
 
 		return (
 			<div>
+				{this.props.dashboard.loading ? (
+					<div id="loading-overlay">
+						<FoldingCube size={100} id="loading-icon" color="#67d5c6" />
+					</div>
+				) : null}
 				<NavTop />
 				<div className="dashboard">
-					<DashboardFilter
-					// regions={this.state.userRegions}
-					// currentRegion={this.state.selectedRegion}
-					// sensors={this.state.sensors}
-					// handleMapFilter={this.handleMapFilter}
-					// handleRegionSelect={this.handleRegionSelect}
-					// handleRegionDropdown={this.handleRegionDropdown}
-					// handleFilterReset={this.handleFilterReset}
-					// regionSelectDropdown={this.state.regionSelectDropdown}
-					/>
+					<DashboardFilter />
 					<div className="dashboard-main-view">
-						<DashboardHeader
-						// currentRegion={this.state.selectedRegion.region}
-						/>
+						<DashboardHeader />
 						{view}
 					</div>
 				</div>

@@ -42,7 +42,7 @@ const MapComponent = compose(
 		ref={ref => {
 			this.map = ref;
 		}}
-		center={props.position}
+		// center={props.position}
 		options={{
 			disableDefaultUI: true,
 			styles: [
@@ -290,10 +290,10 @@ const MapComponent = compose(
 		}}
 	>
 		{/* {props.bounds && props.setBoundsToAllSensors(this.map)} */}
-		{props.setBoundsToAllSensors(this.map)}
+		{/* {props.setBoundsToAllSensors(this.map)} */}
 		<MarkerClusterer
 			// onClick={props.onMarkerClustererClick}
-			// averageCenter
+			averageCenter
 			enableRetinaIcons
 			zoomOnClick
 			gridSize={20}
@@ -328,8 +328,9 @@ import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
 	return {
-		currentUser: state.currentUser.user,
-		componentVisibility: state.componentVisibility
+		currentUser: state.user,
+		dashboard: state.dashboard,
+		markers: state.sensors.sensors
 	};
 }
 
@@ -341,14 +342,13 @@ export default class DashboardMap extends React.PureComponent {
 				<div className="map">
 					<MapComponent
 						onMarkerClick={this.props.onMarkerClick}
-						position={this.props.position}
+						// position={this.props.position}
 						markers={this.props.markers}
-						bounds={this.props.bounds}
+						// bounds={this.props.bounds}
 					/>
 				</div>
-				{this.props.componentVisibility.dashboardStatusVisibility ? (
+				{this.props.dashboard.dashboardStatusVisibility ? (
 					<DashboardStatus
-						// currentUser={this.props.currentUser}
 						selectedSensor={this.props.selectedSensor}
 						selectedRegion={this.props.selectedRegion}
 					/>

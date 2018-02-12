@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import NicknameForm from '../../../forms/NicknameForm';
 
-import * as DashboardVisibilityActions from '../../../actions/componentVisibility';
-import * as DashboardView from '../../../actions/dashboardView';
+import * as DashboardView from '../../../actions/dashboard';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
 	return {
-		currentUser: state.currentUser.user,
+		currentUser: state.user,
 		region: state.regions
 	};
 }

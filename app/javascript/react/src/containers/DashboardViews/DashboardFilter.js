@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 
 import * as MapFilterActions from '../../actions/regions';
-import * as DashboardVisibilityActions from '../../actions/componentVisibility';
-import * as DashboardViewActions from '../../actions/dashboardView';
+import * as DashboardViewActions from '../../actions/dashboard';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
 	return {
-		currentUser: state.currentUser.user,
+		currentUser: state.user,
 		currentRegion: state.regions.currentRegion,
 		allRegions: state.regions.allRegions,
-		componentVisibility: state.componentVisibility
+		dashboard: state.dashboard
 	};
 }
 
@@ -20,7 +19,6 @@ function mapDispatchToProps(dispatch) {
 		actions: bindActionCreators(
 			{
 				...MapFilterActions,
-				...DashboardVisibilityActions,
 				...DashboardViewActions
 			},
 			dispatch
@@ -96,7 +94,7 @@ class DashboardFilter extends Component {
 						<h5>REGIONS</h5>
 						<h4>{currentRegionTitle}</h4>
 					</div>
-					{this.props.componentVisibility.regionSelectVisibility ? (
+					{this.props.dashboard.regionSelectVisibility ? (
 						<ul id="map-filter-dropdown">{regionNames}</ul>
 					) : null}
 				</div>

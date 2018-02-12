@@ -14,7 +14,7 @@ class SignInForm extends Component {
 	}
 
 	componentWillMount() {
-		if (this.props.currentUser.id) {
+		if (this.props.currentUser) {
 			this.props.dispatch(push('/'));
 			this.props.dispatch(flashNotice({ alert: 'You are already signed in.' }));
 		}

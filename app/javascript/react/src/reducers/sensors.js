@@ -1,25 +1,24 @@
 import {
-	FETCH_SENSOR_DATA,
-	FETCH_SENSOR_DATA_SUCCESS
+	FETCH_SENSOR_DATA_SUCCESS,
+	FETCH_SENSOR_DATA_FAILURE
 } from '../actions/fetchSensorData';
 
 let initialState = {
-	fetchingSensorData: false,
-	sensors: null
+	sensors: null,
+	currentSensor: null
 };
 
-const fetchSensorData = (state = initialState, action) => {
+const sensors = (state = initialState, action) => {
 	switch (action.type) {
-		case FETCH_SENSOR_DATA:
-			return Object.assign({}, state, { fetchingSensorData: true });
 		case FETCH_SENSOR_DATA_SUCCESS:
 			return Object.assign({}, state, {
-				isFetching: false,
 				sensors: action.sensors
 			});
+		case FETCH_SENSOR_DATA_FAILURE:
+			return Object.assign({}, state, {});
 		default:
 			return state;
 	}
 };
 
-export default fetchSensorData;
+export default sensors;

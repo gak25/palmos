@@ -67,7 +67,7 @@ let onSubmit = (values, dispatch) => {
 
 const mapStateToProps = state => {
 	return {
-		currentUser: state.currentUser.user
+		currentUser: state.user
 	};
 };
 
