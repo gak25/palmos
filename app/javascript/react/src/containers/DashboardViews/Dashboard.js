@@ -4,6 +4,7 @@ import { FoldingCube } from 'better-react-spinkit';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import * as SensorActions from '../../actions/fetchSensorData';
 
 import NavTop from './NavTop';
 import DashboardFilter from './DashboardFilter';
@@ -22,7 +23,11 @@ function mapStateToProps(state) {
 	};
 }
 
-@connect(mapStateToProps)
+function mapDispatchToProps(dispatch) {
+	return { actions: bindActionCreators(SensorActions, dispatch) };
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 class Dashboard extends Component {
 	constructor(props) {
 		super(props);
@@ -88,7 +93,7 @@ class Dashboard extends Component {
 	handleFilterReset(event) {}
 
 	handleMarkerClick(marker) {
-		var selectedSensor = [marker];
+		this.props.actions.setCurrentSensor(marker);
 	}
 
 	render() {

@@ -6,8 +6,20 @@ import { setLoading } from './dashboard';
 
 const FETCH_SENSOR_DATA_SUCCESS = 'FETCH_SENSOR_DATA_SUCCESS';
 const FETCH_SENSOR_DATA_FAILURE = 'FETCH_SENSOR_DATA_FAILURE';
+const SET_CURRENT_SENSOR = 'SET_CURRENT_SENSOR';
 
-export { FETCH_SENSOR_DATA_SUCCESS, FETCH_SENSOR_DATA_FAILURE };
+export {
+	FETCH_SENSOR_DATA_SUCCESS,
+	FETCH_SENSOR_DATA_FAILURE,
+	SET_CURRENT_SENSOR
+};
+
+let setCurrentSensor = sensor => {
+	return {
+		type: SET_CURRENT_SENSOR,
+		sensor
+	};
+};
 
 let fetchUpdateSensorSuccess = sensors => {
 	return {
@@ -41,4 +53,9 @@ let fetchSensorData = values => dispatch => {
 		});
 };
 
-export { fetchSensorData, fetchUpdateSensorSuccess, fetchUpdateSensorFailure };
+export {
+	fetchSensorData,
+	fetchUpdateSensorSuccess,
+	fetchUpdateSensorFailure,
+	setCurrentSensor
+};
