@@ -31,6 +31,7 @@ const dashboard = (state = initialState, action) => {
 			return Object.assign({}, state, {
 				dashboardCurrentTab: action.view,
 				dashboardAccountDropdownVisibility: false,
+				dashboardStatusView: action.view == 'OVERVIEW' ? true : false,
 				statusDisplayToggleIcon: action.view == 'OVERVIEW' ? false : true,
 				dashboardFilterVisibility: dropdown,
 				dashboardMapHeaderVisibility: dropdown

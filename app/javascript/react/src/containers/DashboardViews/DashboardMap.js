@@ -28,7 +28,7 @@ const MapComponent = compose(
 		},
 		setBoundsToAllSensors: props => mapRef => {
 			if (Object.keys(props.bounds).length > 0) {
-				// mapRef.setCenter(props.bounds.getCenter());
+				mapRef.setCenter(props.bounds.getCenter());
 				mapRef.fitBounds(props.bounds);
 			}
 		}
@@ -37,7 +37,7 @@ const MapComponent = compose(
 	withGoogleMap
 )(props => (
 	<GoogleMap
-		defaultZoom={12}
+		defaultZoom={10}
 		defaultCenter={{ lat: 42.381511, lng: -71.105099 }}
 		ref={ref => {
 			this.map = ref;
@@ -46,7 +46,7 @@ const MapComponent = compose(
 		options={MapStyles}
 	>
 		{/* {props.bounds && props.setBoundsToAllSensors(this.map)} */}
-		{/* {props.setBoundsToAllSensors(this.map)} */}
+		{/* {props.markers ? props.setBoundsToAllSensors(this.map) : null} */}
 		{props.markers ? (
 			<MarkerClusterer
 				// onClick={props.onMarkerClustererClick}

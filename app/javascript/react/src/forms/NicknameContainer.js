@@ -19,9 +19,7 @@ let onSubmit = (values, dispatch) => {
 		.then(data => {
 			dispatch(clearNotices());
 			// dispatch(flashNotice({ success: `Nickname set to ${data}.` }));
-			dispatch(
-				flashNotice({ success: `Nickname set to INSERT NICKNAME HERE` })
-			);
+			dispatch(flashNotice({ success: `Nickname set!` }));
 		})
 		.catch(error => {
 			dispatch(clearNotices());
