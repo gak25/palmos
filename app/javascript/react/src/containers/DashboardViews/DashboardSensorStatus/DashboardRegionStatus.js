@@ -58,8 +58,8 @@ class DashboardRegionStatus extends Component {
 					/> */}
 				</div>
 				<h5 id="detail-lat-lng">
-					{truncateDecimals(currentRegion.region_latitude, 6)},{' '}
-					{truncateDecimals(currentRegion.region_longitude, 6)}
+					{currentRegion.region_latitude}
+					{currentRegion.region_longitude}
 				</h5>
 				<hr id="sensor-section-divider" />
 			</div>

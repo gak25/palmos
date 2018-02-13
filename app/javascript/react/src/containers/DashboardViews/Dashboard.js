@@ -101,12 +101,13 @@ class Dashboard extends Component {
 	handleMarkerClick(marker) {
 		this.props.actions.setCurrentSensor(marker);
 		this.props.actions.setDashboardStatusView('SENSOR');
+		this.props.actions.setDashboardStatusVisibility(true);
 	}
 
 	render() {
 		var component = null;
 		switch (this.props.dashboard.dashboardCurrentTab) {
-			case 'MAP OVERVIEW':
+			case 'OVERVIEW':
 				component = <DashboardMap onMarkerClick={this.handleMarkerClick} />;
 				break;
 			case 'ANALYTICS':
@@ -138,9 +139,13 @@ class Dashboard extends Component {
 				) : null}
 				<NavTop />
 				<div className="dashboard">
-					<DashboardFilter />
+					{this.props.dashboard.dashboardFilterVisibility ? (
+						<DashboardFilter />
+					) : null}
 					<div className="dashboard-main-view">
-						<DashboardHeader />
+						{this.props.dashboard.dashboardMapHeaderVisibility ? (
+							<DashboardHeader />
+						) : null}
 						{component}
 					</div>
 				</div>

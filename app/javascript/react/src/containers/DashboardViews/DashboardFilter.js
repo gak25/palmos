@@ -10,6 +10,7 @@ function mapStateToProps(state) {
 		currentUser: state.user,
 		currentRegion: state.regions.currentRegion,
 		sensors: state.sensors,
+		sensorList: state.sensors.sensors,
 		regions: state.regions.regions,
 		dashboard: state.dashboard
 	};
@@ -75,10 +76,11 @@ class DashboardFilter extends Component {
 		return (
 			<div className="left-filter">
 				<div id="filter-title">FILTERS</div>
-				{this.props.sensors ? (
+				{this.props.sensorList ? (
 					<div id="filter-status">
-						<div id="current-sensor-count">{this.props.sensors.length} / </div>
-						<div id="total-sensor-count">{this.props.sensors.total}</div>
+						<div id="current-sensor-count">{this.props.sensorList.length}</div>
+						<span id="sensor-count-divider">/</span>
+						<div id="total-sensor-count"> {this.props.sensors.total}</div>
 					</div>
 				) : null}
 				<div onClick={this.handleFilterReset} id="filter-reset">

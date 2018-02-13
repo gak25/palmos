@@ -30,15 +30,12 @@ class DashboardSensorStatus extends Component {
 						<NicknameContainer />
 					</div>
 					<h5 id="detail-lat-lng">
-						{/* {truncateDecimals(this.props.sensor.sensor_latitude, 6)},{' '} */}
 						{this.props.sensor.sensor_latitude}
 						{'   '}
-						{/* {truncateDecimals(this.props.sensor.sensor_longitude, 6)} */}
 						{this.props.sensor.sensor_longitude}
 					</h5>
 					<div id="detail-altitude">
-						Altitude:{' '}
-						{truncateDecimals(this.props.sensor.sensor_altitude_meters, 2)}m
+						Altitude: {this.props.sensor.sensor_altitude_meters}m
 					</div>
 					<hr id="sensor-section-divider" />
 				</div>
@@ -60,9 +57,7 @@ class DashboardSensorStatus extends Component {
 					</div>
 					<div id="detail-status">
 						<h4>Risk Level</h4>
-						<div id="data">
-							{truncateDecimals(this.props.sensor.sensor_risk_level_history, 0)}%
-						</div>
+						<div id="data">{this.props.sensor.sensor_risk_level_history}%</div>
 						<SensorGraph
 							sensor_risk_level_history={
 								this.props.sensor.sensor_risk_level_history
@@ -71,17 +66,11 @@ class DashboardSensorStatus extends Component {
 					</div>
 					<div id="detail-status">
 						<h4>Acceleration x (g) </h4>
-						<div id="data">
-							{truncateDecimals(this.props.sensor.sensor_acc_x, 2)}
-						</div>
+						<div id="data">{this.props.sensor.sensor_acc_x}</div>
 						<h4>Acceleration y (g) </h4>
-						<div id="data">
-							{truncateDecimals(this.props.sensor.sensor_acc_y, 2)}
-						</div>
+						<div id="data">{this.props.sensor.sensor_acc_y}</div>
 						<h4>Acceleration z (g) </h4>
-						<div id="data">
-							{truncateDecimals(this.props.sensor.sensor_acc_z, 2)}
-						</div>
+						<div id="data">{this.props.sensor.sensor_acc_z}</div>
 						{/* <AccelerationGraph
 							acceleration_x={this.state.sensor.sensor_acceleration_x_mGal}
 							acceleration_y={this.state.sensor.sensor_acceleration_y_mGal}
@@ -90,9 +79,7 @@ class DashboardSensorStatus extends Component {
 					</div>
 					<div id="detail-status">
 						<h4>Water Pressure (kPa) </h4>
-						<div id="data">
-							{truncateDecimals(this.props.sensor.sensor_water_pressure, 2)}
-						</div>
+						<div id="data">{this.props.sensor.sensor_water_pressure}</div>
 						<SensorGraph
 							sensor_water_pressure_kPa_history={
 								this.props.sensor.sensor_water_pressure_history

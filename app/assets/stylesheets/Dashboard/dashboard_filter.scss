@@ -26,6 +26,11 @@
 	color: darken($palmos-off-white, 25%);
 }
 
+#sensor-count-divider {
+	margin: 0 5px;
+	color: darken($palmos-off-white, 25%);
+}
+
 #filter-reset {
 	@include no-user-select();
 	cursor: pointer;
