@@ -9,7 +9,8 @@ function mapStateToProps(state) {
 	return {
 		currentUser: state.user,
 		currentRegion: state.regions.currentRegion,
-		allRegions: state.regions.allRegions,
+		sensors: state.sensors,
+		regions: state.regions.regions,
 		dashboard: state.dashboard
 	};
 }
@@ -29,35 +30,29 @@ function mapDispatchToProps(dispatch) {
 @connect(mapStateToProps, mapDispatchToProps)
 class DashboardFilter extends Component {
 	constructor(props) {
-		super();
+		super(props);
 		this.handleRegionSelect = this.handleRegionSelect.bind(this);
 		this.handleFilterReset = this.handleFilterReset.bind(this);
-		this.handleRegionDropdown = this.handleRegionDropdown.bind(this);
 		this.handleMapFilter = this.handleMapFilter.bind(this);
 	}
 	handleRegionSelect(event) {
 		this.props.actions.setCurrentRegion(event.target.id);
-		this.props.actions.setDashboardStatusView('REGION');
+		if (event.target.id) {
+			this.props.actions.setDashboardStatusView('REGION');
+		} else {
+			this.props.actions.setDashboardStatusView('ALL REGIONS');
+		}
 	}
+
 	handleFilterReset(event) {
 		console.log('resetting filter');
 	}
 	handleMapFilter(event) {
 		console.log('filter input: ' + event);
 	}
-	handleRegionDropdown() {
-		this.props.actions.toggleRegionSelectVisibility();
-	}
 
-	render() {
-		var currentRegionTitle;
-		if (this.props.currentRegion) {
-			currentRegionTitle = this.props.currentRegion.region_nickname;
-		} else {
-			currentRegionTitle = 'All Regions';
-		}
-
-		let regionNames = this.props.allRegions.map(region => {
+	buildRegionMenu() {
+		const regionNames = this.props.regions.map(region => {
 			return (
 				<li key={region.id} id={region.id} onClick={this.handleRegionSelect}>
 					{region.region_nickname}
@@ -67,19 +62,25 @@ class DashboardFilter extends Component {
 		regionNames.unshift(
 			<li
 				key={Date.now + Math.random() * 100}
-				id={-1}
+				id={null}
 				onClick={this.handleRegionSelect}
 			>
 				All Regions
 			</li>
 		);
+		return regionNames;
+	}
+
+	render() {
 		return (
 			<div className="left-filter">
 				<div id="filter-title">FILTERS</div>
-				<div id="filter-status">
-					{/* <div id="current-sensor-count">{this.props.sensors.length}</div> */}
-					<div id="total-sensor-count">/total</div>
-				</div>
+				{this.props.sensors ? (
+					<div id="filter-status">
+						<div id="current-sensor-count">{this.props.sensors.length} / </div>
+						<div id="total-sensor-count">{this.props.sensors.total}</div>
+					</div>
+				) : null}
 				<div onClick={this.handleFilterReset} id="filter-reset">
 					RESET
 				</div>
@@ -90,12 +91,19 @@ class DashboardFilter extends Component {
 				/>
 				<hr id="filter-section-divider" />
 				<div className="filter-category">
-					<div id="filter-category-top" onClick={this.handleRegionDropdown}>
+					<div
+						id="filter-category-top"
+						onClick={() => this.props.actions.toggleRegionSelectVisibility()}
+					>
 						<h5>REGIONS</h5>
-						<h4>{currentRegionTitle}</h4>
+						<h4>
+							{this.props.regions.currentRegion
+								? this.props.regions.currentRegion.region_nickname
+								: 'All Regions'}
+						</h4>
 					</div>
 					{this.props.dashboard.regionSelectVisibility ? (
-						<ul id="map-filter-dropdown">{regionNames}</ul>
+						<ul id="map-filter-dropdown">{this.buildRegionMenu()}</ul>
 					) : null}
 				</div>
 				<hr id="filter-section-divider" />

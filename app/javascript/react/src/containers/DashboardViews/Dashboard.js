@@ -63,7 +63,7 @@ class Dashboard extends Component {
 
 	setRegion(region_id) {
 		var bounds;
-		if (region_id != -1) {
+		if (region_id) {
 			let selectedRegion = this.state.userRegions.find(
 				region => region.region.id === region_id
 			);

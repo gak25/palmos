@@ -23,28 +23,28 @@ function mapDispatchToProps(dispatch) {
 class DashboardRegionStatus extends Component {
 	constructor(props) {
 		super(props);
-		this.handleRegionNicknameInput = this.handleRegionNicknameInput.bind(this);
+		// this.handleRegionNicknameInput = this.handleRegionNicknameInput.bind(this);
 	}
 
-	handleRegionNicknameInput(nickname) {
-		fetch(
-			`/api/v1/users/${this.props.currentUser.handle}/regions/${
-				this.props.region.id
-			}`,
-			{
-				credentials: 'same-origin',
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ region_nickname: nickname })
-			}
-		)
-			.then(response => response.json())
-			.then(response => {
-				let region = this.state.region;
-				region.sensor_nickname = response.region_nickname;
-				this.setState({ region: region });
-			});
-	}
+	// handleRegionNicknameInput(nickname) {
+	// 	fetch(
+	// 		`/api/v1/users/${this.props.currentUser.handle}/regions/${
+	// 			this.props.region.id
+	// 		}`,
+	// 		{
+	// 			credentials: 'same-origin',
+	// 			method: 'POST',
+	// 			headers: { 'Content-Type': 'application/json' },
+	// 			body: JSON.stringify({ region_nickname: nickname })
+	// 		}
+	// 	)
+	// 		.then(response => response.json())
+	// 		.then(response => {
+	// 			let region = this.state.region;
+	// 			region.sensor_nickname = response.region_nickname;
+	// 			this.setState({ region: region });
+	// 		});
+	// }
 
 	render() {
 		const currentRegion = this.props.region.currentRegion;

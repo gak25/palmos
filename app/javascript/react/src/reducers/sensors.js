@@ -7,6 +7,7 @@ import {
 
 let initialState = {
 	sensors: null,
+	total: null,
 	currentSensor: null
 };
 
@@ -15,8 +16,10 @@ const sensors = (state = initialState, action) => {
 		case FETCH_SENSOR_DATA:
 			return Object.assign({}, state, {});
 		case FETCH_SENSOR_DATA_SUCCESS:
+			var total = action.sensors.length;
 			return Object.assign({}, state, {
-				sensors: action.sensors
+				sensors: action.sensors,
+				total: total
 			});
 		case SET_CURRENT_SENSOR:
 			return Object.assign({}, state, { currentSensor: action.sensor });

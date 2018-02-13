@@ -1,8 +1,8 @@
 import { SET_MAP_CURRENT_REGION } from '../actions/regions';
 
-var initialRegionState = {
+var initialState = {
 	currentRegion: null,
-	allRegions: [
+	regions: [
 		{
 			id: '101',
 			region_nickname: "Artisan's Asylum",
@@ -22,12 +22,15 @@ var initialRegionState = {
 	]
 };
 
-const regions = (state = initialRegionState, action) => {
+const regions = (state = initialState, action) => {
 	switch (action.type) {
 		case SET_MAP_CURRENT_REGION:
-			var region = state.allRegions.find(
-				region => region.id === action.region_id
-			);
+			var region = null;
+			if (action.region_id) {
+				var region = state.regions.find(
+					region => region.id === action.region_id
+				);
+			}
 			return {
 				...state,
 				currentRegion: region
