@@ -30,10 +30,10 @@ import sensors from '../react/src/reducers/sensors';
 const history = createBrowserHistory();
 
 const middlewares = [
+	thunkMiddleware,
 	createLogger({
 		collapsed: true
 	}),
-	thunkMiddleware,
 	routerMiddleware(history)
 ];
 

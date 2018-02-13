@@ -75,7 +75,7 @@ input:not([type='checkbox']) {
 }
 
 .form-submit-button {
-	// visibility: hidden;
+	visibility: hidden;
 }
 
 #lock-icon {
@@ -107,4 +107,8 @@ input:not([type='checkbox']) {
 	&:hover {
 		color: $palmos-turquoise;
 	}
+}
+
+.sensor-nickname-form {
+	margin-top: 5%;
 }

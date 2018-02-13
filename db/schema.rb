@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180209212429) do
+ActiveRecord::Schema.define(version: 20180212162435) do
 
   create_table "Open_Source_office", primary_key: "datetime", id: :datetime, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "city", limit: 20
@@ -214,6 +214,7 @@ ActiveRecord::Schema.define(version: 20180209212429) do
     t.float "sensor_humidity_percentage", limit: 24, default: 0.0, null: false
     t.float "sensor_distance", limit: 24
     t.bigint "user_id"
+    t.string "sensor_nickname"
     t.index ["user_id"], name: "index_sensors_on_user_id"
   end
 

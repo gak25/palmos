@@ -323,12 +323,10 @@ const MapComponent = compose(
 	</GoogleMap>
 ));
 
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
 	return {
-		currentUser: state.user,
 		dashboard: state.dashboard,
 		markers: state.sensors.sensors
 	};
@@ -348,10 +346,7 @@ export default class DashboardMap extends React.PureComponent {
 					/>
 				</div>
 				{this.props.dashboard.dashboardStatusVisibility ? (
-					<DashboardStatus
-						selectedSensor={this.props.selectedSensor}
-						selectedRegion={this.props.selectedRegion}
-					/>
+					<DashboardStatus />
 				) : null}
 			</div>
 		);

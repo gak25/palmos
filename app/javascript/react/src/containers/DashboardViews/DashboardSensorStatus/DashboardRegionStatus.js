@@ -15,7 +15,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		actions: bindActionCreators(...DashboardView, dispatch)
+		actions: bindActionCreators(DashboardView, dispatch)
 	};
 }
 

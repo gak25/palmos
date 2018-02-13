@@ -4,7 +4,8 @@ import { FoldingCube } from 'better-react-spinkit';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as SensorActions from '../../actions/fetchSensorData';
+import * as SensorActions from '../../actions/getSensorData';
+import * as DashboardActions from '../../actions/dashboard';
 
 import NavTop from './NavTop';
 import DashboardFilter from './DashboardFilter';
@@ -24,7 +25,12 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return { actions: bindActionCreators(SensorActions, dispatch) };
+	return {
+		actions: bindActionCreators(
+			{ ...SensorActions, ...DashboardActions },
+			dispatch
+		)
+	};
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -94,22 +100,33 @@ class Dashboard extends Component {
 
 	handleMarkerClick(marker) {
 		this.props.actions.setCurrentSensor(marker);
+		this.props.actions.setDashboardStatusView('SENSOR');
 	}
 
 	render() {
-		let view = null;
-		if (this.props.dashboard.dashboardCurrentTab === 'MAP OVERVIEW') {
-			view = <DashboardMap onMarkerClick={this.handleMarkerClick} />;
-		} else if (this.props.dashboard.dashboardCurrentTab === 'ANALYTICS') {
-			view = <DashboardAnalytics />;
-		} else if (this.props.dashboard.dashboardCurrentTab === 'DATA') {
-			view = <DashboardData />;
-		} else if (this.props.dashboard.dashboardCurrentTab === 'ALERTS') {
-			view = <DashboardAlerts />;
-		} else if (this.props.dashboard.dashboardCurrentTab === 'ACCOUNT') {
-			view = <DashboardAccount />;
-		} else if (this.props.dashboard.dashboardCurrentTab === 'HARDWARE') {
-			view = <DashboardHardware />;
+		var component = null;
+		switch (this.props.dashboard.dashboardCurrentTab) {
+			case 'MAP OVERVIEW':
+				component = <DashboardMap onMarkerClick={this.handleMarkerClick} />;
+				break;
+			case 'ANALYTICS':
+				component = <DashboardAnalytics />;
+				break;
+			case 'DATA':
+				component = <DashboardData />;
+				break;
+			case 'ALERTS':
+				component = <DashboardAlerts />;
+				break;
+			case 'ACCOUNT':
+				component = <DashboardAccount />;
+				break;
+			case 'HARDWARE':
+				component = <DashboardHardware />;
+				break;
+			default:
+				component = <DashboardStatusOverview />;
+				break;
 		}
 
 		return (
@@ -124,7 +141,7 @@ class Dashboard extends Component {
 					<DashboardFilter />
 					<div className="dashboard-main-view">
 						<DashboardHeader />
-						{view}
+						{component}
 					</div>
 				</div>
 			</div>
