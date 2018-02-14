@@ -56,14 +56,40 @@ const MapComponent = compose(
 				gridSize={20}
 			>
 				{props.markers.map(marker => {
+					var NSEW = /[NSEW]/;
+					var latitude;
+					switch (marker.sensor_latitude.match(NSEW)[0]) {
+						case 'N':
+							latitude = Math.abs(parseFloat(marker.sensor_latitude));
+							break;
+						case 'S':
+							latitude = parseFloat(marker.sensor_latitude) * -1;
+							break;
+						default:
+							// set lat and lng equal to redux map reducer default position
+							break;
+					}
+					var longitude;
+					switch (marker.sensor_longitude.match(NSEW)[0]) {
+						case 'E':
+							longitude = Math.abs(parseFloat(marker.sensor_longitude));
+							break;
+						case 'W':
+							longitude = parseFloat(marker.sensor_longitude) * -1;
+							break;
+						default:
+							// set lat and lng equal to redux map reducer default position
+							break;
+					}
+
 					return (
 						<Marker
 							onClick={props.onMarkerClick.bind(this, marker)}
 							icon={MarkerStyles(google)}
 							key={marker.id}
 							position={{
-								lat: marker.sensor_latitude,
-								lng: marker.sensor_longitude
+								lat: latitude,
+								lng: longitude
 							}}
 						/>
 					);

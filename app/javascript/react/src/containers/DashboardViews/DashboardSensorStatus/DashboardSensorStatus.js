@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as SensorActions from '../../../actions/getSensorData';
 
+import { Circle } from 'better-react-spinkit';
+
 import NicknameContainer from '../../../forms/NicknameContainer';
 import SensorGraph from './SensorGraph';
 import AccelerationGraph from './AccelerationGraph';
@@ -11,7 +13,8 @@ import AccelerationGraph from './AccelerationGraph';
 function mapStateToProps(state) {
 	return {
 		currentUser: state.users.user,
-		sensor: state.sensors.currentSensor
+		sensor: state.sensors.currentSensor,
+		fetching: state.sensors.loading
 	};
 }
 
@@ -27,6 +30,7 @@ class DashboardSensorStatus extends Component {
 				<div id="current-detail">
 					<div id="current-detail-name">
 						<div>Sensor ID: {this.props.sensor.id}</div>
+						{this.props.fetching ? <Circle id="sensor-loading-icon" /> : null}
 						<NicknameContainer />
 					</div>
 					<div className="sensor-top-detail">
@@ -36,7 +40,13 @@ class DashboardSensorStatus extends Component {
 							style={{ marginRight: 8 }}
 						/>
 						{this.props.sensor.sensor_latitude}
-						{'   '},
+					</div>
+					<div className="sensor-top-detail">
+						<i
+							className="fa fa-map-marker"
+							aria-hidden="true"
+							style={{ marginRight: 8 }}
+						/>
 						{this.props.sensor.sensor_longitude}
 					</div>
 					<div className="sensor-top-detail">

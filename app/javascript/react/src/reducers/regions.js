@@ -8,16 +8,16 @@ var initialState = {
 			region_nickname: "Artisan's Asylum",
 			region_city: 'Somerville',
 			region_state_code: 'MA',
-			region_latitude: 40.82590937,
-			region_longitude: 71.37393774
+			region_latitude: '40.82590937N',
+			region_longitude: '71.37393774W'
 		},
 		{
 			id: '102',
 			region_nickname: "Martha's Vineyard",
 			region_city: "Martha's Vineyard",
 			region_state_code: 'MA',
-			region_latitude: 41.836794,
-			region_longitude: 70.73580309
+			region_latitude: '41.836794N',
+			region_longitude: '70.73580309W'
 		}
 	]
 };
