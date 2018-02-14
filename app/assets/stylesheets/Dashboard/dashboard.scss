@@ -42,7 +42,12 @@ $map-status-width: 275px;
 		width: $map-filter-width;
 	}
 	.right-status {
-		height: 100%;
+		position: absolute;
+		right: 0;
+		top: $map-header-height;
+		bottom: $map-header-height;
+		background: rgba(248, 249, 251, 0.9);
+		height: calc(100% - 50px);
 		width: $map-status-width;
 	}
 	.dashboard {
@@ -55,7 +60,6 @@ $map-status-width: 275px;
 
 #nav-palmos {
 	@include no-user-select();
-	// background-image: url('./images/palmos_text.png');
 	z-index: 19;
 	position: relative;
 	float: left;
@@ -153,5 +157,5 @@ $map-status-width: 275px;
 	order: 2;
 	z-index: 5;
 	box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
-	background-color: $palmos-off-white;
+	background: rgba(248, 249, 251, 0.9);
 }

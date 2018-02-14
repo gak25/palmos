@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 
 class DashboardStatusOverview extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 		return (
 			<div id="current-detail">

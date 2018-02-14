@@ -1,4 +1,6 @@
 class Api::V1::SensorsController < Api::ApiController
+  skip_before_action :verify_authenticity_token
+
   def index
     @sensors = Sensor.where(user: current_user)
     render json: @sensors
@@ -42,10 +44,10 @@ class Api::V1::SensorsController < Api::ApiController
     # puts response_to_hash
 
     if Sensor.exists?(response_to_hash[:id])
-      # puts "SENSOR ALREADY EXISTS - updating"
+      puts "SENSOR ALREADY EXISTS - updating"
       Sensor.update(response_to_hash)
     else
-      # puts "SENSOR DOES NOT EXIST - creating"
+      puts "SENSOR DOES NOT EXIST - creating"
       Sensor.new(response_to_hash)
       if Sensor.save
         puts "Saved successfully"

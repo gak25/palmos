@@ -9,12 +9,8 @@ import Password from '../components/formFields/Password';
 import TextInput from '../components/formFields/TextInput';
 
 class SignUpForm extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	componentWillMount() {
-		if (this.props.currentUser.id) {
+		if (this.props.currentUser) {
 			this.props.dispatch(push('/'));
 			this.props.dispatch(flashNotice({ alert: 'You are already signed in.' }));
 		}
@@ -26,22 +22,44 @@ class SignUpForm extends Component {
 				<form className="register-forms" onSubmit={this.props.handleSubmit}>
 					<i className="fa fa-user fa-4x" id="lock-icon" aria-hidden="true" />
 					<div className="form-inputs">
-						<Field name="handle" label="Username" component={TextInput} />
-						<Field name="email" label="Email" component={TextInput} />
+						<Field
+							name="handle"
+							label="Username"
+							className="credentials"
+							component={TextInput}
+						/>
+						<Field
+							name="email"
+							label="Email"
+							className="credentials"
+							component={TextInput}
+						/>
 						<div>
 							<Field
 								name="firstName"
 								label="First name"
+								className="credentials"
 								component={TextInput}
 							/>
 						</div>
 						<div>
-							<Field name="lastName" label="Last name" component={TextInput} />
+							<Field
+								name="lastName"
+								label="Last name"
+								className="credentials"
+								component={TextInput}
+							/>
 						</div>
-						<Field name="password" label="Password" component={Password} />
+						<Field
+							name="password"
+							label="Password"
+							className="credentials"
+							component={Password}
+						/>
 						<Field
 							name="passwordConfirmation"
 							label="Password confirmation"
+							className="credentials"
 							component={Password}
 						/>
 					</div>

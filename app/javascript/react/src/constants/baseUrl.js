@@ -6,7 +6,6 @@ switch (process.env.NODE_ENV) {
 		break;
 	default:
 		baseUrl = 'http://localhost:3000';
-	// baseUrl = 'https://nsnradkerk.localtunnel.me';
 }
 
 export default baseUrl;

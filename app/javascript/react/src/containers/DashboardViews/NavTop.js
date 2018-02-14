@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import logo from '/app/assets/images/palmos_text.png';
-
 import * as DashboardViewActions from '../../actions/dashboard';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -8,6 +6,8 @@ import { connect } from 'react-redux';
 function mapStateToProps(state) {
 	return {
 		currentUser: state.user,
+		dashboardAccountDropdownVisibility:
+			state.dashboard.dashboardAccountDropdownVisibility,
 		dashboardCurrentView: state.dashboard.dashboardCurrentView
 	};
 }
@@ -18,36 +18,20 @@ function mapDispatchToProps(dispatch) {
 
 @connect(mapStateToProps, mapDispatchToProps)
 class NavTop extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			dropdown: false
-		};
-		this.handleDropdown = this.handleDropdown.bind(this);
-	}
-
-	handleDropdown(event) {
-		event.preventDefault();
-		this.setState({ dropdown: !this.state.dropdown });
-	}
-
 	render() {
-		let navDropdown = null;
-		if (this.state.dropdown) {
-			navDropdown = (
-				<div className="account-dropdown">
-					<div onClick={() => this.props.actions.setDashboardViewToAccount()}>
-						Account
-					</div>
-					<div onClick={() => this.props.actions.setDashboardViewToHardware()}>
-						Hardware
-					</div>
-					<a href="/sign-out" methods="delete">
-						Sign Out
-					</a>
+		const accountDropdown = (
+			<div className="account-dropdown">
+				<div onClick={() => this.props.actions.setDashboardView('ACCOUNT')}>
+					Account
 				</div>
-			);
-		}
+				<div onClick={() => this.props.actions.setDashboardView('HARDWARE')}>
+					Hardware
+				</div>
+				<a href="/sign-out" methods="delete">
+					Sign Out
+				</a>
+			</div>
+		);
 
 		return (
 			<div>
@@ -58,37 +42,39 @@ class NavTop extends Component {
 					<div className="header-overview">
 						<div
 							className="nav-tab"
-							onClick={() => this.props.actions.setDashboardViewToOverview()}
+							onClick={() => this.props.actions.setDashboardView('OVERVIEW')}
 						>
 							OVERVIEW
 						</div>
 						<div
 							className="nav-tab"
-							onClick={() => this.props.actions.setDashboardViewToAnalytics()}
+							onClick={() => this.props.actions.setDashboardView('ANALYTICS')}
 						>
 							ANALYTICS
 						</div>
 						<div
 							className="nav-tab"
-							onClick={() => this.props.actions.setDashboardViewToData()}
+							onClick={() => this.props.actions.setDashboardView('DATA')}
 						>
 							DATA
 						</div>
 						<div
 							className="nav-tab"
-							onClick={() => this.props.actions.setDashboardViewToAlerts()}
+							onClick={() => this.props.actions.setDashboardView('ALERTS')}
 						>
 							ALERTS
 						</div>
 						<div
 							className="nav-tab"
 							id="account-dropdown-tab"
-							onClick={this.handleDropdown}
+							onClick={() => this.props.actions.toggleAccountDropdown()}
 						>
 							<i className="fa fa-user-circle fa-2x" aria-hidden="true" />
 							<i className="fa fa-chevron-down" aria-hidden="true" />
 						</div>
-						{navDropdown}
+						{this.props.dashboardAccountDropdownVisibility
+							? accountDropdown
+							: null}
 					</div>
 				</div>
 			</div>

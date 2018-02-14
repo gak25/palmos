@@ -1,65 +1,67 @@
 import React, { Component } from 'react';
-import NicknameForm from '../../../forms/NicknameForm';
+
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as SensorActions from '../../../actions/getSensorData';
+
+import { Circle } from 'better-react-spinkit';
+
+import NicknameContainer from '../../../forms/NicknameContainer';
 import SensorGraph from './SensorGraph';
 import AccelerationGraph from './AccelerationGraph';
 
+function mapStateToProps(state) {
+	return {
+		currentUser: state.users.user,
+		sensor: state.sensors.currentSensor,
+		fetching: state.sensors.loading
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return { actions: bindActionCreators(SensorActions, dispatch) };
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 class DashboardSensorStatus extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			sensor: {}
-		};
-		this.handleNicknameInput = this.handleNicknameInput.bind(this);
-	}
-
-	handleNicknameInput(nickname) {
-		fetch(
-			`/api/v1/users/${this.props.currentUser.handle}/sensors/${
-				this.state.sensor.id
-			}`,
-			{
-				credentials: 'same-origin',
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ nickname: nickname })
-			}
-		)
-			.then(response => response.json())
-			.then(response => {
-				let sensor = this.state.sensor;
-				sensor.sensor_nickname = response.sensor_nickname;
-				this.setState({ sensor: sensor });
-			});
-	}
-
-	componentWillMount() {
-		this.setState({ sensor: this.props.sensor[0] });
-	}
-
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.sensor != this.props.sensor) {
-			this.setState({ sensor: nextProps.sensor[0] });
-		}
-	}
-
 	render() {
 		return (
 			<div>
 				<div id="current-detail">
 					<div id="current-detail-name">
-						<div>Sensor ID: {this.state.sensor.id}</div>
-						<NicknameForm
-							changeNickname={this.handleNicknameInput}
-							nickname={this.state.sensor.sensor_nickname}
-						/>
+						<div>Sensor ID: {this.props.sensor.id}</div>
+						{this.props.fetching ? <Circle id="sensor-loading-icon" /> : null}
+						<NicknameContainer />
 					</div>
-					<h5 id="detail-lat-lng">
-						{truncateDecimals(this.state.sensor.sensor_latitude, 6)},{' '}
-						{truncateDecimals(this.state.sensor.sensor_longitude, 6)}
-					</h5>
-					<div id="detail-altitude">
-						Altitude:{' '}
-						{truncateDecimals(this.state.sensor.sensor_altitude_meters, 2)}m
+					<div className="sensor-top-detail">
+						<i
+							className="fa fa-map-marker"
+							aria-hidden="true"
+							style={{ marginRight: 8 }}
+						/>
+						{this.props.sensor.sensor_latitude}
+					</div>
+					<div className="sensor-top-detail">
+						<i
+							className="fa fa-map-marker"
+							aria-hidden="true"
+							style={{ marginRight: 8 }}
+						/>
+						{this.props.sensor.sensor_longitude}
+					</div>
+					<div className="sensor-top-detail">
+						<i
+							className="fa fa-caret-up"
+							aria-hidden="true"
+							style={{ marginRight: 8 }}
+						/>
+						{this.props.sensor.sensor_altitude_meters}m
+					</div>
+					<div className="sensor-top-detail">
+						<div style={{ display: 'block', marginTop: 8 }}>
+							Last connection:
+						</div>
+						{this.props.sensor.updated_at}
 					</div>
 					<hr id="sensor-section-divider" />
 				</div>
@@ -77,55 +79,64 @@ class DashboardSensorStatus extends Component {
 					</div>
 					<div id="detail-status">
 						<h4>Health</h4>
-						<div id="data">{this.state.sensor.sensor_status.toUpperCase()}</div>
+						<div
+							id="data"
+							style={getHealthColor(this.props.sensor.sensor_status)}
+						>
+							{this.props.sensor.sensor_status.toUpperCase()}
+						</div>
 					</div>
 					<div id="detail-status">
 						<h4>Risk Level</h4>
-						<div id="data">
-							{truncateDecimals(this.state.sensor.sensor_risk_level, 0)}%
+						<div
+							id="data"
+							style={getRiskColor(this.props.sensor.sensor_risk_level)}
+						>
+							{this.props.sensor.sensor_risk_level.toString()}%
 						</div>
 						<SensorGraph
 							sensor_risk_level_history={
-								this.state.sensor.sensor_risk_level_history
+								this.props.sensor.sensor_risk_level_history
 							}
 						/>
 					</div>
 					<div id="detail-status">
 						<h4>Acceleration x (g) </h4>
-						<div id="data">
-							{truncateDecimals(
-								this.state.sensor.sensor_acceleration_x_mGal,
-								2
-							)}
-						</div>
+						<div id="data">{this.props.sensor.sensor_acc_x}</div>
 						<h4>Acceleration y (g) </h4>
-						<div id="data">
-							{truncateDecimals(
-								this.state.sensor.sensor_acceleration_y_mGal,
-								2
-							)}
-						</div>
+						<div id="data">{this.props.sensor.sensor_acc_y}</div>
 						<h4>Acceleration z (g) </h4>
-						<div id="data">
-							{truncateDecimals(
-								this.state.sensor.sensor_acceleration_z_mGal,
-								2
-							)}
-						</div>
+						<div id="data">{this.props.sensor.sensor_acc_z}</div>
 						{/* <AccelerationGraph
-							acceleration_x={this.state.sensor.sensor_acceleration_x_mGal}
-							acceleration_y={this.state.sensor.sensor_acceleration_y_mGal}
-							acceleration_z={this.state.sensor.sensor_acceleration_z_mGal}
+							acceleration_x={this.props.sensor.sensor_acc_x}
+							acceleration_y={this.props.sensor.sensor_acc_y}
+							acceleration_z={this.props.sensor.sensor_acc_z}
 						/> */}
 					</div>
 					<div id="detail-status">
+						<h4>Speed </h4>
+						<div id="data">{this.props.sensor.sensor_speed}kn</div>
+					</div>
+					<div id="detail-status">
+						<h4>Angle </h4>
+						<div id="data">{this.props.sensor.sensor_angle}°</div>
+					</div>
+					<div id="detail-status">
+						<h4>Temperature </h4>
+						<div id="data">{this.props.sensor.sensor_temp_celcius}°C</div>
+					</div>
+					<div id="detail-status">
+						<h4>Humidity </h4>
+						<div id="data">{this.props.sensor.sensor_humidity_percentage}%</div>
+					</div>
+					<div id="detail-status">
+						<h4>Water Distance </h4>
+						<div id="data">{this.props.sensor.sensor_distance}</div>
 						<h4>Water Pressure (kPa) </h4>
-						<div id="data">
-							{truncateDecimals(this.state.sensor.sensor_water_pressure_kPa, 2)}
-						</div>
+						<div id="data">{this.props.sensor.sensor_water_pressure}</div>
 						<SensorGraph
 							sensor_water_pressure_kPa_history={
-								this.state.sensor.sensor_water_pressure_kPa_history
+								this.props.sensor.sensor_water_pressure_history
 							}
 						/>
 					</div>

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 
+import { connect } from 'react-redux';
+
 import DashboardStatusOverview from './DashboardStatusOverview';
 import DashboardRegionStatus from './DashboardRegionStatus';
 import DashboardSensorStatus from './DashboardSensorStatus';
-
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
 	return {

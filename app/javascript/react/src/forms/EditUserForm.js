@@ -5,10 +5,6 @@ import Password from '../components/formFields/Password';
 import TextInput from '../components/formFields/TextInput';
 
 class EditUserForm extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 		return (
 			<form className="register-forms" onSubmit={this.props.handleSubmit}>

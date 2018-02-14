@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import EditUserForm from '../../forms/EditUserFormContainer';
 
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
 	return {
-		currentUser: state.user
+		currentUser: state.users.user
 	};
 }
 

@@ -9,10 +9,6 @@ import Password from '../components/formFields/Password';
 import TextInput from '../components/formFields/TextInput';
 
 class SignInForm extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	componentWillMount() {
 		if (this.props.currentUser) {
 			this.props.dispatch(push('/'));
@@ -35,11 +31,13 @@ class SignInForm extends Component {
 						<Field
 							name="login"
 							label="Email or username"
+							className="credentials"
 							component={TextInput}
 						/>
 						<Field
 							name="password"
 							label="Password"
+							className="credentials"
 							// showForgotLink={true}
 							component={Password}
 						/>
