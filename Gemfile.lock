@@ -83,6 +83,10 @@ GEM
     docile (1.1.5)
     doorkeeper (4.2.6)
       railties (>= 4.2)
+    dotenv (2.2.1)
+    dotenv-rails (2.2.1)
+      dotenv (= 2.2.1)
+      railties (>= 3.2, < 5.2)
     erubi (1.7.0)
     execjs (2.7.0)
     factory_bot (4.8.2)
@@ -270,6 +274,7 @@ DEPENDENCIES
   capybara
   capybara-email
   doorkeeper
+  dotenv-rails
   factory_bot_rails
   faker
   font-awesome-rails (~> 4.5)
