@@ -16,8 +16,13 @@ class HomeController < ApplicationController
     @phone = params["phone"]
     @comments = params["comments"]
 
-    UserMailer.contact(@name, @from_email).deliver_now
-    UserMailer.palmos_summary(@name, @from_email, @location, @phone, @comments).deliver_now
+    if UserMailer.contact(@name, @from_email).deliver_now
+      flash[:success] = "Thanks for the email #{@name}! We will be in touch with you shortly."
+    else
+      flash[:success] = " Sorry #{@name}, we weren't able to send an email to #{@from_email}. Is the email spelled correctly?"
+    end
+
+    # UserMailer.palmos_summary(@name, @from_email, @location, @phone, @comments).deliver_now
 
     redirect_to '/'
   end
