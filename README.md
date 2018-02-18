@@ -55,6 +55,8 @@ _these secrets will be encrypted and are safe for production builds_
 * run `bin/rails secrets:edit` - if secret key is required, <a href="mailto:drewjamesandre@gmail.com">contact Drew</a>
 * _example:_ secret_gmail_username: "me@gmail.com"
 * save file and close - secrets will be encrypted and available through `Rails.application.secrets.secret_gmail_username`
+  _On Heroku, the application’s environment variables are managed from the heroku CLI:_
+  `$ heroku config:set SECRET_TOKEN=...` or from the [web dashboard]("https://dashboard.heroku.com/apps/my-app/settings")
 
 ## To run webpack independently from Puma server (not needed if running `foreman start`:
 

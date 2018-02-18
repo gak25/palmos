@@ -66,7 +66,5 @@ document.addEventListener('DOMContentLoaded', () => {
 			</Provider>,
 			target
 		);
-	} else {
-		console.log('Error locating React root!');
 	}
 });
