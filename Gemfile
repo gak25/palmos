@@ -18,10 +18,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'webpacker'
 gem 'perlin_noise'
 gem 'capistrano-rails', group: :development
+gem 'dotenv-rails', :groups => [:development, :test]
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'dotenv-rails'
   gem 'rspec-rails', '~> 3.6'
   gem 'capybara'
   gem 'capybara-email'
