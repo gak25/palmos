@@ -27,23 +27,16 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
-  # config.action_mailer.default_url_options = { host: "localhost:3000" }
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = { address: "localhost", port: 1025 }
-  # config.action_mailer.perform_caching = false
-  #
-  # config.action_mailer.perform_caching = false
   config.action_mailer.default_url_options = { host: "#{Rails.application.class.parent_name.downcase}.#{Rails.application.secrets.secret_gmail_domain}" }
-    config.action_mailer.delivery_method = :sendmail
+    config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
       :address        => "smtp.gmail.com",
       :port           => 587,
-      :domain         => Rails.application.secrets.secret_gmail_domain,
+      :domain         => "#{Rails.application.class.parent_name.downcase}.#{Rails.application.secrets.secret_gmail_domain}",
       :authentication => :plain,
-      :user_name      => Rails.application.secrets.secret_gmail_username,
-      :password       => Rails.application.secrets.secret_gmail_password,
+      :user_name      => "#{Rails.application.secrets.secret_gmail_username}",
+      :password       => "#{Rails.application.secrets.secret_gmail_password}",
       :enable_starttls_auto => true
     }
 

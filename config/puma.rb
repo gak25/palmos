@@ -1,7 +1,5 @@
-if Rails.env === "development" || Rails.env === "test"
-  require "dotenv-rails"
-  Dotenv.load(".env")
-end
+require "dotenv-rails"
+Dotenv.load(".env")
 
 # Puma can serve each request in a thread from an internal thread pool.
 # The `threads` method setting takes two numbers: a minimum and maximum.
