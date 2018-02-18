@@ -22,7 +22,7 @@ class HomeController < ApplicationController
       flash[:success] = " Sorry #{@name}, we weren't able to send an email to #{@from_email}. Is the email spelled correctly?"
     end
 
-    # UserMailer.palmos_summary(@name, @from_email, @location, @phone, @comments).deliver_now
+    UserMailer.palmos_summary(@name, @from_email, @location, @phone, @comments).deliver_now
 
     redirect_to '/'
   end
