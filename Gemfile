@@ -18,7 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'webpacker'
 gem 'perlin_noise'
 gem 'capistrano-rails', group: :development
-gem 'dotenv-rails', :groups => [:development, :test]
+gem 'dotenv-rails', :groups => [:development, :test], require: 'dotenv/rails-now'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -29,8 +29,8 @@ group :development, :test do
   gem 'simplecov', require: false
   gem 'valid_attribute'
   gem "factory_bot_rails"
-  gem 'pry'
   gem 'launchy'
+  gem 'pry'
   gem "brakeman", :require => false
 end
 
