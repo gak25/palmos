@@ -68,10 +68,10 @@ Rails.application.configure do
     config.action_mailer.smtp_settings = {
       :address        => "smtp.gmail.com",
       :port           => 587,
-      :domain         => Rails.application.secrets.secret_gmail_domain,
+      :domain         => "#{Rails.application.secrets.secret_gmail_domain}",
       :authentication => :plain,
-      :user_name      => Rails.application.secrets.secret_gmail_username,
-      :password       => Rails.application.secrets.secret_gmail_password,
+      :user_name      => "#{Rails.application.secrets.secret_gmail_username}",
+      :password       => "#{Rails.application.secrets.secret_gmail_password}",
       :enable_starttls_auto => true
     }
     config.action_mailer.perform_caching = false
