@@ -68,11 +68,8 @@ Rails.application.configure do
     config.action_mailer.smtp_settings = {
       :address        => "smtp.gmail.com",
       :port           => 587,
-      # :domain         => "#{Rails.application.class.parent_name.downcase}.#{Rails.application.secrets.secret_gmail_domain}",
       :authentication => :plain,
-      # :user_name      => "#{Rails.application.secrets.secret_gmail_username}",
-      # :password       => "#{Rails.application.secrets.secret_gmail_password}",
-      :domain         =>  "palmos.co",
+      :domain         =>  ENV["SECRET_GMAIL_FULL_DOMAIN"],
       :user_name      =>  ENV["SECRET_GMAIL_USERNAME"],
       :password       =>  ENV["SECRET_GMAIL_PASSWORD"],
       :enable_starttls_auto => true

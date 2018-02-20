@@ -7,6 +7,7 @@ class Api::V1::UsersController < Api::ApiController
     user.password = params[:password]
     user.password_confirmation = params[:password_confirmation]
     if user.save
+      sign_in(user)
       # user.send_confirmation_email
       render json: user, status: :created
     else

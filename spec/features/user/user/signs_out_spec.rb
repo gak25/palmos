@@ -5,7 +5,7 @@ feature "user signs out" do
     sign_in(FactoryBot.create(:user))
     click_link "Sign Out"
 
-    expect(page).to have_content("Signed out.")
+    expect(page).to have_content("Signed out")
   end
 
   xscenario "unauthenticated user attempts to sign out" do

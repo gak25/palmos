@@ -18,10 +18,10 @@ let fetchCreateUser = () => {
 	};
 };
 
-let fetchCreateUserSucess = newUser => {
+let fetchCreateUserSucess = currentUser => {
 	return {
 		type: FETCH_CREATE_USER_SUCCESS,
-		newUser
+		currentUser
 	};
 };
 
@@ -34,7 +34,7 @@ let fetchCreateUserFailure = () => {
 let createUser = values => dispatch => {
 	dispatch(fetchCreateUser());
 	let payload = JSON.stringify(humps.decamelizeKeys(values));
-	return fetch(`${baseUrl}/api/v1/users/create`, {
+	return fetch(`${baseUrl}/api/v1/users.json`, {
 		credentials: 'same-origin',
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },

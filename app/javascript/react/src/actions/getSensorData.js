@@ -72,7 +72,7 @@ let fetchUpdateSensorFailure = () => {
 
 let getSensorData = () => dispatch => {
 	dispatch(fetchSensorData());
-	return fetch(`${baseUrl}/api/v1/users/sensors`, {
+	return fetch(`${baseUrl}/api/v1/users/sensors.json`, {
 		credentials: 'same-origin',
 		method: 'GET',
 		headers: { 'Content-Type': 'application/json' }

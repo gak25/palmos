@@ -1,16 +1,15 @@
 source 'https://rubygems.org'
 
-gem "active_model_serializers", "~> 0.10.0"
+gem 'active_model_serializers', '~> 0.10.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'doorkeeper'
 gem 'faker'
 gem 'font-awesome-rails', '~> 4.5'
 gem 'geocoder'
 gem 'jbuilder', '~> 2.5'
-gem "jquery-rails"
-gem "oauth2"
+gem 'jquery-rails'
+gem 'oauth2'
 gem 'mysql2'
-gem 'yaml_db'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.4'
 gem 'sass-rails', '~> 5.0'
@@ -28,10 +27,10 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'simplecov', require: false
   gem 'valid_attribute'
-  gem "factory_bot_rails"
+  gem 'factory_bot_rails'
   gem 'launchy'
   gem 'pry'
-  gem "brakeman", :require => false
+  gem 'brakeman', :require => false
 end
 
 group :development do

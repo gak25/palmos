@@ -6,14 +6,14 @@ Rails.application.routes.draw do
   get "sign-out", to: "sessions#destroy"
   get "sign-up", to: "users#new", as: :sign_up
 
-  post "contact", to: "home#contact"
+  post "contact", to: "mailer#contact"
 
   namespace :api do
     namespace :v1 do
       get "me", to: "users#show"
       resources :password_resets, only: [:create, :update]
       resources :sessions, only: [:create]
-      resources :users, param: :handle, only: [:create, :update, :show] do
+      resources :users, only: [:create, :update] do
         collection do
           resources :current, only: :index
           resources :sensors, only: [:connection_test, :update, :show, :index, :data_store]
@@ -23,14 +23,13 @@ Rails.application.routes.draw do
       post "data_store", to: "sensors#data_store"
       post "connection_test", to: "sensors#connection_test"
 
-      # get "users/:handle", to: "users#show"
-      # get "users/:handle/sensors", to: "users#sensors"
+      # to be deleted ------
       get "users/:handle/regions", to: "users#regions"
       post "users/:handle/regions/:id", to: "regions#region_update"
       post "users/:handle/sensors/:sensor_id", to: "sensors#sensor_update"
       post "users/create", to: "users#create"
-      # post "sessions/create", to: "sessions_api#create"
       get "users/sensors", to: "users#sensors"
+      # ---------------------
     end
   end
 
@@ -38,8 +37,7 @@ Rails.application.routes.draw do
 
   resources :account_confirmations, only: [:edit]
   resources :password_resets, only: [:edit, :new]
-  # resources :users, only: [:create, :edit, :update]
 
-  # use_doorkeeper
+  use_doorkeeper
 
 end

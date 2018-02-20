@@ -1,8 +1,7 @@
 class Api::V1::SensorsController < Api::ApiController
-  skip_before_action :verify_authenticity_token
-
   def index
-    @sensors = Sensor.where(user: current_user)
+    @sensors = current_user.sensors
+    binding.pry
     render json: @sensors
   end
 
@@ -27,7 +26,7 @@ class Api::V1::SensorsController < Api::ApiController
     response_array = response.split(',')
     response_to_hash = {}
     response_to_hash[:id] = response_array[0]
-    # response_to_hash[:region_id] = 1
+    response_to_hash[:region_id] = 1
     response_to_hash[:sensor_current_time] = response_array[1]
     response_to_hash[:sensor_date] = response_array[2]
     response_to_hash[:sensor_latitude] = response_array[3] + response_array[4]
