@@ -5,7 +5,6 @@ class Api::V1::SensorsController < Api::ApiController
   end
 
   def show
-    puts "Went to sensor#show"
   end
 
   def update
