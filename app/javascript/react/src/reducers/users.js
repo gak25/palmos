@@ -2,7 +2,11 @@ import {
 	FETCH_CURRENT_USER,
 	FETCH_CURRENT_USER_SUCCESS
 } from '../actions/getCurrentUser';
-import { FETCH_CREATE_SESSION_SUCCESS } from '../actions/createSession';
+import {
+	FETCH_CREATE_SESSION,
+	FETCH_CREATE_SESSION_SUCCESS,
+	FETCH_CREATE_SESSION_FAILURE
+} from '../actions/createSession';
 import {
 	FETCH_CREATE_USER,
 	FETCH_CREATE_USER_SUCCESS
@@ -27,6 +31,10 @@ const users = (state = initialState, action) => {
 			return Object.assign({}, state, {
 				loading: false,
 				currentUser: action.currentUser
+			});
+		case FETCH_CREATE_SESSION:
+			return Object.assign({}, state, {
+				loading: true
 			});
 		case FETCH_CREATE_SESSION_SUCCESS:
 			return Object.assign({}, state, {

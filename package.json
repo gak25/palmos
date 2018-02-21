@@ -21,6 +21,7 @@
 		"react-timer-mixin": "^0.13.3",
 		"redux": "^3.7.2",
 		"redux-form": "^7.2.1",
+		"redux-persist": "^5.9.1",
 		"redux-thunk": "^2.2.0",
 		"sass-loader": "^6.0.6",
 		"style-loader": "^0.19.1"
