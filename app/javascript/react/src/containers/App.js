@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import Dashboard from './DashboardViews/Dashboard';
-import { getSensorData } from '../actions/getSensorData';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { getSensorData } from '../actions/getSensorData';
+
 import TimerMixin from 'react-timer-mixin';
 
-function mapStateToProps(state) {
-	return {
-		currentUser: state.users.currentUser
-	};
-}
+import Dashboard from './DashboardViews/Dashboard';
 
 function mapDispatchToProps(dispatch) {
 	return {
@@ -17,7 +14,7 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-@connect(mapStateToProps, mapDispatchToProps)
+@connect(mapDispatchToProps)
 export class App extends Component {
 	componentWillMount() {
 		// this.props.actions.getSensorData();

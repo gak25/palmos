@@ -33,7 +33,7 @@ let fetchCreateSessionFailure = () => {
 };
 
 let createSession = values => dispatch => {
-	// dispatch(fetchCreateSession());
+	dispatch(fetchCreateSession());
 	let payload = JSON.stringify(humps.decamelizeKeys(values));
 	return fetch(`${baseUrl}/api/v1/sessions.json`, {
 		credentials: 'same-origin',
