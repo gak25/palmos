@@ -57,6 +57,11 @@ _these secrets will be encrypted and are safe for production builds_
   _On Heroku, the application’s environment variables are managed from the heroku CLI:_
   `$ heroku config:set SECRET_TOKEN=...` or from the [web dashboard]("https://dashboard.heroku.com/apps/my-app/settings")
 
+## To push to heroku:
+
+* commit all changes to master and run `$ git push heroku master`
+* if database migrations were made in commit, run `$ heroku run rake db:migrate`
+
 ## To run puma server independently (not needed if running `foreman start`:
 
 * run `$ bundle exec rails s`

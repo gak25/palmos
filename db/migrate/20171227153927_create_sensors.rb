@@ -8,7 +8,7 @@ class CreateSensors < ActiveRecord::Migration[5.1]
       t.string :sensor_status, null: false, default: "healthy"
 
       t.string :sensor_current_time, null: false, default: Time.now
-      t.string :sensor_date, null: false, default: Date.now
+      t.string :sensor_date, null: false, default: DateTime.now.strftime "%d/%m/%Y"
 
       t.string :sensor_latitude, null: false, default: "42.381511N"
       t.string :sensor_longitude, null: false, default: "-71.105099W"
