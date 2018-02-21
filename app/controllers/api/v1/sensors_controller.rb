@@ -1,7 +1,6 @@
 class Api::V1::SensorsController < Api::ApiController
   def index
     @sensors = current_user.sensors
-    binding.pry
     render json: @sensors
   end
 
